@@ -2700,33 +2700,48 @@ fieldset:disabled a.btn {
 }
 
 .btn-info {
-  color: #212529;
-  background-color: #6cb2eb;
-  border-color: #6cb2eb;
+  color: #ffffff !important;
+  background: #000 !important;
+  /* border-color: #6cb2eb; */
+  border-style:double !important;
+  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+  
+  border-width: 10px!important;
 }
+
+/* BORDE DORADO DEL BOTON */
+
 .btn-info:hover {
   color: #fff;
-  background-color: #4aa0e6;
-  border-color: #3f9ae5;
+  /* background-color: #4aa0e6; */
+  /* border-color: #3f9ae5; */
+  border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+  background: rgba(97, 157, 206, 0.5)!important;
 }
 .btn-info:focus, .btn-info.focus {
   color: #fff;
-  background-color: #4aa0e6;
-  border-color: #3f9ae5;
+  /* background-color: #4aa0e6; */
+  /* border-color: #3f9ae5; */
   box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);
+  border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+  background:  #000 !important;
 }
 .btn-info.disabled, .btn-info:disabled {
   color: #212529;
-  background-color: #6cb2eb;
-  border-color: #6cb2eb;
+  /* background-color: #6cb2eb; */
+  /* border-color: #6cb2eb; */
+  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+  background-color: #212529  !important;
 }
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
   color: #fff;
-  background-color: #3f9ae5;
-  border-color: #3495e3;
+  /* background-color: #3f9ae5; */
+  /* border-color: #3495e3; */
+  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+  background-image: #212529 !important;
 }
 .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus, .show > .btn-info.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);
+  box-shadow: 0 0 0 0.2rem linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;;
 }
 
 .btn-warning {
