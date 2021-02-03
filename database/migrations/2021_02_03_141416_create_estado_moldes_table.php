@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNombresTable extends Migration
+class CreateEstadoMoldesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,13 @@ class CreateNombresTable extends Migration
      */
     public function up()
     {
-        Schema::create('nombres', function (Blueprint $table) {
-            $table->id();
+        Schema::create('estado_moldes', function (Blueprint $table) {
+            $table->increments('id_estado');
+            $table->string('bueno');
+            $table->string('irregular');
+            $table->string('malo');
+            $table->char('id_figura');
+            $table->char('id_vitola');
             $table->timestamps();
         });
     }
@@ -26,6 +31,6 @@ class CreateNombresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nombres');
+        Schema::dropIfExists('estado_moldes');
     }
 }
