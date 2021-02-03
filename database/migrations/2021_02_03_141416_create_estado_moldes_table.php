@@ -33,4 +33,5 @@ class CreateEstadoMoldesTable extends Migration
     {
         Schema::dropIfExists('estado_moldes');
     }
+
 }
