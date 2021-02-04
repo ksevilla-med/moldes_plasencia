@@ -23,8 +23,8 @@
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
-            <div class="sidebar-header">
-                <h3>Bootstrap Sidebar</h3>
+            <div class="sidebar-header" style="text-align:center;" >
+            <img src="plasenciablanco.png" style="width: 150px;height:112px;">
             </div>
 
             <ul class="list-unstyled components">
