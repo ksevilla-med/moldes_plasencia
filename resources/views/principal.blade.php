@@ -49,7 +49,7 @@
                     <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Salir</a>
                 </li>
                 <li>
-                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="article">Ayuda</a>
+                    <a href="https://bootstrapious.com/p/bootstrap-sidebar" class="download" style="background:#b38d1d;">Ayuda</a>
                 </li>
             </ul>
             </div>
