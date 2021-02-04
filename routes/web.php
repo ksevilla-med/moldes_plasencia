@@ -14,7 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('principallogo');
+});
+
+Route::get('/moldesprincipal', function () {
+    return view('moldesprincipal');
 });
 
 Auth::routes();
