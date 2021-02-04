@@ -2707,7 +2707,7 @@ fieldset:disabled a.btn {
    border-color:#E9B837 !important;  
   border-width:7px!important;
  
-  outline: 0 !important;
+  outline: none !important;
 display: block !important;
 }
 
@@ -2725,11 +2725,11 @@ outline: 0 !important;
   background: rgba(71, 143, 201, 0.5)!important;
   border-color:#E9B837 !important;
   /*border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;*/
-  background: #362217 !important;
+  background: #412517 !important;
   outline: none !important;
   display: block !important;
 }
-.btn-info:focus, .btn-info.focus {
+.btn-info:focus, input.form-control:focus {
   color: #fff;
   /* background-color: #4aa0e6; */
   /* border-color: #3f9ae5; */
@@ -2739,6 +2739,10 @@ outline: 0 !important;
   background:  #000000 !important;
   outline: none !important;
   display: block !important;
+  outline-width: 0 !important;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 .btn-info.disabled, .btn-info:disabled {
   color: #212529;
@@ -2770,12 +2774,7 @@ outline: 0 !important;
   border: none !important;
  }
 
-Fuente: https://www.iteramos.com/pregunta/35006/quitar-el-borde-azul-de-boton-personalizado-de-estilo-css-en-cromo
-.btn-warning {
-  color: #212529;
-  background-color: #ffed4a;
-  border-color: #ffed4a;
-}
+
 
 .btn-warning:hover {
   color: #212529;
