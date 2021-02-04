@@ -54,6 +54,24 @@
      margin: 40px 0;
  }
  
+
+#animation{
+animation: giros 20s infinite ease-in-out;
+}
+
+@keyframes giros {
+  0% { transform: translateY(0px) rotateY(  0deg) rotateY(  0deg); }
+100% { transform: translateY(0px) rotateY(360deg) rotateY(360deg); }
+}
+
+@keyframes mostrar{
+  0%{    transform: translateY(60px);  }
+  100%{    transform: translateY(0);  }
+}
+
+
+
+
  /* ---------------------------------------------------
      SIDEBAR STYLE
  ----------------------------------------------------- */
