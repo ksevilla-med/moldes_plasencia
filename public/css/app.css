@@ -6375,9 +6375,16 @@ button.bg-danger:focus {
   background-color: #c51f1a !important;
 }
 
+<<<<<<< Updated upstream
 .bg-light {
   background: #262524 !important;
+=======
+.bg2{
+  background-color: #000;
+>>>>>>> Stashed changes
 }
+
+
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -10185,7 +10192,11 @@ h3 {
 
   .navbar {
     display: none;
+<<<<<<< Updated upstream
   
+=======
+    background: #000 ;
+>>>>>>> Stashed changes
   }
 
   .badge {
