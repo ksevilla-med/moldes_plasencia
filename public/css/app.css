@@ -146,11 +146,6 @@ animation: giros 20s infinite ease-in-out;
  
  ul.CTAs {
      padding: 20px;
-     bottom: 0 !important;
- }
-
- .hastaabajo{
-      bottom: 0;
  }
  
  ul.CTAs a {
@@ -162,13 +157,13 @@ animation: giros 20s infinite ease-in-out;
  }
  
  a.download {
-     background: #fff;
-     color: #7386D5;
+     background: #b39f64;
+     color: #ecedf1;
  }
  
  a.article,
  a.article:hover {
-     background: #6d7fcc !important;
+     background: #b38d1d !important;
      color: #fff !important;
  }
  
@@ -356,7 +351,8 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #ffffff;
+  color: #000000 !important;
+  background-color: rgb(250, 243, 236) !important;
   text-decoration: underline;
 }
 
