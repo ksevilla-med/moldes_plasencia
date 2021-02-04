@@ -2702,7 +2702,7 @@ fieldset:disabled a.btn {
 .btn-info {
   color: #ffffff !important;
   background: #000 !important;
-   border-color:rgb(80, 78, 5) !important;  
+   border-color:rgb(235, 229, 70) !important;  
   border-width: 10px!important;
 }
 
@@ -2713,7 +2713,7 @@ fieldset:disabled a.btn {
   /* background-color: #4aa0e6; */
   /* border-color: #3f9ae5; */
   border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
-  background: rgba(97, 157, 206, 0.5)!important;
+  background: rgba(71, 143, 201, 0.5)!important;
 }
 .btn-info:focus, .btn-info.focus {
   color: #fff;
