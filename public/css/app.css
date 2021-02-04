@@ -2702,10 +2702,7 @@ fieldset:disabled a.btn {
 .btn-info {
   color: #ffffff !important;
   background: #000 !important;
-  /* border-color: #6cb2eb; */
-  border-style:double !important;
-  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
-  
+   border-color:rgb(80, 78, 5) !important;  
   border-width: 10px!important;
 }
 
