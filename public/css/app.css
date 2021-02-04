@@ -2702,45 +2702,71 @@ fieldset:disabled a.btn {
 .btn-info {
   color: #ffffff !important;
   background: #000 !important;
-   border-color:rgb(80, 78, 5) !important;  
-  border-width: 10px!important;
+   border-color:#E9B837 !important;  
+  border-width:7px!important;
+ 
+  outline: 0 !important;
+display: block !important;
 }
 
+.btn-info::-moz-focus-inner{
+border:0  !important;
+outline: 0 !important;
+}
 /* BORDE DORADO DEL BOTON */
 
 .btn-info:hover {
   color: #fff;
   /* background-color: #4aa0e6; */
   /* border-color: #3f9ae5; */
-  border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
-  background: rgba(97, 157, 206, 0.5)!important;
+  border-color:#E9B837 !important;
+  /*border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;*/
+  background: #362217 !important;
+  outline: none !important;
+  display: block !important;
 }
 .btn-info:focus, .btn-info.focus {
   color: #fff;
   /* background-color: #4aa0e6; */
   /* border-color: #3f9ae5; */
-  box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);
-  border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
-  background:  #000 !important;
+ /* box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);*/
+ border-color:#E9B837 !important;
+ /* border-color: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;*/
+  background:  #000000 !important;
+  outline: none !important;
+  display: block !important;
 }
 .btn-info.disabled, .btn-info:disabled {
   color: #212529;
   /* background-color: #6cb2eb; */
   /* border-color: #6cb2eb; */
-  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+ /* border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;*/
   background-color: #212529  !important;
+  outline: none !important;
+  display: block !important;
 }
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
   color: #fff;
   /* background-color: #3f9ae5; */
   /* border-color: #3495e3; */
-  border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;
+ /* border-image: linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;*/
   background-image: #212529 !important;
+  outline: none !important;
+  display: block !important;
 }
-.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus, .show > .btn-info.dropdown-toggle:focus {
+/*.btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus, .show > .btn-info.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem linear-gradient(315deg, #f1db10 5%, #1928d4 81%)  !important;;
-}
+}*/
 
+
+.btn-inf.active { 
+  outline: none !important; 
+  display: block !important;
+
+  border: none !important;
+ }
+
+Fuente: https://www.iteramos.com/pregunta/35006/quitar-el-borde-azul-de-boton-personalizado-de-estilo-css-en-cromo
 .btn-warning {
   color: #212529;
   background-color: #ffed4a;
