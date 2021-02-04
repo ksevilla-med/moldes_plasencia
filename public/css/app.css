@@ -328,12 +328,12 @@ sup {
 }
 
 a {
-  color: #3490dc;
+  color: #ffffff !important;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #1d68a7;
+  color: #ffffff;
   text-decoration: underline;
 }
 
@@ -6386,7 +6386,7 @@ button.bg-light:focus {
 }
 
 .bg2{
-  background-color: #464544;
+  background-color: #363534;
 }
 
 .bg-dark {
