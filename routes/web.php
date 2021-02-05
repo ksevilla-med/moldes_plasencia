@@ -45,6 +45,10 @@ Route::get('/otras_empresas', function () {
     return view('otras_empresas');
 });
 
+Route::get('/ayuda', function () {
+    return view('ayuda');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -2,12 +2,7 @@
 
 
 @section('content')
-
-
-
-el paraiso
-
-
-
+          
+carrusel de la ayuda
 
 @endsection

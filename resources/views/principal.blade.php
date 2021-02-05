@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Font Awesome JS -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
@@ -45,10 +46,10 @@
             <div  style="position: fixed; bottom: 0px; width:250px;">
             <ul class="list-unstyled CTAs ">
                 <li>
-                    <a href="#" class="download">Acerca de</a>
+                    <a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a>
                 </li>
                 <li>
-                    <a href="#" class="download" style="background:#b38d1d;">Ayuda</a>
+                    <a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a>
                 </li>
             </ul>
             </div>
@@ -75,7 +76,7 @@
 
                         
                             <li class="nav-item">
-                                <a class="nav-link" href="www.google.com">
+                                <a class="nav-link" onclick="javascript:window.history.back();" autofocus >
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
                                              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
                                      </svg>
@@ -93,11 +94,12 @@
 
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                            <a  class="nav-link"  data-toggle="modal" data-target="#modal_cerrarsesion">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
                                      <path d="M7.5 1v7h1V1h-1z"/>   <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
                                 </svg>
-                                </a>
+                            </a>                            
+                                
                             </li>                       
                           
                         </ul>
@@ -105,9 +107,99 @@
                 </div>
             </nav>
 
-            
+        
 
-          
+
+
+
+
+        
+
+
+
+<!-- Modal cerrar sesion -->
+<div class="modal fade" id="modal_cerrarsesion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cerrar Sesión</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      ¿Estás seguro que quieres salir de la aplicación?
+      </div>
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Cancelar</span>
+        </button>
+        <button type="button" class=" btn-info ">
+            <span>Cerrar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Acerca De -->
+
+<div class="modal fade" id="modal_acercade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Acerca De</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      El Estado del Arte/Estado de la técnica, hace referencia al estado último del conocimiento
+sobre la investigación y el desarrollo (I+D), es decir que es el límite de conocimiento
+generado sobre un tema o problema de investigación científica y/o tecnológica,
+estableciendo hasta donde ha avanzado el mismo, cual es la frontera en un tiempo y espacio
+determinado.
+En el inicio del proceso de construcción y/o descubrimiento de conocimientos científicos
+mediante la investigación, sin duda alguna, los profesores se preguntan ¿El estado del
+arte/técnica, es una de esas ocurrencias de la gestión de la investigación (Gestores), para
+complicar el trabajo de los investigadores en la formulación de sus protocolos de I+D? ¿Es
+el afán de hacer más burocrático el acceso al financiamiento, especialmente si este, tiene
+como fuente el presupuesto universitario? De igual manera, los investigadores con escasa
+experiencia en investigación tienen la percepción que el estado del arte/técnica es lo mismo
+que Marco Teórico y como tal lo tratan. En aras de contribuir a un mejor discernimiento e
+internalización y la adecuada utilización de estos elementos fundamentales de todo
+proyecto de investigación científica y/o tecnológica hemos preparado una síntesis sobre el
+tema.
+      </div>
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Entendido</span>
+        </button>      
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             @yield('content')
 
 
