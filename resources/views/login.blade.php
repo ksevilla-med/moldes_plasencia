@@ -23,7 +23,7 @@
 <!-- Card de Login -->
 <div class="imagenprincipalpadre2">
 <div class="imagenprincipalhijo" >
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem; opacity:.9">
 
 
   
