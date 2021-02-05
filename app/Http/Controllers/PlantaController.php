@@ -14,7 +14,8 @@ class PlantaController extends Controller
      */
     public function index()
     {
-        //
+        $plantas = Planta::get();
+        return view('sucursal_elparaiso')->with('plantas',$plantas );
     }
 
     /**
@@ -22,9 +23,20 @@ class PlantaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request )
     {
-        //
+        
+     $validateData = $request-> validate([
+         'nombre_planta'=>'requerid'
+     ]);
+
+     $planta = new $planta();
+
+     $planta->nombre_planta=$request->input('nombre_planta');
+     $planta->save();
+
+
+     return ; //RETORNA A LA VISTA 
     }
 
     /**
@@ -35,7 +47,7 @@ class PlantaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +67,13 @@ class PlantaController extends Controller
      * @param  \App\Models\Planta  $planta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Planta $planta)
+    public function edit($id)
     {
-        //
+
+        $planta = Planta::findOrFail($id);
+
+        return ;// AQUI RETORNA A LA VISTA O TABLA QUE SE DESEE MANDAR
+
     }
 
     /**
@@ -67,9 +83,18 @@ class PlantaController extends Controller
      * @param  \App\Models\Planta  $planta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Planta $planta)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request-> validate([
+            'nombre_planta'=>'requerid'
+        ]);
+
+        $planta = Store::FindOrFail($id);
+
+        $planta->nombre_planta=$request->input('nombre_planta');
+        $planta->save();
+
+        return ; 
     }
 
     /**
