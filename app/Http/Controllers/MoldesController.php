@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Estado_molde;
+use App\Models\Moldes;
 use Illuminate\Http\Request;
 
-class EstadoMoldeController extends Controller
+class MoldesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class EstadoMoldeController extends Controller
      */
     public function index()
     {
-        //
+        $moldes = \DB::select('call mostrar_datos_moldes(1)');
+        return view('sucursal_elparaiso')->with('moldes', $moldes);
     }
 
     /**
@@ -41,10 +42,10 @@ class EstadoMoldeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Estado_molde  $estado_molde
+     * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function show(Estado_molde $estado_molde)
+    public function show(Moldes $moldes)
     {
         //
     }
@@ -52,10 +53,10 @@ class EstadoMoldeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Estado_molde  $estado_molde
+     * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Estado_molde $estado_molde)
+    public function edit(Moldes $moldes)
     {
         //
     }
@@ -64,10 +65,10 @@ class EstadoMoldeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Estado_molde  $estado_molde
+     * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Estado_molde $estado_molde)
+    public function update(Request $request, Moldes $moldes)
     {
         //
     }
@@ -75,10 +76,10 @@ class EstadoMoldeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Estado_molde  $estado_molde
+     * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Estado_molde $estado_molde)
+    public function destroy(Moldes $moldes)
     {
         //
     }

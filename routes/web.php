@@ -29,9 +29,7 @@ Route::get('/sucursal_gualiqueme', function () {
     return view('sucursal_gualiqueme');
 });
 
-Route::get('/sucursal_elparaiso', function () {
-    return view('sucursal_elparaiso');
-});
+Route::get('/sucursal_elparaiso',[App\Http\Controllers\MoldesController::class, 'index'])->name('datos_planta');
 
 Route::get('/sucursal_sanmarcos', function () {
     return view('sucursal_sanmarcos');
@@ -47,6 +45,10 @@ Route::get('/sucursales_total', function () {
 
 Route::get('/otras_empresas', function () {
     return view('otras_empresas');
+});
+
+Route::get('/ayuda', function () {
+    return view('ayuda');
 });
 
 Auth::routes();
