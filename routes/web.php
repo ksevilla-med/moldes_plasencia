@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('principallogo');
 });
 
+Route::get('/entrada', function () {
+    return view('login');
+});
+
 Route::get('/moldesprincipal', function () {
     return view('moldesprincipal');
 });
