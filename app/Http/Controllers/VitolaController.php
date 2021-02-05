@@ -14,7 +14,9 @@ class VitolaController extends Controller
      */
     public function index()
     {
-        //
+        $vitola = Vitola::get();
+        return response()->json($vitola);//ESTA EN JSONN PERO SE PUEDE MANDAR A LA VISTA
+ 
     }
 
     /**
@@ -22,9 +24,20 @@ class VitolaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validateData = $request-> validate([
+            'vitola'=>'requerid',
+            'id_planta'=>'requerid'
+        ]);
+
+        $vitola = new $vitola();
+   
+        $vitola->vitola=$request->input('vitola');
+        $vitola->id_planta=$request->input('id_planta');
+         $vitola->save();
+
+         return;
     }
 
     /**
@@ -55,9 +68,12 @@ class VitolaController extends Controller
      * @param  \App\Models\Vitola  $vitola
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vitola $vitola)
+    public function edit(Vitola $id)
     {
-        //
+        $vitola = Vitola::findOrFail($id);
+
+        return ;// AQUI RETORNA A LA VISTA O TABLA QUE SE DESEE MANDAR
+ 
     }
 
     /**
@@ -67,9 +83,20 @@ class VitolaController extends Controller
      * @param  \App\Models\Vitola  $vitola
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vitola $vitola)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request-> validate([
+            'vitola'=>'requerid',
+            'id_planta'=>'requerid'
+        ]);
+
+        $vitola = Store::FindOrFail($id);
+   
+        $vitola->vitola=$request->input('vitola');
+        $vitola->id_planta=$request->input('id_planta');
+         $vitola->save();
+
+         return;
     }
 
     /**

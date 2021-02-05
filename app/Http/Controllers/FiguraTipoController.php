@@ -14,7 +14,8 @@ class FiguraTipoController extends Controller
      */
     public function index()
     {
-        //
+        $figura = Figura_tipo::get();
+        return response()->json($figura);//ESTA EN JSONN PERO SE PUEDE MANDAR A LA VISTA
     }
 
     /**
@@ -22,9 +23,22 @@ class FiguraTipoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
+        $validateData = $request-> validate([
+            'nombre_figura'=>'requerid',
+            'id_planta'=>'requerid'
+        ]);
+
+        $figura = new $figura();
+   
+        $figura->nombre_figura=$request->input('nombre_figura');
+        $figura->id_planta=$request->input('id_planta');
+         $figura->save();
+
+         return;
+
     }
 
     /**
@@ -55,9 +69,11 @@ class FiguraTipoController extends Controller
      * @param  \App\Models\Figura_tipo  $figura_tipo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Figura_tipo $figura_tipo)
+    public function edit($id)
     {
-        //
+        $figura = Figura_tipo::findOrFail($id);
+
+        return ;// AQUI RETORNA A LA VISTA O TABLA QUE SE DESEE MANDAR
     }
 
     /**
@@ -67,9 +83,21 @@ class FiguraTipoController extends Controller
      * @param  \App\Models\Figura_tipo  $figura_tipo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Figura_tipo $figura_tipo)
+    public function update(Request $request, $id)
     {
-        //
+        
+
+        $validateData = $request-> validate([
+            'nombre_figura'=>'requerid',
+            'id_planta'=>'requerid'
+        ]);
+
+        $figura = Store::FindOrFail($id);
+   
+        $figura->nombre_figura=$request->input('nombre_figura');
+        $figura->id_planta=$request->input('id_planta');
+         $figura->save();
+         return;
     }
 
     /**
