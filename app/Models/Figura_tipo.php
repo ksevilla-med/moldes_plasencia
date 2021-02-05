@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Figura_tipo extends Model
 {
-    use HasFactory;
+   protected $table = 'figura_tipos';
+   protected $fillable = [
+
+    'id_figura',
+    'nombre_figura',
+    'id_planta'
+   ];
+
 }
