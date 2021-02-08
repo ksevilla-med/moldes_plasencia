@@ -204,26 +204,168 @@ tema.
             <div class="mb-3 col">
             <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
                 <input class="form-control" list="prediccionfiguraytipo" id="txt_figuraytipo" placeholder="Ingresa figura y tipo">
-                <!-- <datalist id="prediccionfiguraytipo">
-                <option value="Cabeza normal">
-                <option value="Torpedo">
-                <option value="Figurado">
-                <option value="Piramide">
-                <option value="Cabeza normalplatico">
-                <option value="Cabeza normal plástico">
-                <option value="Torpedo Habano">
-                <option value="Short Story">
-                <option value="Misiles">
-                <option value="Punta lápiz">
-                <option value="Cabeza normal M">
-                <option value="Bering">
-                </datalist> -->
+              
             </div>
 
             <div class="mb-3 col">
             <label for="txt_vitola" class="form-label">Vitola</label>
                 <input class="form-control" list="prediccionvitola" id="txt_vitola" placeholder="Ingresa la vitola">
-                <!-- <datalist id="prediccionvitola">
+           
+            </div>
+
+            <div class="mb-3 col">
+            <label for="txt_total" class="form-label">Total</label>
+            <input class="form-control" id="txt_total" placeholder="Cantidad">        
+            </div>
+       
+        </div> 
+
+
+
+
+        <div class="row">
+
+            <div class="mb-3 col">
+            <label for="txt_buenos" class="form-label">Buenos</label>
+            <input class="form-control" id="txt_buenos" placeholder="Cantidad">        
+            </div>
+
+            <div class="mb-3 col">            
+            <label for="txt_irregulares" class="form-label">Irregulares</label>
+            <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
+            </div>
+
+            <div class="mb-3 col">
+            <label for="txt_malos" class="form-label">Malos</label>
+            <input class="form-control" id="txt_malos" placeholder="Cantidad">  
+            </div>
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="mb-3 col">
+            <label for="txt_salon" class="form-label">Salon</label>
+            <input class="form-control" id="txt_salon" placeholder="Cantidad">        
+            </div>
+
+            <div class="mb-3 col">            
+            <label for="txt_bodega" class="form-label">Bodega</label>
+            <input class="form-control" id="txt_bodega" placeholder="Cantidad">  
+            </div>
+
+            <div class="mb-3 col">
+            <label for="txt_reparacion" class="form-label">Reparación</label>
+            <input class="form-control" id="txt_reparacion" placeholder="Cantidad">  
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    
+    </form>    
+  </div>
+
+      </div>
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Cancelar</span>
+        </button>
+        <button type="button" class=" btn-info "  onclick=validar();>
+            <span>Guardar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            @yield('content')
+
+
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
+            <!-- VALIDACION DE TOTALES DE MODAL DE INGRESAR MOLDES -->
+            <script type="text/javascript">
+
+            function validar(){ 
+                var v_buenos = document.getElementById('txt_buenos').value;
+                var v_irregulares = document.getElementById('txt_irregulares').value;
+                var v_malos = document.getElementById('txt_malos').value;
+                var v_bodega = document.getElementById('txt_bodega').value;
+                var v_reparacion = document.getElementById('txt_reparacion').value;
+                var v_salon = document.getElementById('txt_salon').value;
+                var v_total = document.getElementById('txt_total').value;
+
+                var sumalocal = 0;
+                sumalocal = v_bodega+v_salon+v_reparacion;                
+                console.log("suma local    " +sumalocal)
+
+
+                if( v_total == (v_buenos+v_irregulares+v_malos) && v_total==(v_bodega+v_salon+v_reparacion)  ){
+                        console.log("vamos a guardar");
+                }else{
+                    cosole.log("le tiro un alert y lo regreso");
+                }
+            
+            }
+
+            </script>
+</body>
+</html>
+
+
+
+
+     <!-- <datalist id="prediccionvitola">
                 <option value="70x7-1/2">
                 <option value="68x7-1/4">
                 <option value="62x8">
@@ -295,121 +437,19 @@ tema.
                 <option value="22x4">
                 <option value="20x4">
                 </datalist> -->
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_total" class="form-label">Total</label>
-            <input class="form-control" id="txt_total" placeholder="Cantidad">        
-            </div>
-       
-        </div> 
 
 
-
-
-        <div class="row">
-
-            <div class="mb-3 col">
-            <label for="txt_buenos" class="form-label">Buenos</label>
-            <input class="form-control" id="txt_buenos" placeholder="Cantidad">        
-            </div>
-
-            <div class="mb-3 col">            
-            <label for="txt_irregulares" class="form-label">Irregulares</label>
-            <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_malos" class="form-label">Malos</label>
-            <input class="form-control" id="txt_malos" placeholder="Cantidad">  
-            </div>
-
-        </div>
-
-
-        <div class="row">
-
-            <div class="mb-3 col">
-            <label for="txt_salon" class="form-label">Salon</label>
-            <input class="form-control" id="txt_salon" placeholder="Cantidad">        
-            </div>
-
-            <div class="mb-3 col">            
-            <label for="txt_irregulares" class="form-label">Bodega</label>
-            <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_malos" class="form-label">Reparación</label>
-            <input class="form-control" id="txt_malos" placeholder="Cantidad">  
-            </div>
-
-        </div>
-    
-    </form>    
-  </div>
-
-
-
-
-
-      </div>
-      <div class="modal-footer" >
-        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
-            <span>Cancelar</span>
-        </button>
-        <button type="button" class=" btn-info ">
-            <span>Guardar</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            @yield('content')
-
-
-    </div>
-
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
-</body>
-</html>
+                  <!-- <datalist id="prediccionfiguraytipo">
+                <option value="Cabeza normal">
+                <option value="Torpedo">
+                <option value="Figurado">
+                <option value="Piramide">
+                <option value="Cabeza normalplatico">
+                <option value="Cabeza normal plástico">
+                <option value="Torpedo Habano">
+                <option value="Short Story">
+                <option value="Misiles">
+                <option value="Punta lápiz">
+                <option value="Cabeza normal M">
+                <option value="Bering">
+                </datalist> -->

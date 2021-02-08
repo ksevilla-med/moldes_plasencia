@@ -8,13 +8,6 @@
 </button>
 
 
-
-
-
-
-<button type="button" class=" btn-info "  data-toggle="modal" data-target="#modal_agregar_moldes">
-     <span> Agregar moldes</span>
-</button>
 <!-- Modal Agregar Moldes -->
 <div class="modal fade" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered"  style="opacity:.9;background:#212529;width=80%">
@@ -100,6 +93,10 @@
             </div>
 
         </div>
+
+
+
+
     
     </form>    
   </div>
@@ -113,7 +110,7 @@
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
         </button>
-        <button type="button" class=" btn-info ">
+        <button type="button" class=" btn-info " onclick=confirmar();>
             <span>Guardar</span>
         </button>
       </div>
@@ -157,5 +154,17 @@
             @endforeach
           <tbody>
     </table>
+
+    <script type="text/javascript">
+
+function confirmar(){ 
+        $('#reparacion').focusout(function() {
+ var x = $(this).val();
+ alert(x);
+ console.log("hola");
+});
+}
+
+</script>
 
 @endsection
