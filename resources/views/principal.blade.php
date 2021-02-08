@@ -1,64 +1,70 @@
-
+<!-- LO QUE SE MUESTRA EN LA PESTANIA DEL NAVEGADOR -->
 <title>Placensia inventario móvil</title>
-<link rel="shortcat icon" href="favicon.ico"> 
-   
-<html lang="es">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcat icon" href="{{ URL::asset('favicon.ico') }}"> 
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Font Awesome JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-</head>
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="{{ URL::asset('https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css') }}" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
 
-<body>
+<!-- Font Awesome JS -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- CIERRA LA BARRA LATERAL -->
+<script type="text/javascript">
+$(document).ready(function () {
+$('#sidebarCollapse').on('click', function () {
+$('#sidebar').toggleClass('active');});});
+</script>
+
+
+
+
+
+
+
+
+
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
+
             <div class="sidebar-header" style="text-align:center;" href="/">
-            <img src="plasenciablanco.png" style="width: 150px;height:112px;" >
-</div>
+                <img src="{{ URL::asset('plasenciablanco.png') }}" style="width: 150px;height:112px;" >
+            </div>
 
             <ul class="list-unstyled components">
-                
-              
-                <li>
-                    <a href="/moldesprincipal">Moldes</a>
-                </li>
-                <li>
-                    <a href="#">Proximamente...</a>
-                </li>
-                <li>
-                    <a href="#">Proximamente...</a>
-                </li>
+                <li><a href="/moldesprincipal">Moldes</a></li>
+                <li><a href="#">Proximamente...</a></li>
+                <li><a href="#">Proximamente...</a></li>
             </ul>
-            <div  style="text-align:center">
-
-            </div>
+            
+           
             <div  style="position: fixed; bottom: 0px; width:250px;">
-            <ul class="list-unstyled CTAs ">
-                <li>
-                    <a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a>
-                </li>
-                <li>
-                    <a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a>
-                </li>
-            </ul>
+                <ul class="list-unstyled CTAs ">
+                    <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
+                    <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
+                </ul>
             </div>
          
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" >
-       
+        <div id="content" >      
 
             <nav class="navbar navbar-expand-lg navbar-light bg2">
                 <div class="container-fluid">
@@ -117,7 +123,7 @@
 
 
 
-<!-- Modal cerrar sesion -->
+<!-- INICIO MODAL CERRAR SESION -->
 <div class="modal fade" id="modal_cerrarsesion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -139,9 +145,13 @@
     </div>
   </div>
 </div>
+<!-- FIN MODAL CERRAR SESION -->
 
-<!-- Modal Acerca De -->
 
+
+
+
+<!-- INICIO MODAL ACERCA_DE -->
 <div class="modal fade" id="modal_acercade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
     <div class="modal-content">
@@ -175,192 +185,16 @@ tema.
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-<!-- Modal Agregar Moldes -->
-
-<div class="modal fade  " id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
-  <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Agregar Moldes</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-
-
-    <div class="card-body">  
-        <form>
-
-
-        <div class="row">
-
-            <div class="mb-3 col">
-            <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                <input class="form-control" list="prediccionfiguraytipo" id="txt_figuraytipo" placeholder="Ingresa figura y tipo">
-              
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_vitola" class="form-label">Vitola</label>
-                <input class="form-control" list="prediccionvitola" id="txt_vitola" placeholder="Ingresa la vitola">
-           
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_total" class="form-label">Total</label>
-            <input class="form-control" id="txt_total" placeholder="Cantidad">        
-            </div>
-       
-        </div> 
-
-
-
-
-        <div class="row">
-
-            <div class="mb-3 col">
-            <label for="txt_buenos" class="form-label">Buenos</label>
-            <input class="form-control" id="txt_buenos" placeholder="Cantidad">        
-            </div>
-
-            <div class="mb-3 col">            
-            <label for="txt_irregulares" class="form-label">Irregulares</label>
-            <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_malos" class="form-label">Malos</label>
-            <input class="form-control" id="txt_malos" placeholder="Cantidad">  
-            </div>
-
-        </div>
-
-
-        <div class="row">
-
-            <div class="mb-3 col">
-            <label for="txt_salon" class="form-label">Salon</label>
-            <input class="form-control" id="txt_salon" placeholder="Cantidad">        
-            </div>
-
-            <div class="mb-3 col">            
-            <label for="txt_bodega" class="form-label">Bodega</label>
-            <input class="form-control" id="txt_bodega" placeholder="Cantidad">  
-            </div>
-
-            <div class="mb-3 col">
-            <label for="txt_reparacion" class="form-label">Reparación</label>
-            <input class="form-control" id="txt_reparacion" placeholder="Cantidad">  
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
-    
-    </form>    
-  </div>
-
-      </div>
-      <div class="modal-footer" >
-        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
-            <span>Cancelar</span>
-        </button>
-        <button type="button" class=" btn-info "  onclick=validar();>
-            <span>Guardar</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- FIN MODAL CERRAR SESION -->
 
 
             @yield('content')
 
-
     </div>
+    <!--  FIN DEL CONTENT -->
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+ 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
-
-            <!-- VALIDACION DE TOTALES DE MODAL DE INGRESAR MOLDES -->
-            <script type="text/javascript">
-
-            function validar(){ 
-                var v_buenos = document.getElementById('txt_buenos').value;
-                var v_irregulares = document.getElementById('txt_irregulares').value;
-                var v_malos = document.getElementById('txt_malos').value;
-                var v_bodega = document.getElementById('txt_bodega').value;
-                var v_reparacion = document.getElementById('txt_reparacion').value;
-                var v_salon = document.getElementById('txt_salon').value;
-                var v_total = document.getElementById('txt_total').value;
-
-                var sumalocal = 0;
-                sumalocal = v_bodega+v_salon+v_reparacion;                
-                console.log("suma local    " +sumalocal)
-
-
-                if( v_total == (v_buenos+v_irregulares+v_malos) && v_total==(v_bodega+v_salon+v_reparacion)  ){
-                        console.log("vamos a guardar");
-                }else{
-                    cosole.log("le tiro un alert y lo regreso");
-                }
-            
-            }
-
-            </script>
-</body>
-</html>
 
 
 
