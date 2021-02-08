@@ -23,6 +23,7 @@ class CreateMoldesTable extends Migration
                 $table->integer('reparacion');
                 $table->integer('bodega');
                 $table->integer('salon');
+                $table->integer('total');
                 $table->timestamps();
             
         });
