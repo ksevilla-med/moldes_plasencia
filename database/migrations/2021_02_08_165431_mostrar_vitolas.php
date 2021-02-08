@@ -17,7 +17,7 @@ class MostrarVitolas extends Migration
        CREATE PROCEDURE `mostrar_vitolas`(IN `pa_id_planta` INT )
         
         BEGIN
-             SELECT vitolas.id_vitola, vitolas.vitola  FROM vitolas WHERE vitolas.id_planta = pa_id_planta;
+             SELECT vitolas.id_vitola, vitolas.vitola as nombre_vitola FROM vitolas WHERE vitolas.id_planta = pa_id_planta;
         END
         ');
     }

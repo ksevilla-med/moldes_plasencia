@@ -15,9 +15,18 @@ class MoldesController extends Controller
     public function index()
     {
         $moldes = \DB::select('call mostrar_datos_moldes(1)');
-        return view('sucursal_elparaiso')->with('moldes', $moldes);
+        
+        $vitolas = \DB::select('call mostrar_vitolas(1)');
+
+        $figuras = \DB::select('call mostrar_figura_tipos(1)');
+
+        return view('sucursal_elparaiso')->with(['moldes' => $moldes, 'vitolas' => $vitolas, 'figuras' =>   $figuras ]);
     }
 
+
+    public function index_vitola()
+    {
+    }
     /**
      * Show the form for creating a new resource.
      *
