@@ -94,7 +94,7 @@ class VitolaController extends Controller
    
         $vitola->vitola=$request->input('vitola');
         $vitola->id_planta=$request->input('id_planta');
-         $vitola->save();
+        $vitola->save();
 
          return;
     }
