@@ -14,7 +14,13 @@
             <div class="card" style="width: 100%;">
                 <img src="sucursalParaiso.png" class="card-img-top" alt="Sucursal El Paraíso"  style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-                         <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/sucursal_elparaiso'">Sucursal El Paraíso</button> 
+
+                   
+                    <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal El Paraíso</button> 
+                    
+                     </form>     
                      </div>
             </div>
         </div>
