@@ -152,30 +152,64 @@ $('#sidebar').toggleClass('active');});});
 
 
 <!-- INICIO MODAL ACERCA_DE -->
+
 <div class="modal fade" id="modal_acercade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Acerca De</h5>
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+  <path d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+  </svg>
+        <h5 class="modal-title" id="staticBackdropLabel">Inventario Movil Plasencia</h5> 
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
+      
       <div class="modal-body">
-      El Estado del Arte/Estado de la técnica, hace referencia al estado último del conocimiento
-sobre la investigación y el desarrollo (I+D), es decir que es el límite de conocimiento
-generado sobre un tema o problema de investigación científica y/o tecnológica,
-estableciendo hasta donde ha avanzado el mismo, cual es la frontera en un tiempo y espacio
-determinado.
-En el inicio del proceso de construcción y/o descubrimiento de conocimientos científicos
-mediante la investigación, sin duda alguna, los profesores se preguntan ¿El estado del
-arte/técnica, es una de esas ocurrencias de la gestión de la investigación (Gestores), para
-complicar el trabajo de los investigadores en la formulación de sus protocolos de I+D? ¿Es
-el afán de hacer más burocrático el acceso al financiamiento, especialmente si este, tiene
-como fuente el presupuesto universitario? De igual manera, los investigadores con escasa
-experiencia en investigación tienen la percepción que el estado del arte/técnica es lo mismo
-que Marco Teórico y como tal lo tratan. En aras de contribuir a un mejor discernimiento e
-internalización y la adecuada utilización de estos elementos fundamentales de todo
-proyecto de investigación científica y/o tecnológica hemos preparado una síntesis sobre el
-tema.
+
+      <!-- Card que es? -->
+      <div class="card border-light mb-7" style="max-width: 30rem;">
+      <b>
+  <div class="card-header"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shield-fill-exclamation" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0zM8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+</svg>  ¿Qué es Inventario Móvil Plasencia?</div>
+    </b>
+  <div class="card-body">
+    
+    Es un Sistema dedicado al ingreso, manejo y visualización del inventario de la empresa, en el cual podrás realizar busquedas
+     de información de acuerdo a tus necesidades. 
+  </div>
+</div>
+      <!-- Card  eficiencia -->
+      <div class="card border-light mb-7" style="max-width: 30rem;">
+      <b>
+  <div class="card-header"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shield-fill-check" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm2.146 5.146a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647z"/>
+</svg>   Eficiencia & Accesibilidad</div>
+  </b>
+  <div class="card-body">
+  Es la manera más eficiente y productiva de interactuar con tu trabajo; ya que gracias a él, podrás acceder y visualizar
+     la información que necesites en cualquier lugar con acceso a internet. Además, está diseñado para que trabajes en conjunto
+    con tu ente corporativo.
+  </div>
+</div>
+
+  <!-- Card  Seguridad -->
+  <div class="card border-light mb-7" style="max-width: 30rem;">
+      <b>
+  <div class="card-header"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"/>
+</svg>      Seguridad</div>
+
+  
+    </b>
+  <div class="card-body">
+    
+    La estructura con la que te encontraras es Segura y Confiable, ya que la información a la cual tendrás acceso esta completamente 
+    restringida para cada una de las sucursales y usuarios.
+  </div>
+</div>    
+     
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
