@@ -3,46 +3,68 @@
 
 @section('content')
 
+<!-- Libreria de las alertas -->
+<script src= "{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
+<link rel="stylesheet" href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
+
+
 
 <button type="button" class=" btn-info "  data-toggle="modal" data-target="#modal_agregar_moldes" data-bs-whatever="Sucursal El Paraiso">
      <span> Agregar moldes</span>
 </button>
 
 
+<!--consulta insertar -->
+
+
 
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
+
+
+
+
+<form action =  "{{Route('insertar_moldes',1)}}" method= "POST">
+
 <div class="modal fade" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
-  <div class="modal-dialog modal-dialog-centered"  style="opacity:.9;background:#212529;width=80%">
+  <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Agregar Moldes</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" ></button>
       </div>
-
+     
       <div class="modal-body">
           <div class="card-body">  
-            <form>
+            
 
               <div class="row">
 
                   <div class="mb-3 col">
                     <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                      <input class="form-control" list="prediccionfiguraytipo" id="txt_figuraytipo" placeholder="Ingresa figura y tipo">
-                        <datalist id="prediccionfiguraytipo">                
+                      <input class="form-control" type= "text"list="prediccionfiguraytipo" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa figura y tipo">
+                        <datalist id="prediccionfiguraytipo" >                
+                      
                         @foreach($figuras as $figura)
-                        <option value =  "{{ $figura-> nombre_figura}} " >
+                        <option value =  "{{$figura-> nombre_figura}}" >
                         @endforeach
+                        
                         </datalist> 
                   </div>
 
                   <div class="mb-3 col">
                     <label for="txt_vitola" class="form-label">Vitola</label>
-                        <input class="form-control" list="prediccionvitola" id="txt_vitola" placeholder="Ingresa la vitola">
+                        <input class="form-control"  type= "text" list="prediccionvitola" id="txt_vitola"  name="id_vitola" placeholder="Ingresa la vitola">
                           <datalist id="prediccionvitola" class= "row">
                             @foreach($vitolas as $vitola)
-                            <option value =  "{{ $vitola-> nombre_vitola}} " >
+                              <option value =  "{{$vitola-> nombre_vitola}}" >
                             @endforeach
+                           
                           </datalist> 
+                  </div>
+
+                  <div class="mb-3 col">
+                  <label for="txt_total" class="form-label">Total</label>
+                  <input class="form-control" id="txt_total" placeholder="Cantidad" required type="number" min="1" max="999999" minLength="1" maxLength="6">        
                   </div>
             
               </div> 
@@ -54,15 +76,15 @@
 
                   <div class="mb-3 col">
                   <label for="txt_buenos" class="form-label">Buenos</label>
-                  <input class="form-control" id="txt_buenos" placeholder="Cantidad">        
+                  <input class="form-control" id="txt_buenos" type="text" name="bueno"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_irregulares" class="form-label">Irregulares</label>
-                  <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
+                  <input class="form-control" id="txt_irregulares" type="text"name="irregulares" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_malos" class="form-label">Malos</label>
-                  <input class="form-control" id="txt_malos" placeholder="Cantidad">  
+                  <input class="form-control" id="txt_malos"  type="text" name="malos"placeholder="Cantidad" type="number">  
                   </div>
 
               </div>
@@ -72,36 +94,45 @@
 
                   <div class="mb-3 col">
                   <label for="txt_salon" class="form-label">Salon</label>
-                  <input class="form-control" id="txt_salon" placeholder="Cantidad">        
+                  <input class="form-control" id="txt_salon" type="text" name="salon"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
-                  <label for="txt_irregulares" class="form-label">Bodega</label>
-                  <input class="form-control" id="txt_irregulares" placeholder="Cantidad">  
+                  <label for="txt_bodega" class="form-label">Bodega</label>
+                  <input class="form-control" id="txt_bodega"type="text" name="bodega" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
-                  <label for="txt_malos" class="form-label">Reparación</label>
-                  <input class="form-control" id="txt_malos" placeholder="Cantidad">  
+                  <label for="txt_reparacion" class="form-label">Reparación</label>
+                  <input class="form-control" id="txt_reparacion" type="text" name="reparacion" placeholder="Cantidad" type="number">  
+                  <input name="id_planta" value= "1">  
                   </div>
 
               </div>
           
-          </form>    
+           
+             
         </div>
       </div>
-
+    
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
+            @csrf
         </button>
-        <button type="button" class=" btn-info " onclick=validar();>
+        <button type="submit" class=" btn-info " onclick="validar()" >
             <span>Guardar</span>
         </button>
-      </div>
 
+        
+      </div>
     </div>
   </div>
 </div>
+
+</form>
 <!-- FIN DEL MODAL NUEVO MOLDE -->
+
+
+
 
 
 
@@ -163,17 +194,38 @@
         var v_salon = document.getElementById('txt_salon').value;
         var v_total = document.getElementById('txt_total').value;
        
+        if(v_buenos==""){ v_buenos = "0";}
+       if(v_irregulares==""){ v_irregulares = "0";}
+       if(v_malos==""){ v_malos = "0";}
+       if(v_bodega==""){ v_bodega = "0";}
+       if(v_reparacion==""){ v_reparacion = "0";}
+       if(v_salon==""){ v_salon = "0";}
 
-        // var sumalocal = 0;
-        // sumalocal = v_bodega+v_salon+v_reparacion;                
-        // console.log("suma local    " +sumalocal)
+       if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+
+toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
 
-        // if( v_total == (v_buenos+v_irregulares+v_malos) && v_total==(v_bodega+v_salon+v_reparacion)  ){
-        //         console.log("vamos a guardar");
-        // }else{
-        //     cosole.log("le tiro un alert y lo regreso");
-        // }            
+
+}else if( parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){              
+
+toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+
+}else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+ parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+
+toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
+
+}else if(parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+
+toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
+
+}else {        
+toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );     
+}
+                 
     }
     </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
