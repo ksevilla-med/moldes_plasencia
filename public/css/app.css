@@ -2770,7 +2770,7 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff !important;
-  background: #000 !important;
+  background: rgb(22, 21, 21) !important;
    border-color:rgb(235, 229, 70) !important;  
   border-width: 10px!important;
    border-color:#E9B837 !important;  
@@ -2789,6 +2789,16 @@ display: block !important;
  
   outline: none !important;
 display: block !important;
+}
+.btn-login {
+  color: #ffffff!important;
+  background: rgb(19, 18, 18) !important;
+   border-color:rgb(161, 158, 65) !important;  
+  border-width: 10px!important;
+   border-color:#daab35 !important;  
+  border-width:5px!important;
+ 
+  
 }
 
 .btn-info::-moz-focus-inner{
@@ -4696,7 +4706,7 @@ input[type=button].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid #78693f !important;
 }
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
@@ -5808,6 +5818,8 @@ a.close.disabled {
   margin-bottom: 0;
   line-height: 1.6;
 }
+
+
 
 .modal-body {
   position: relative;
