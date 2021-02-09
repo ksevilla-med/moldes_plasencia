@@ -22,15 +22,30 @@ class InsertarTablaMoldes extends Migration
             IN `pa_irregular` INT,
             IN `pa_malo` INT,
             IN `pa_bodega` INT,
+            IN `` INT,
             IN `pa_reparacion` INT,
-            IN `pa_salon` INT,
-            IN `pa_total` INT)
+            IN `pa_salon` INT
+        )
+
         
-        BEGIN
-         INSERT INTO moldes(moldes.id_planta, moldes.id_vitola, moldes.id_figura,
-         moldes.bueno, moldes.irregulares,moldes.malos, moldes.bodega,moldes.reparacion,moldes.salon, moldes.total)
-         VALUES(pa_id_planta, pa_id_vitola,pa_id_figura, pa_bueno, pa_irregular, pa_malo, pa_bodega, pa_reparacion, pa_salon, pa_total);
-        END
+                DECLARE suma_estado INT;
+                DECLARE suma_ubicacion INT; 
+                
+                
+                SET suma_estado = pa_bueno+ pa_irregular+ pa_malo;
+                SET suma_ubicacion = pa_bodega + pa_reparacion + pa_salon;
+                if  suma_estado = suma_ubicacion then
+                
+                INSERT INTO moldes(moldes.id_planta, moldes.id_vitola, moldes.id_figura,
+                 moldes.bueno, moldes.irregulares,moldes.malos, moldes.bodega,moldes.reparacion,moldes.salon, moldes.total)
+                 VALUES(pa_id_planta, pa_id_vitola,pa_id_figura, pa_bueno, pa_irregular, pa_malo, pa_bodega, pa_reparacion, pa_salon, suma_estado);
+               
+                
+                ELSE 
+                
+                          SELECT "no se puede";
+                          END if ;
+                  END
         ');
     }
 
