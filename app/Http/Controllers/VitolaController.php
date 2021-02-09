@@ -14,9 +14,8 @@ class VitolaController extends Controller
      */
     public function index()
     {
-        $vitola = Vitola::get();
-        return response()->json($vitola);//ESTA EN JSONN PERO SE PUEDE MANDAR A LA VISTA
- 
+        $vitola = \DD::select('call mostrar_vitolas(1)');
+        return view('sucursal_elparaiso')->with('vitola',  $vitola);
     }
 
     /**
@@ -94,7 +93,7 @@ class VitolaController extends Controller
    
         $vitola->vitola=$request->input('vitola');
         $vitola->id_planta=$request->input('id_planta');
-         $vitola->save();
+        $vitola->save();
 
          return;
     }

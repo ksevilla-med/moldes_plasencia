@@ -12,12 +12,25 @@ class MoldesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index( Request $request)
     {
-        $moldes = \DB::select('call mostrar_datos_moldes(1)');
-        return view('sucursal_elparaiso')->with('moldes', $moldes);
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
+        
+
+
+        $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
+        $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+
+        return view('sucursal_elparaiso')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras);
+    
+
     }
 
+
+    public function index_vitola()
+    {
+    }
     /**
      * Show the form for creating a new resource.
      *

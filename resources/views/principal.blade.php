@@ -1,64 +1,70 @@
-
+<!-- LO QUE SE MUESTRA EN LA PESTANIA DEL NAVEGADOR -->
 <title>Placensia inventario móvil</title>
-<link rel="shortcat icon" href="favicon.ico"> 
-   
-<html lang="es">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="shortcat icon" href="{{ URL::asset('favicon.ico') }}"> 
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Font Awesome JS -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-</head>
+<!-- Bootstrap CSS CDN -->
+<link rel="stylesheet" href="{{ URL::asset('https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css') }}" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+<!-- Our Custom CSS -->
+<link rel="stylesheet" href="{{ URL::asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('css/bootstrap.min.css') }}">
 
-<body>
+<!-- Font Awesome JS -->
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<!-- CIERRA LA BARRA LATERAL -->
+<script type="text/javascript">
+$(document).ready(function () {
+$('#sidebarCollapse').on('click', function () {
+$('#sidebar').toggleClass('active');});});
+</script>
+
+
+
+
+
+
+
+
+
 <div class="wrapper">
         <!-- Sidebar  -->
         <nav id="sidebar">
+
             <div class="sidebar-header" style="text-align:center;" href="/">
-            <img src="plasenciablanco.png" style="width: 150px;height:112px;" >
-</div>
+                <img src="{{ URL::asset('plasenciablanco.png') }}" style="width: 150px;height:112px;" >
+            </div>
 
             <ul class="list-unstyled components">
-                
-              
-                <li>
-                    <a href="/moldesprincipal">Moldes</a>
-                </li>
-                <li>
-                    <a href="#">Proximamente...</a>
-                </li>
-                <li>
-                    <a href="#">Proximamente...</a>
-                </li>
+                <li><a href="/moldesprincipal">Moldes</a></li>
+                <li><a href="#">Proximamente...</a></li>
+                <li><a href="#">Proximamente...</a></li>
             </ul>
-            <div  style="text-align:center">
-
-            </div>
+            
+           
             <div  style="position: fixed; bottom: 0px; width:250px;">
-            <ul class="list-unstyled CTAs ">
-                <li>
-                    <a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a>
-                </li>
-                <li>
-                    <a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a>
-                </li>
-            </ul>
+                <ul class="list-unstyled CTAs ">
+                    <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
+                    <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
+                </ul>
             </div>
          
         </nav>
 
         <!-- Page Content  -->
-        <div id="content" >
-       
+        <div id="content" >      
 
             <nav class="navbar navbar-expand-lg navbar-light bg2">
                 <div class="container-fluid">
@@ -117,7 +123,7 @@
 
 
 
-<!-- Modal cerrar sesion -->
+<!-- INICIO MODAL CERRAR SESION -->
 <div class="modal fade" id="modal_cerrarsesion" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -139,9 +145,13 @@
     </div>
   </div>
 </div>
+<!-- FIN MODAL CERRAR SESION -->
 
-<!-- Modal Acerca De -->
 
+
+
+
+<!-- INICIO MODAL ACERCA_DE -->
 <div class="modal fade" id="modal_acercade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" >
     <div class="modal-content">
@@ -175,49 +185,105 @@ tema.
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- FIN MODAL CERRAR SESION -->
 
 
             @yield('content')
 
-
     </div>
+    <!--  FIN DEL CONTENT -->
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+ 
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-            });
-        });
-    </script>
-</body>
-</html>
+
+
+
+
+     <!-- <datalist id="prediccionvitola">
+                <option value="70x7-1/2">
+                <option value="68x7-1/4">
+                <option value="62x8">
+                <option value="60x7-1/2">
+                <option value="60x7-1/4">
+                <option value="60x7">
+                <option value="60x6-1/2">
+                <option value="60x6-3/4">
+                <option value="58x7-1/2">
+                <option value="58x7-3/4">
+                <option value="56x5">
+                <option value="54x9-1/2">
+                <option value="54x9">
+                <option value="54x8">
+                <option value="54x7-1/4">
+                <option value="54x7-1/2">
+                <option value="54x6-1/2">
+                <option value="54x36x7-1/4">
+                <option value="54x36x7">
+                <option value="54x36x5-1/2">
+                <option value="54x6">
+                <option value="52x9">
+                <option value="52x8">
+                <option value="52x7-1/2">
+                <option value="52x7">
+                <option value="52x6">
+                <option value="52x6-1/2">
+                <option value="52x6-1/4">
+                <option value="52x7-1/2">
+                <option value="50x8-1/2">
+                <option value="50x8-3/4">
+                <option value="50x8">
+                <option value="50x7-1/2">
+                <option value="50x7-1/4">
+                <option value="50x7">
+                <option value="50x6-1/2">
+                <option value="50x6-1/4">
+                <option value="49x7-1/2">
+                <option value="49x46x4-1/2">
+                <option value="48x8-1/4">
+                <option value="48x8">
+                <option value="48x7-1/2">
+                <option value="48x7-1/4">
+                <option value="48x7">
+                <option value="48x6">
+                <option value="48x5-1/2">
+                <option value="46x7-1/2">
+                <option value="46x6">
+                <option value="46x5-1/2">
+                <option value="45x5-1/4">
+                <option value="44x7-1/2">
+                <option value="45x5-1/4">
+                <option value="44x5">
+                <option value="43x7-1/4">
+                <option value="43x6-1/4">
+                <option value="42x7-1/2">
+                <option value="40x6-1/2">
+                <option value="39x5-1/2">
+                <option value="38x7-1/4">
+                <option value="38x5">
+                <option value="36x7-1/2">
+                <option value="36x7-1/4">
+                <option value="36x7-1/2">
+                <option value="31x5">
+                <option value="30x5">
+                <option value="28x5">
+                <option value="26x5">
+                <option value="22x6-1/4">
+                <option value="22x4">
+                <option value="20x4">
+                </datalist> -->
+
+
+                  <!-- <datalist id="prediccionfiguraytipo">
+                <option value="Cabeza normal">
+                <option value="Torpedo">
+                <option value="Figurado">
+                <option value="Piramide">
+                <option value="Cabeza normalplatico">
+                <option value="Cabeza normal plástico">
+                <option value="Torpedo Habano">
+                <option value="Short Story">
+                <option value="Misiles">
+                <option value="Punta lápiz">
+                <option value="Cabeza normal M">
+                <option value="Bering">
+                </datalist> -->
