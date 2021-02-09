@@ -64,7 +64,7 @@
 
                   <div class="mb-3 col">
                   <label for="txt_total" class="form-label">Total</label>
-                  <input class="form-control" id="txt_total" placeholder="Cantidad" required type="number" min="1" max="999999" minLength="1" maxLength="6">        
+                  <input class="form-control" id="txt_total" placeholder="Cantidad" name ="total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
                   </div>
             
               </div> 
