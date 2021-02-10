@@ -4,14 +4,14 @@
 @section('content')
 
 
-<div class=" col imagenprincipalpadre" style=" text-align:center;">
+<div class=" imagenprincipalpadre1" style=" text-align:center;">
 
 
 
      <div class="col" >
 
         <div class="row" style="padding:10px;"  >
-            <div class="card" style="width: 100%;">
+            <div class="card border-dark mb-3"style="width: 100%;">
                 <img src="sucursalParaiso.png" class="card-img-top" alt="Sucursal El Paraíso"  style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
 
@@ -27,10 +27,14 @@
         
 
         <div class="row"  style="padding:10px;" >
-            <div class="card" style="width: 100%;">
+            <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="sucursalMoroceli.png" class="card-img-top" alt="Sucursal Morocelí" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-                         <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/sucursal_moroceli'">Sucursal Morocelí</button> 
+                    <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                    
+                     </form>   
                     </div>
             </div>
         </div>      
@@ -48,19 +52,27 @@
     <div class="col" >
 
         <div class="row" style="padding:10px;"  >
-            <div class="card" style="width: 100%;">
+            <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="sucursalSanMarcos.png" class="card-img-top" alt="Sucursal San Marcos" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-                         <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/sucursal_sanmarcos'"> Sucursal San Marcos</button> 
-                    </div>
+                    <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                    
+                     </form> 
+                </div>
             </div>
         </div>
 
         <div class="row" style="padding:10px;"  >
-            <div class="card" style="width: 100%;">
+            <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="plasencianegro.png" class="card-img-top" alt="Otras Empresas" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-                        <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/otras_empresas'">Otras Empresas</button> 
+                    <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                    
+                     </form> 
                     </div>
             </div>
         </div>
@@ -73,20 +85,28 @@
     <div class="col" >
 
     <div class="row" style="padding:10px;"  >
-        <div class="card" style="width: 100%;">
+        <div class="card border-dark mb-3" style="width: 100%;">
             <img src="sucursalGualiqueme.png" class="card-img-top" alt="Sucursal Gualiqueme" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                 <div class="card-body">
-                    <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/sucursal_gualiqueme'">Sucursal Gualiqueme</button> 
-                </div>
+                <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                    
+                     </form> 
+                    </div>
         </div>
     </div>
 
     <div class="row" style="padding:10px;"  >
-        <div class="card" style="width: 100%;">
+        <div class="card border-dark mb-3" style="width: 100%;">
             <img src="sucursalCollage.jpg"  class="card-img-top" alt="Total Sucursales" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                 <div class="card-body">
-                    <button type="button"  class="btn-info" style="width:100%;" onclick="location.href = '/sucursales_total'">Total Sucursales</button> 
-                </div>
+                <form action=  "{{Route('id_planta',1)}}" method= "POST">
+                    @csrf
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                    
+                     </form> 
+                    </div>
         </div>
     </div>
 
