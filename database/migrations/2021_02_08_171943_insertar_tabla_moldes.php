@@ -13,6 +13,7 @@ class InsertarTablaMoldes extends Migration
      */
     public function up()
     {
+        DB::unprepared('DROP procedure if exists `insertar_moldes`');
         DB::unprepared('
         CREATE PROCEDURE `insertar_moldes`(
             IN `pa_id_planta` INT,
@@ -22,14 +23,13 @@ class InsertarTablaMoldes extends Migration
             IN `pa_irregular` INT,
             IN `pa_malo` INT,
             IN `pa_bodega` INT,
-            IN `` INT,
             IN `pa_reparacion` INT,
             IN `pa_salon` INT
         )
 
-        
-                DECLARE suma_estado INT;
-                DECLARE suma_ubicacion INT; 
+        BEGIN
+                DECLARE `suma_estado`INT;
+                DECLARE `suma_ubicacion` INT; 
                 
                 
                 SET suma_estado = pa_bueno+ pa_irregular+ pa_malo;
@@ -56,6 +56,6 @@ class InsertarTablaMoldes extends Migration
      */
     public function down()
     {
-        //
+       
     }
 }

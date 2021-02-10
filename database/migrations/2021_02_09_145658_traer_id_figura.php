@@ -13,6 +13,8 @@ class TraerIdFigura extends Migration
      */
     public function up()
     {
+        DB::unprepared('DROP procedure if exists `traer_id_figura`');
+  
         DB::unprepared('
         CREATE PROCEDURE `traer_id_figura`(
             IN `pa_id_planta` INT,
@@ -33,6 +35,5 @@ class TraerIdFigura extends Migration
      */
     public function down()
     {
-        //
-    }
+      }
 }

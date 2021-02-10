@@ -13,6 +13,9 @@ class TraerIdVitola extends Migration
      */
     public function up()
     {
+
+        DB::unprepared('DROP procedure if exists `traer_id_vitola`');
+    
         DB::unprepared('
 
         CREATE PROCEDURE `traer_id_vitola`(
@@ -36,6 +39,5 @@ class TraerIdVitola extends Migration
      */
     public function down()
     {
-        //
     }
 }
