@@ -13,6 +13,7 @@ class MostrarVitolas extends Migration
      */
     public function up()
     {
+        DB::unprepared('DROP procedure if exists `mostrar_vitolas`');
        DB::unprepared('  
        CREATE PROCEDURE `mostrar_vitolas`(IN `pa_id_planta` INT )
         
@@ -28,7 +29,7 @@ class MostrarVitolas extends Migration
      * @return void
      */
     public function down()
-    {
-        //
+    {  DB::unprepared('DROP procedure if exists `mostrar_vitolas`');
+      
     }
 }

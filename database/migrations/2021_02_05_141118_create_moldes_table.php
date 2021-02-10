@@ -14,6 +14,7 @@ class CreateMoldesTable extends Migration
     public function up()
     {
         Schema::create('moldes', function (Blueprint $table) {
+                $table->increments('id_molde');
                 $table->integer('id_planta');
                 $table->integer('id_vitola');
                 $table->integer('id_figura');

@@ -13,6 +13,8 @@ class MostrarFiguras extends Migration
      */
     public function up()
     {
+        DB::unprepared('DROP procedure if exists `mostrar_figura_tipos`');
+        
       DB::unprepared('  
             CREATE PROCEDURE `mostrar_figura_tipos`( IN `pa_id_planta` INT )
        
@@ -32,6 +34,6 @@ class MostrarFiguras extends Migration
      */
     public function down()
     {
-        //
+       
     }
 }
