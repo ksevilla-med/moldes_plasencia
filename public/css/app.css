@@ -5836,6 +5836,7 @@ a.close.disabled {
 .modal-title {
   margin-bottom: 0;
   line-height: 1.6;
+  text-align: center !important;
 }
 
 

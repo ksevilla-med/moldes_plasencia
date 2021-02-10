@@ -9,7 +9,6 @@
 
 
 
-
 <button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" >
       <span> Agregar moldes</span>
   </button>
@@ -208,6 +207,97 @@
 
 
 
+<!-- INICIO DEL MODAL EDITAR MOLDE -->
+
+<form >
+
+<div class="modal fade" id="modal_editar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
+  <div class="modal-dialog modal-dialog-centered modal-xl"  style="opacity:.9;background:#212529;width=80%">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel" >Editar Moldes (figura y vitola)</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" ></button>
+      </div>
+     
+      <div class="modal-body">
+          <div class="card-body">            
+
+           
+
+
+
+
+              <div class="row">
+
+              <div class="mb-3 col">
+                  <label for="txt_total" class="form-label">Total</label>
+                  <input class="form-control" id="txt_total" placeholder="Cantidad" name ="total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
+                  </div>
+
+                  <div class="mb-3 col">
+                  <label for="txt_buenos" class="form-label">Buenos</label>
+                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
+                  </div>
+                  <div class="mb-3 col">            
+                  <label for="txt_irregulares" class="form-label">Irregulares</label>
+                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
+                  </div>
+                  <div class="mb-3 col">
+                  <label for="txt_malos" class="form-label">Malos</label>
+                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
+                  </div>
+
+                  <div class="mb-3 col">
+                  <label for="txt_salon" class="form-label">Salon</label>
+                  <input class="form-control" id="txt_salon"  name="salon"placeholder="Cantidad" type="number">        
+                  </div>
+                  <div class="mb-3 col">            
+                  <label for="txt_bodega" class="form-label">Bodega</label>
+                  <input class="form-control" id="txt_bodega" name="bodega" placeholder="Cantidad" type="number">  
+                  </div>
+                  <div class="mb-3 col">
+                  <label for="txt_reparacion" class="form-label">Reparación</label>
+                  <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
+               
+                  </div>
+
+              </div>
+
+
+          
+           
+             
+        </div>
+      </div>
+    
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Cancelar</span>
+            @csrf
+        </button>
+        <button  class=" btn-info " onclick="validar()" >
+            <span>Guardar</span>
+        </button>
+
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+<!-- FIN DEL MODAL EDITAR MOLDE -->
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -225,7 +315,7 @@
             <th scope="col">Reparacion</th>
             <th scope="col">Salon</th>
             <th scope="col">Total</th>
-            <th scope="col">botones</th>
+            <th scope="col">Editar</th>
             
          </thead>
          <tbody>
@@ -241,7 +331,16 @@
                   <td>{{$molde->reparacion}}</td>
                   <td>{{$molde->salon}}</td>
                   <td>{{$molde->total}}</td>
-                  <td></td>
+                  <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
+                  <a data-toggle="modal" data-target="#modal_editar_moldes" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                  </svg>
+                  </a>
+                  
+                  
+                  </td>
             
                  
              </tr>
