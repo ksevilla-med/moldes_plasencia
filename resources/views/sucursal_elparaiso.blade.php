@@ -23,7 +23,7 @@
 
 
 
-<form action =  "{{Route('insertar_moldes',1)}}" method= "POST">
+<form action =  "{{Route('insertar_moldes',1)}}" method= "POST" id="Form_Moldes">
 
 <div class="modal fade" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -118,7 +118,7 @@
             <span>Cancelar</span>
             @csrf
         </button>
-        <button type="submit" class=" btn-info " onclick="validar()" >
+        <button  class=" btn-info " onclick="validar()" >
             <span>Guardar</span>
         </button>
 
@@ -192,7 +192,8 @@
         var v_bodega = document.getElementById('txt_bodega').value;
         var v_reparacion = document.getElementById('txt_reparacion').value;
         var v_salon = document.getElementById('txt_salon').value;
-        var v_total = document.getElementById('txt_total').value;
+        var v_total = document.getElementById('txt_total').value; 
+        var theForm = document.forms['Form_Moldes'];
        
         if(v_buenos==""){ v_buenos = "0";}
        if(v_irregulares==""){ v_irregulares = "0";}
@@ -201,32 +202,37 @@
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-       if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+theForm.addEventListener('submit', function (event) {
+  // si el campo de correo electrónico es válido, dejamos que el formulario se envíe
 
-toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
-
-
-
-}else if( parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
-parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){              
-
-toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
-
-}else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
- parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-
+  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
+    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
+    event.preventDefault();
+  }
+  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
 toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
-
-}else if(parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-
-toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
-
-}else {        
-toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );     
+event.preventDefault();
 }
-                 
-    }
+else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
+event.preventDefault();
+}
+else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
+toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );     
+event.preventDefault();
+}
+else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+  parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
+  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+  event.submit();
+  }
+
+});
+
+}
     </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 
