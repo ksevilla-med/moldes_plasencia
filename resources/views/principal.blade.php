@@ -34,41 +34,11 @@ $('#sidebar').toggleClass('active');});});
 </script>
 
 
-
-
-
-
-
-
-
-<div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-
-            <div class="sidebar-header" style="text-align:center;" href="/">
-                <img src="{{ URL::asset('plasenciablanco.png') }}" style="width: 150px;height:112px;" >
-            </div>
-
-            <ul class="list-unstyled components">
-                <li><a href="/moldesprincipal">Moldes</a></li>
-                <li><a href="#">Proximamente...</a></li>
-                <li><a href="#">Proximamente...</a></li>
-            </ul>
-            
-           
-            <div  style="position: fixed; bottom: 0px; width:250px;">
-                <ul class="list-unstyled CTAs ">
-                    <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
-                    <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
-                </ul>
-            </div>
-         
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content" >      
-
-            <nav class="navbar navbar-expand-lg navbar-light bg2">
+<nav class="navbar navbar-expand-lg navbar-light bg2" style="  
+            overflow: hidden;
+    top: 0;
+    position:fixed;
+    width: 100%; ">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class=" btn-info ">
@@ -115,14 +85,45 @@ $('#sidebar').toggleClass('active');});});
                 </div>
             </nav>
 
-        
 
 
 
 
 
-        
 
+
+<div class="wrapper">
+      
+            <nav id="sidebar" style="margin-top:57px;">
+
+            <div  style="position: fixed;  width:250px;">
+
+            <div class="sidebar-header" style="text-align:center;" >
+            <img src="{{ URL::asset('plasenciablanco.png') }}" style="width: 150px;height:112px;" >
+            </div>
+
+            <ul class="list-unstyled components">
+            <li><a href="/moldesprincipal">Moldes</a></li>
+            <li><a href="#">Proximamente...</a></li>
+            <li><a href="#">Proximamente...</a></li>
+            </ul>
+            </div>
+
+
+            <div  style="position: fixed; bottom: 0px; width:250px;">
+            <ul class="list-unstyled CTAs ">
+            <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
+            <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
+            </ul>
+            </div>
+
+            </nav>
+
+      
+      
+      
+      
+<div id="content" >         
 
 
 <!-- INICIO MODAL CERRAR SESION -->
@@ -223,8 +224,10 @@ $('#sidebar').toggleClass('active');});});
 </div>
 <!-- FIN MODAL CERRAR SESION -->
 
-
+<div style = "margin-top:45px;">
             @yield('content')
+</div>
+
 
     </div>
     <!--  FIN DEL CONTENT -->

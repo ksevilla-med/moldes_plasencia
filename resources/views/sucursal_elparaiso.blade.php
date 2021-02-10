@@ -9,19 +9,29 @@
 
 
 
-<button type="button" class=" btn-info "  data-toggle="modal" data-target="#modal_agregar_moldes" data-bs-whatever="Sucursal El Paraiso">
-     <span> Agregar moldes</span>
-</button>
+
+<button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" >
+      <span> Agregar moldes</span>
+  </button>
 
 
-<!--consulta insertar -->
+
+  <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_vitola" style="margin-right: 10px">
+      <span> Agregar vitola</span>
+  </button>
+
+  <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_figuraytipo" style="margin-right: 10px">
+      <span> Agregar figura y tipo</span>
+  </button>
+
+  
+
+
+
 
 
 
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
-
-
-
 
 <form action =  "{{Route('insertar_moldes',1)}}" method= "POST" id="Form_Moldes">
 
@@ -76,15 +86,15 @@
 
                   <div class="mb-3 col">
                   <label for="txt_buenos" class="form-label">Buenos</label>
-                  <input class="form-control" id="txt_buenos" type="text" name="bueno"placeholder="Cantidad" type="number">        
+                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_irregulares" class="form-label">Irregulares</label>
-                  <input class="form-control" id="txt_irregulares" type="text"name="irregulares" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_malos" class="form-label">Malos</label>
-                  <input class="form-control" id="txt_malos"  type="text" name="malos"placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
                   </div>
 
               </div>
@@ -94,16 +104,16 @@
 
                   <div class="mb-3 col">
                   <label for="txt_salon" class="form-label">Salon</label>
-                  <input class="form-control" id="txt_salon" type="text" name="salon"placeholder="Cantidad" type="number">        
+                  <input class="form-control" id="txt_salon"  name="salon"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_bodega" class="form-label">Bodega</label>
-                  <input class="form-control" id="txt_bodega"type="text" name="bodega" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="txt_bodega" name="bodega" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_reparacion" class="form-label">Reparación</label>
-                  <input class="form-control" id="txt_reparacion" type="text" name="reparacion" placeholder="Cantidad" type="number">  
-                  <input name="id_planta" value= "1">  
+                  <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
+               
                   </div>
 
               </div>
@@ -135,6 +145,66 @@
 
 
 
+<!-- INICIO MODAL VITOLA -->
+<div class="modal fade" id="modal_agregar_vitola" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="mb-3 col">            
+      <label for="txt_vitola" class="form-label">Vitola</label>
+      <input class="form-control" id="txt_vitola" type="text" name="vitola" placeholder="Cantidad" maxLength="30">  
+      </div>
+      </div>
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Cancelar</span>
+        </button>
+        <button type="button" class=" btn-info ">
+            <span>Guardar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL VITOLA -->
+
+
+
+<!-- INICIO MODAL FIGURA Y TIPO -->
+<div class="modal fade" id="modal_agregar_figuraytipo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
+  <div class="modal-dialog modal-dialog-centered" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="mb-3 col">            
+      <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
+      <input class="form-control" id="txt_figuraytipo" type="text" name="figuraytipo" placeholder="Cantidad" maxLength="30">  
+      </div>
+      </div>
+      <div class="modal-footer" >
+        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
+            <span>Cancelar</span>
+        </button>
+        <button type="button" class=" btn-info ">
+            <span>Guardar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FIN MODAL FIGURA Y TIPO -->
+
+
+
+
+
 
 
 
@@ -142,7 +212,6 @@
 
 
 <!-- INICIO DEL TABLA MOLDE -->
-<h1>Inventario de moldes El Paraíso</h1>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -230,11 +299,8 @@ toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true
     , "preventOpenDuplicates": true} );     
 event.preventDefault();
 }
-
-
-
 }
-    </script>
+ </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 
 

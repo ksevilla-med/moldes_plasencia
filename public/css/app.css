@@ -17,6 +17,7 @@
 
 
 
+
  input:invalid {
   display: block;
   width: 100%;
@@ -87,7 +88,7 @@ height: 100%;
      background: #fff;
      border: none;
      border-radius: 0;
-     margin-bottom: 40px;
+     margin-bottom: 10px !important;
      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
  }
  
