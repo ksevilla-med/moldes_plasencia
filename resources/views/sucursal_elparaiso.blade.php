@@ -225,12 +225,13 @@
             <th scope="col">Reparacion</th>
             <th scope="col">Salon</th>
             <th scope="col">Total</th>
+            <th scope="col">botones</th>
             
          </thead>
          <tbody>
             @foreach($moldes as $molde)
             <tr> 
-                  <td> scope="row">{{$molde->nombre_planta}}</td> 
+                  <td> {{$molde->nombre_planta}}</td> 
                   <td>{{$molde->vitola}}</td>
                   <td>{{$molde->nombre_figura}}</td>
                   <td>{{$molde->bueno}}</td>
@@ -240,6 +241,7 @@
                   <td>{{$molde->reparacion}}</td>
                   <td>{{$molde->salon}}</td>
                   <td>{{$molde->total}}</td>
+                  <td></td>
             
                  
              </tr>
