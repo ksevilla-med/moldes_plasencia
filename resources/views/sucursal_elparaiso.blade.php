@@ -202,35 +202,36 @@
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-theForm.addEventListener('submit', function (event) {
-  // si el campo de correo electrónico es válido, dejamos que el formulario se envíe
 
-  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
-    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
-    event.preventDefault();
-  }
-  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
-event.preventDefault();
-}
-else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );
-event.preventDefault();
-}
-else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
-toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false} );     
-event.preventDefault();
-}
-else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+  if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
   parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
-  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
-  event.submit();
-  }
+  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    theForm.addEventListener('submit', function (event) {
+    });
+  
+  }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
+    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+    , "preventOpenDuplicates": true });
+    event.preventDefault();
+  }  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+event.preventDefault();
+}else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+event.preventDefault();
+}else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
+toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );     
+event.preventDefault();
+}
 
-});
+
 
 }
     </script>
