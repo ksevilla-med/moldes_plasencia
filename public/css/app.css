@@ -17,7 +17,6 @@
 
 
 
-
  input:invalid {
   display: block;
   width: 100%;
@@ -88,7 +87,7 @@ height: 100%;
      background: #fff;
      border: none;
      border-radius: 0;
-     margin-bottom: 10px !important;
+     margin-bottom: 40px;
      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
  }
  
@@ -1894,6 +1893,25 @@ pre code {
   margin-bottom: 1rem;
   color: #212529;
 }
+
+
+
+.tr,
+.table tr:last-child {
+  background-color:rgba(0, 0, 0, 0.192);
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+
+.table td:nth-child(10) {
+  background-color:rgba(0, 0, 0, 0.192);
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
 .table th,
 .table td {
   padding: 0.75rem;
@@ -1933,92 +1951,92 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(238, 206, 138, 0.863);
 }
 
 .table-hover tbody tr:hover {
   color: #212529;
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(202, 174, 96, 0.856);
 }
 
 .table-primary,
 .table-primary > th,
 .table-primary > td {
-  background-color: #c6e0f5;
+  background-color: #f5e9d7;
 }
 .table-primary th,
 .table-primary td,
 .table-primary thead th,
 .table-primary tbody + tbody {
-  border-color: #95c5ed;
+  border-color: #e0c78f;
 }
 
 .table-hover .table-primary:hover {
-  background-color: #b0d4f1;
+  background-color: #f8e787;
 }
 .table-hover .table-primary:hover > td,
 .table-hover .table-primary:hover > th {
-  background-color: #b0d4f1;
+  background-color: #e9db76;
 }
 
 .table-secondary,
 .table-secondary > th,
 .table-secondary > td {
-  background-color: #d6d8db;
+  background-color: #201c0a;
 }
 .table-secondary th,
 .table-secondary td,
 .table-secondary thead th,
 .table-secondary tbody + tbody {
-  border-color: #b3b7bb;
+  border-color:  #f1e67b;
 }
 
 .table-hover .table-secondary:hover {
-  background-color: #c8cbcf;
+  background-color: #c23175;
 }
 .table-hover .table-secondary:hover > td,
 .table-hover .table-secondary:hover > th {
-  background-color: #c8cbcf;
+  background-color:#c23175;
 }
 
 .table-success,
 .table-success > th,
 .table-success > td {
-  background-color: #c7eed8;
+  background-color: #c23175;
 }
 .table-success th,
 .table-success td,
 .table-success thead th,
 .table-success tbody + tbody {
-  border-color: #98dfb6;
+  border-color:#c23175;
 }
 
 .table-hover .table-success:hover {
-  background-color: #b3e8ca;
+  background-color:#c23175;
 }
 .table-hover .table-success:hover > td,
 .table-hover .table-success:hover > th {
-  background-color: #b3e8ca;
+  background-color: #c23175;
 }
 
 .table-info,
 .table-info > th,
 .table-info > td {
-  background-color: #d6e9f9;
+  background-color: #c23175;
 }
 .table-info th,
 .table-info td,
 .table-info thead th,
 .table-info tbody + tbody {
-  border-color: #b3d7f5;
+  border-color: #c5ba1c;
 }
 
 .table-hover .table-info:hover {
-  background-color: #c0ddf6;
+  background-color: #3182c9;
 }
 .table-hover .table-info:hover > td,
 .table-hover .table-info:hover > th {
-  background-color: #c0ddf6;
+  background-color: #2e81ca;
 }
 
 .table-warning,
@@ -2084,7 +2102,7 @@ pre code {
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-  background-color: #c6c8ca;
+  background-color: #17b131;
 }
 .table-dark th,
 .table-dark td,
@@ -2104,20 +2122,20 @@ pre code {
 .table-active,
 .table-active > th,
 .table-active > td {
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(131, 44, 44, 0.781);
 }
 
 .table-hover .table-active:hover {
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(179, 40, 40, 0.74);
 }
 .table-hover .table-active:hover > td,
 .table-hover .table-active:hover > th {
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: rgba(53, 168, 30, 0.733);
 }
 
 .table .thead-dark th {
   color: #fff;
-  background-color: #343a40;
+  background-color: #1b9730;
   border-color: #454d55;
 }
 .table .thead-light th {
@@ -2139,11 +2157,11 @@ pre code {
   border: 0;
 }
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(132, 38, 151, 0.87);
 }
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: rgba(236, 211, 142, 0.938);
 }
 
 @media (max-width: 575.98px) {
@@ -10294,7 +10312,8 @@ h3 {
   }
   .table td,
 .table th {
-    background-color: rgb() !important;
+    background-color: #a12e7f
+     !important;
   }
 
   .table-bordered th,

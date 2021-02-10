@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Moldes;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class MoldesController extends Controller
 {
@@ -24,11 +27,16 @@ class MoldesController extends Controller
 
         $id_planta = [$request->id];
 
-        return view('sucursal_elparaiso')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+
+        
+
+        return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta);
     
 
     }
+
+
 
 
     public function index_vitola(Request $request)
