@@ -112,7 +112,7 @@
                   <div class="mb-3 col">
                   <label for="txt_reparacion" class="form-label">Reparación</label>
                   <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
-               
+                  <input name = "id_planta"  value ='1' hidden />
                   </div>
 
               </div>
@@ -331,6 +331,7 @@
                   <td>{{$molde->reparacion}}</td>
                   <td>{{$molde->salon}}</td>
                   <td>{{$molde->total}}</td>
+
                   <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
                   <a data-toggle="modal" data-target="#modal_editar_moldes" >
                   <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -345,6 +346,77 @@
                  
              </tr>
             @endforeach
+
+            <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            
+             
+            <td>
+                <?php
+                $suma_b=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_b+=$molde->bueno;
+                }
+                
+                ?>   {{$suma_b}}
+            </td>
+            <td>
+              <?php
+               $suma_i=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_i+=$molde->irregulares;
+                }
+                ?>   {{$suma_i}}</td>
+            <td>
+            <?php
+             $suma_m=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_m+=$molde->malos;
+                }
+                ?>   {{$suma_m}}
+            </td>
+            <td>
+            <?php
+            $suma_bo=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_bo+=$molde->bodega;
+                }
+                ?>   {{$suma_bo}}
+            </td>
+            <td>
+            <?php
+            $suma_r=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_r+=$molde->reparacion;
+                }
+                ?>   {{$suma_r}}
+            </td>
+            <td>
+            <?php
+            $suma_s=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_s+=$molde->salon;
+                }
+                ?>   {{$suma_s}}
+            </td>
+            <td>
+            <?php
+            $suma_total=0;
+                foreach ($moldes as $molde)
+                 {
+                  $suma_total+=$molde->total;
+                }
+                ?>   {{$suma_total}}
+            </td>
+            </tr> 
           <tbody>
     </table>
 <!-- FIN DEL TABLA MOLDE -->
