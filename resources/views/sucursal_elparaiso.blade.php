@@ -22,14 +22,16 @@
   <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_figuraytipo" style="margin-right: 10px">
       <span> Agregar figura y tipo</span>
   </button>
-
-
+  
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
   @csrf
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px">
       <span> Imprimir Reporte</span>
   </button>
   </form>  
+
+
+
 
 
 
@@ -43,11 +45,7 @@
 
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
-<<<<<<< Updated upstream
-<form action =  "{{Route('insertar_moldes',1)}}" method= "POST" id="Form_Moldes">
-=======
 <form action =  "{{Route('insertar_moldes',1)}}" method= "POST" name="FormMoldes">
->>>>>>> Stashed changes
 
 <div class="modal fade" role="dialog" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -462,8 +460,6 @@
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-<<<<<<< Updated upstream
-=======
        if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
 
 toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
@@ -475,7 +471,6 @@ parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salo
 
 toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
 document.FormMoldes.submit();
->>>>>>> Stashed changes
 
   if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
   parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          

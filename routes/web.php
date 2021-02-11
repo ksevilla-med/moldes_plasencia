@@ -57,10 +57,10 @@ Route::get('/ayuda', function () {
 
 
 
-Route::get('/imprimirtablaparaiso/1', function () {
+Route::get('/imprimir', function () {
   $pdf = PDF::loadView('imprimirtablaparaiso');
   return $pdf->stream();
-});
+})->name('imprimir');;
 
 
 Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso');

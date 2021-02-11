@@ -9,6 +9,8 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use PDF;
+use Carbon\Carbon;
+
 
 class MoldesController extends Controller
 {
@@ -19,6 +21,7 @@ class MoldesController extends Controller
      */
     public function index( Request $request)
     {
+       
         $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
         
 
@@ -41,14 +44,29 @@ class MoldesController extends Controller
 
     public function imprimirdatosparaiso( Request $request)
     {
+        
+        $fecha =Carbon::now();
+        $fecha = $fecha->format('d-m-Y');
+
+     
+
+        
         $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
         $id_planta = [$request->id];
   
-
-      return view('imprimirtablaparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        $vista = view('imprimirtablaparaiso',['fecha' =>$fecha])->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta);
+
+        $pdf =  \PDF::loadHTML($vista);
+        return $pdf->stream('nombre.pdf');
+
+
+
+        // $pdf = PDF::loadView('imprimirtablaparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)->with('id_planta', $id_planta);
+        //  return $pdf->stream();
+   
     
 
         
@@ -86,33 +104,6 @@ class MoldesController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< Updated upstream
-
-      $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
-      [ 'id_planta' => (int)$request->id_planta,
-      'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_planta,$request->id_vitola])[0]->id_vitola,
-      'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_planta,$request->id_figura])[0]->id_figura,
-      'bueno' => (int)$request->bueno,
-      'irregular' => (int)$request->irregulares,
-      'malo' => (int)$request->malos,
-      'reparacion' => (int)$request->reparacion,
-      'bodega' => (int)$request->bodega
-      ,'salon' => (int)$request->salon]);
-
-
-      $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
-              
-      $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
-
-      $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
-
-      $id_planta = [$request->id];
-        
-      return redirect()-> route('datos_planta', ['id'=>1,'moldes'=> $moldes, 'vitolas'=> $vitolas, 'figuras'=>$figuras,
-      'id_planta'=> $id_planta]);
-
-
-=======
         $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
                     [ 'id_planta' => (int)$request->id_planta,
                     'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_planta,$request->id_vitola])[0]->id_vitola,
@@ -195,7 +186,6 @@ class MoldesController extends Controller
 
         }
             */
->>>>>>> Stashed changes
      
 
 
