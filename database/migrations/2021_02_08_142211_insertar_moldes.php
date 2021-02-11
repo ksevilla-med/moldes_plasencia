@@ -22,7 +22,7 @@ class InsertarMoldes extends Migration
       CREATE PROCEDURE `mostrar_datos_moldes`(IN `pa_id_planta` INT)
         BEGIN
                     SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
-                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde
+                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
                     FROM plantas, moldes, figura_tipos, vitolas WHERE pa_id_planta = plantas.id_planta AND
                     moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
                     AND moldes.id_figura = figura_tipos.id_figura AND

@@ -86,8 +86,8 @@ class MoldesController extends Controller
 
       $id_planta = [$request->id];
         
-      return view('sucursal_elparaiso')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-      ->with('id_planta', $id_planta);
+      return redirect()-> route('datos_planta', ['id'=>1,'moldes'=> $moldes, 'vitolas'=> $vitolas, 'figuras'=>$figuras,
+      'id_planta'=> $id_planta]);
 
 
      

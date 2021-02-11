@@ -34,7 +34,7 @@ Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::c
 
 
 Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos');
-Route::post('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
+Route::post('/sucursal_elparaiso/creado/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
 
 Route::get('/sucursal_sanmarcos', function () {
     return view('sucursal_sanmarcos');
