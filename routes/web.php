@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +55,20 @@ Route::get('/ayuda', function () {
     return view('ayuda');
 });
 
+
+
+Route::get('/imprimirtablaparaiso/1', function () {
+  $pdf = PDF::loadView('imprimirtablaparaiso');
+  return $pdf->stream();
+});
+
+
+Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso');
+
+
+
+
+  
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

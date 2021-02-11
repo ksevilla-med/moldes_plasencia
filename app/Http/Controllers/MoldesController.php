@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Route;
+use PDF;
 
 class MoldesController extends Controller
 {
@@ -32,6 +34,25 @@ class MoldesController extends Controller
 
         return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta);
+    
+
+    }
+
+
+    public function imprimirdatosparaiso( Request $request)
+    {
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
+        $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+        $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+        $id_planta = [$request->id];
+  
+
+      return view('imprimirtablaparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        ->with('id_planta', $id_planta);
+    
+
+        
+
     
 
     }

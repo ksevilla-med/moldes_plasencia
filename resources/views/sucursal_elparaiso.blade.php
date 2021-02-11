@@ -23,6 +23,17 @@
       <span> Agregar figura y tipo</span>
   </button>
 
+
+  <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
+  @csrf
+  <button type="submit" class=" btn-info float-right"  style="margin-right: 10px">
+      <span> Imprimir Reporte</span>
+  </button>
+  </form>  
+
+
+
+
   
 
 
@@ -312,8 +323,8 @@
             <th scope="col">Irregulares</th>
             <th scope="col">Malos</th>
             <th scope="col">Bodega</th>
-            <th scope="col">Reparacion</th>
-            <th scope="col">Salon</th>
+            <th scope="col">Reparación</th>
+            <th scope="col">Salón</th>
             <th scope="col">Total</th>
             <th scope="col">Editar</th>
             
