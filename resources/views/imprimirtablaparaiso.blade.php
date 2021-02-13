@@ -46,7 +46,7 @@
              
             @endforeach
             <tr>
-            <td style="padding: 5px;text-align: center;border: solid .05px;font-style:bold;" colspan="2"><strong>Total</strong></td>
+            <td style="padding: 5px;text-align: center;border: solid .05px;font-style:bold;" colspan="2"><strong>Total General Moldes</strong></td>
             
              
             <td style="padding: 5px;text-align: center;border: solid .05px;" >
