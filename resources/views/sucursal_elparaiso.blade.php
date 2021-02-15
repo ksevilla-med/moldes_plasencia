@@ -497,6 +497,7 @@ toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true
 event.preventDefault();
 }
 }
+    }
  </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 

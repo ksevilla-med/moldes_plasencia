@@ -88,6 +88,11 @@
         <label for="nombre_completo" class="form-label">Nombre Completo</label>
         <input class="form-control" id="nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
         </div>
+
+        <div class="mb-3 col">
+        <label for="correo_electronico" class="form-label">Correo Electrónico</label>
+        <input type="mail"class="form-control" id="correo_electronico" placeholder="Ingresa el corro electronico" required >        
+        </div>
       </div>
 
       <div class="row">
@@ -111,12 +116,18 @@
       <div class="row">
         <div class="mb-3 col">
         <label for="contrasenia" class="form-label">Contraseña</label>
-        <input class="form-control" id="contrasenia" placeholder="Ingresa contraseña" required minLength="5" maxLength="50">        
-        </div>
+        <input type="password" name="password" class="form-control" id="contrasenia" placeholder="Ingresa contraseña" required minLength="5" maxLength="50">        
+        <button class="btn btn-primary" type="button" onclick="mostrarContrasena()">
+      
+      <span class=" glyphicon eye-fill"></span>
+</button>
+      </div>
+
+        
 
         <div class="mb-3 col">
         <label for="confirmacion_contrasenia" class="form-label">Confirmación contraseña</label>
-        <input class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
+        <input type="password" name="password" class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
         </div>
       </div>                  
 </div>
@@ -127,7 +138,7 @@
             <span>Cancelar</span>
             @csrf
         </button>
-        <button  class=" btn-info " onclick="validar()" >
+        <button  class=" btn-info " onclick="v_agregarusuario()" >
             <span>Guardar</span>
         </button>
 
@@ -139,6 +150,38 @@
 
 </form>
 <!-- FIN DEL MODAL AGREGAR MOLDE-->
+
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("contrasenia");
+      if(tipo.type == "password"){
+          tipo.type = "text";
+      }else{
+          tipo.type = "password";
+      }
+  }
+</script>
+
+ <script type="text/javascript">
+
+
+
+    function v_agregarusuario(){ 
+        var v_contrasenia = document.getElementById('contrasenia').value;
+        var v_confirmacion_contrasenia = document.getElementById('confirmacion_contrasenia').value;
+        
+if(confirmacion_contrasenia != v_contrasenia){
+  toastr.error( 'Las contraseñas no coinciden ','ERROR',{"progressBar": true,"closeButton": false });
+    event.preventDefault();
+}else{
+  toastr.success( 'El usuario se registró correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+    theForm.addEventListener('submit', function (event) {
+    });
+}
+
+        }
+
+  </script>
 
 
 <!-- INICIO MODAL CAMBIAR CONTRASENIA -->
