@@ -124,7 +124,7 @@ class MoldesController extends Controller
                     $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
 
-                    return REDIRECT('sucursal_elparaiso')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                    return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
                     ->with('id_planta', $request->id);
 
  

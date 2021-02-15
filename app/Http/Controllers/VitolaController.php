@@ -45,9 +45,27 @@ class VitolaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+
+   
+ 
+   
+    
     public function store(Request $request)
-    {
-        //
+    { $molde = \DB::select('call insertar_vitola(:id_planta,:vitola)',
+        [ 'vitola' =>  (string)$request->vitola,
+        'id_planta' => (int)$request->id_planta]);
+
+        
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
+                            
+        $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
+        $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+
+
+        return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        ->with('id_planta', $request->id) ->with('error', $molde);
     }
 
     /**

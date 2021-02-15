@@ -158,6 +158,7 @@
 
 
 <!-- INICIO MODAL VITOLA -->
+<form action = "{{Route('insertar_vitola',1)}}" method="POST" name = "formvitola">
 <div class="modal fade" id="modal_agregar_vitola" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -168,25 +169,30 @@
       <div class="modal-body">
       <div class="mb-3 col">            
       <label for="txt_vitola" class="form-label">Vitola</label>
-      <input class="form-control" id="txt_vitola" type="text" name="vitola" placeholder="Cantidad" maxLength="30">  
+      <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola" maxLength="30">  
       </div>
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
         </button>
-        <button type="button" class=" btn-info ">
+        <button  onclick="validar_vitola()" class=" btn-info float-right"  style="margin-right: 10px">
+
             <span>Guardar</span>
         </button>
+        @csrf
+        <input name = "id_planta"  value ='1' hidden />
       </div>
     </div>
   </div>
 </div>
+</form>
 <!-- FIN MODAL VITOLA -->
 
 
 
 <!-- INICIO MODAL FIGURA Y TIPO -->
+<form action = "{{Route('insertar_figura',1)}}" method="POST">
 <div class="modal fade" id="modal_agregar_figuraytipo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -197,20 +203,25 @@
       <div class="modal-body">
       <div class="mb-3 col">            
       <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-      <input class="form-control" id="txt_figuraytipo" type="text" name="figuraytipo" placeholder="Cantidad" maxLength="30">  
+      <input class="form-control" id="txt_figuraytipo" type="text" name="figura" placeholder="Cantidad" maxLength="30">  
       </div>
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
         </button>
-        <button type="button" class=" btn-info ">
+        <button type="submit" class=" btn-info float-right"  style="margin-right: 10px">
             <span>Guardar</span>
         </button>
+
+        @csrf
+        <input name = "id_planta"  value ='1' hidden />
       </div>
     </div>
   </div>
 </div>
+
+</form>
 <!-- FIN MODAL FIGURA Y TIPO -->
 
 
@@ -434,9 +445,40 @@
     </table>
 <!-- FIN DEL TABLA MOLDE -->
 
+<script type="text/javascript">
+
+function validar_vitola(){
+  var v_vitola = document.getElementById('vitola').value;
+  
+  var vitola = '<?php echo json_encode($vitolas);?>';
+
+  var vitolas = JSON.parse(vitola);
 
 
+  for (var i = 0; i < vitola.length; i++) {
+    console.info(vitolas[i].nombre_vitola);
+    
+  }
 
+  if(v_vitola ===""){
+    toastr.error( 'Llene el nombre de la vitola','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(vitola.include(v_vitola)){
+    toastr.error( 'Esta vitola ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else
+
+  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+  theForm.addEventListener('submit', function (event) {
+    });
+
+}
+
+</script>
 
 
 
