@@ -49,7 +49,19 @@ class FiguraTipoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $molde = \DB::select('call insertar_figura(:id_planta,:nombre_figura)',
+        [ 'nombre_figura' =>  (string)$request->figura,
+        'id_planta' => (int)$request->id_planta]);
+
+        
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
+                            
+        $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
+        $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+
+        return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        ->with('id_planta', $request->id);
     }
 
     /**

@@ -33,9 +33,18 @@ Route::get('/sucursal_gualiqueme', function () {
 Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('datos_planta');
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 
-
+//RUTA INSERTAR VITOLA
 Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos');
 Route::post('/sucursal_elparaiso/creado/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
+
+
+// RUTA INSERTAR VITOLAS
+Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
+
+
+// RUTA INSERTAR FIGURAS
+Route::post('/agregar_figura/{id}',[App\Http\Controllers\FiguraTipoController::class, 'store' ])->name('insertar_figura');
+
 
 Route::get('/sucursal_sanmarcos', function () {
     return view('sucursal_sanmarcos');
