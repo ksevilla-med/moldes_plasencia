@@ -19,16 +19,18 @@
         <tr>
             <th scope="col">Código</th>
             <th scope="col">Nombre</th>
+            <th scope="col">Correo</th>
             <th scope="col">Sucursal</th>     
             <th scope="col">Editar</th>            
          </thead>
          <tbody>
         
+         @foreach($usuarios as $usuario)
             <tr> 
-
-                  <td>12344</td>
-                  <td>karina sevilla</td>
-                  <td>paraiso cigar</td>
+                  <td>{{$usuario->codigo}}</td>
+                  <td>{{$usuario->nombre_usuario}}</td>
+                  <td>{{$usuario->correo}}</td>
+                  <td>{{$usuario->nombre_planta}}</td>
                  
 
                   <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
@@ -56,8 +58,11 @@
                 </a>
                   
             </td>
+
             
              </tr>
+             
+            @endforeach
            
           <tbody>
     </table>
@@ -85,20 +90,20 @@
 
       <div class="row">
         <div class="mb-3 col">
-        <label for="nombre_completo" class="form-label">Nombre Completo</label>
-        <input class="form-control" id="nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
+        <label for="txt_nombre_completo" class="form-label">Nombre Completo</label>
+        <input class="form-control" id="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
         </div>
 
         <div class="mb-3 col">
-        <label for="correo_electronico" class="form-label">Correo Electrónico</label>
-        <input type="mail"class="form-control" id="correo_electronico" placeholder="Ingresa el corro electronico" required >        
+        <label for="txt_correo_electronico" class="form-label">Correo Electrónico</label>
+        <input type="mail"class="form-control" id="txt_correo_electronico" placeholder="Ingresa el corro electronico" required >        
         </div>
       </div>
 
       <div class="row">
         <div class="mb-3 col">
-        <label for="txt_figuraytipo" class="form-label">Código</label>
-        <input class="form-control" type= "number" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
+        <label for="txt_codigo" class="form-label">Código</label>
+        <input class="form-control" type= "number" id="txt_codigo" name="id_figura" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
         </div>
 
         <div class="mb-3 col">
@@ -113,23 +118,53 @@
       </div>
 
 
-      <div class="row">
+      <div class="row" >
         <div class="mb-3 col">
         <label for="contrasenia" class="form-label">Contraseña</label>
-        <input type="password" name="password" class="form-control" id="contrasenia" placeholder="Ingresa contraseña" required minLength="5" maxLength="50">        
-        <button class="btn btn-primary" type="button" onclick="mostrarContrasena()">
+
+        <div class="row"style="margin-left:0px;    margin-right: 0px;">
+           <input type="password" name="password" class="form-control " id="contrasenia" placeholder="Ingresa contraseña" required minLength="5" maxLength="50">        
+        <a type="button" onclick="mostrarContrasena()" style="position:absolute;right:20px;margin-top: 7px;">
       
-      <span class=" glyphicon eye-fill"></span>
-</button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisible" style="position:absolute;">
+  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="icononovisible"> 
+  <path d="M10.79 12.912l-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.027 7.027 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.088z"/>
+  <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708l-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6l-12-12 .708-.708 12 12-.708.707z"/>
+</svg>
+</a>
+        </div>
+     
       </div>
 
         
 
         <div class="mb-3 col">
         <label for="confirmacion_contrasenia" class="form-label">Confirmación contraseña</label>
+        <div class="row"style="margin-left:0px;    margin-right: 0px;">
         <input type="password" name="password" class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
+        <a type="button" onclick="mostrarConfirmacion()" style="position:absolute;right:20px;margin-top: 7px;">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisibleC" style="position:absolute;">
+<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="icononovisibleC"> 
+<path d="M10.79 12.912l-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.027 7.027 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.088z"/>
+<path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708l-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6l-12-12 .708-.708 12 12-.708.707z"/>
+</svg>
+</a>
+       
+       
         </div>
-      </div>                  
+        </div>
+      </div>   
+
+
+
+
 </div>
 </div>
 
@@ -154,32 +189,92 @@
 <script>
   function mostrarContrasena(){
       var tipo = document.getElementById("contrasenia");
+      var iconovisible = document.getElementById("iconovisible");
+      var icononovisible = document.getElementById("icononovisible");
       if(tipo.type == "password"){
-          tipo.type = "text";
+          tipo.type = "text";      
+          icononovisible.style.visibility= "hidden";
+      iconovisible.style.visibility= "inherit";
       }else{
           tipo.type = "password";
+          icononovisible.style.visibility= "inherit ";
+        iconovisible.style.visibility= "hidden";
       }
+      
+  }
+
+  
+  
+  function mostrarConfirmacion(){
+      var tipo = document.getElementById("confirmacion_contrasenia");
+      var iconovisible = document.getElementById("iconovisibleC");
+      var icononovisible = document.getElementById("icononovisibleC");
+      if(tipo.type == "password"){
+          tipo.type = "text";      
+          icononovisible.style.visibility= "hidden";
+      iconovisible.style.visibility= "inherit";
+      }else{
+          tipo.type = "password";
+          icononovisible.style.visibility= "inherit ";
+        iconovisible.style.visibility= "hidden";
+      }
+      
   }
 </script>
 
  <script type="text/javascript">
 
-
-
     function v_agregarusuario(){ 
         var v_contrasenia = document.getElementById('contrasenia').value;
         var v_confirmacion_contrasenia = document.getElementById('confirmacion_contrasenia').value;
+        var v_codigo = document.getElementById('txt_codigo').value;
+        var v_nombre = document.getElementById('txt_nombre_completo').value;
+        var v_correo = document.getElementById('txt_correo_electronico').value;
+  
+  
+  var usuario = '<?php echo json_encode($usuarios);?>';
+  var usuarios = JSON.parse(usuario);
+   var unico_codigo = 0;
+   var unico_nombre = 0;
+   var unico_correo = 0;
+
+  for (var i = 0; i < usuarios.length; i++) {   
+    if(usuarios[i].codigo.toLowerCase() === v_codigo.toLowerCase()){ 
+      unico_codigo++;
+      } 
+    if(usuarios[i].nombre_usuario.toLowerCase() === v_nombre.toLowerCase()){ 
+      unico_nombre++;
+      } 
+    if(usuarios[i].correo.toLowerCase() === v_correo.toLowerCase()){ 
+      unico_correo++;
+      }    
+  }
         
-if(confirmacion_contrasenia != v_contrasenia){
+if(v_confirmacion_contrasenia != v_contrasenia){
   toastr.error( 'Las contraseñas no coinciden ','ERROR',{"progressBar": true,"closeButton": false });
     event.preventDefault();
-}else{
+}else  if(unico_codigo> 0){
+    toastr.error( 'Este código ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(unico_nombre> 0){
+    toastr.error( 'Este nombre ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(unico_correo> 0){
+    toastr.error( 'Este correo ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else{
   toastr.success( 'El usuario se registró correctamente','BIEN',{"progressBar": true,"closeButton": false} );
     theForm.addEventListener('submit', function (event) {
     });
 }
 
-        }
+ }
 
   </script>
 
@@ -221,29 +316,7 @@ if(confirmacion_contrasenia != v_contrasenia){
 
 
 
-<!-- INICIO MODAL ELIMINAR USUARIO -->
-<div class="modal fade" id="modal_eliminar_usuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
-  <div class="modal-dialog modal-dialog-centered" >
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Eliminar Usuario</h5>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      ¿Estás seguro que quieres eliminar al usuario (nombre del usuario)?
-      </div>
-      <div class="modal-footer" >
-        <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
-            <span>Cancelar</span>
-        </button>
-        <button type="button" class=" btn-info ">
-            <span>Eliminar</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- FIN MODAL ELIMINAR USUARIO  -->
+
 
 <!-- INICIO DEL MODAL AGREGAR USUARIO -->
 <form>
