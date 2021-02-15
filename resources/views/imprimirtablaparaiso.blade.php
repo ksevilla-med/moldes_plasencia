@@ -1,10 +1,11 @@
-<link href="style.css" rel="stylesheet" type="text/css">
+
+<title>Reporte Inventario De Moldes <?php echo($fecha);?></title>
 
  
 
 
 <div class="row" style="width: 100%;margin:10px; text-align:center;">
-  <h5 style="margin:10px;"> Tabacos de Oriente</h5>
+  <h4 style="margin:10px;font-style:oblique;"> Tabacos de Oriente Paraíso, Inventario De Moldes</h4>
 </div>
 
 
@@ -45,8 +46,7 @@
              
             @endforeach
             <tr>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >Total</td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" ></td>
+            <td style="padding: 5px;text-align: center;border: solid .05px;font-style:bold;" colspan="2"><strong>Total General Moldes</strong></td>
             
              
             <td style="padding: 5px;text-align: center;border: solid .05px;" >
@@ -110,7 +110,7 @@
                  {
                   $suma_total+=$molde->total;
                 }
-                ?>   {{$suma_total}}
+                ?>   <strong>{{$suma_total}}</strong>
             </td>
             </tr>
           <tbody>

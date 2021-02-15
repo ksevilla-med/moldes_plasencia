@@ -16,6 +16,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
 
+
+
 <div class="wrapper">
 
 <nav class="navbar navbar-expand-lg navbar-light bg2" style="    overflow: hidden;
@@ -35,12 +37,8 @@
             <span>Menú</span>
             </button>
           </div>
-
-
-
-
-          <div class="col-md-2">
-            <div style="color:#fff;text-align:center;" id="titulo" ></div>
+           <div class="col-md-6">
+            <div  class="titulo" ><?php echo $titulo?></div>
           </div>
 
           <div class="col">
@@ -91,13 +89,15 @@
             <div  style="position: fixed;  width:250px;">
 
             <div class="sidebar-header" style="text-align:center;" >
-            <img src="{{ URL::asset('plasenciablanco.png') }}" style="width: 150px;height:112px;" >
+            <img src="{{ URL::asset('plasenciadorado2.png') }}" style="width: 150px;height:112px;" >
             </div>
 
             <ul class="list-unstyled components">
             <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
             <li><a href="#">Proximamente...</a></li>
             <li><a href="#">Proximamente...</a></li>
+            
+            <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
             </ul>
             </div>
 
@@ -116,7 +116,8 @@
       
       
       
-<div id="content" >         
+<div id="content" style="background: url('fondoperron.png') center center no-repeat;
+    background-size:100% 100%;">         
 
 
 <!-- INICIO MODAL CERRAR SESION -->

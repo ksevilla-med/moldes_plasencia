@@ -13,7 +13,8 @@
 */
 
 Route::get('/', function () {
-    return view('principallogo');
+    $titulo = "PLACENSIA INVENTARIO MÓVIL";
+    return view('principallogo')->with('titulo',$titulo);
 });
 
 Route::get('/entrada', function () {
@@ -21,7 +22,8 @@ Route::get('/entrada', function () {
 });
 
 Route::get('/moldesprincipal', function () {
-    return view('moldesprincipal');
+    $titulo = "SUCURSALES PLASENCIA";
+    return view('moldesprincipal')->with('titulo',$titulo);
 });
 
 Route::get('/sucursal_gualiqueme', function () {
@@ -48,6 +50,8 @@ Route::get('/sucursal_sanmarcos', function () {
     return view('sucursal_sanmarcos');
 });
 
+Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
+
 Route::get('/sucursal_moroceli', function () {
     return view('sucursal_moroceli');
 });
@@ -63,6 +67,8 @@ Route::get('/otras_empresas', function () {
 Route::get('/ayuda', function () {
     return view('ayuda');
 });
+
+
 
 
 

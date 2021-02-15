@@ -22,6 +22,7 @@ class MoldesController extends Controller
     public function index( Request $request)
     {
        
+        $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
         $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
         
 
@@ -36,7 +37,7 @@ class MoldesController extends Controller
         
 
         return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-        ->with('id_planta', $id_planta);
+        ->with('id_planta', $id_planta)->with('titulo',$titulo);
     
 
     }

@@ -25,7 +25,7 @@
   
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
   @csrf
-  <button type="submit" class=" btn-info float-right"  style="margin-right: 10px">
+  <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
       <span> Imprimir Reporte</span>
   </button>
   </form>  
@@ -372,10 +372,7 @@
             @endforeach
 
             <tr>
-            <td>Total</td>
-            <td></td>
-            <td></td>
-            
+            <td colspan="3" style="text-align:center"><strong>Total General Moldes</strong></td>          
              
             <td>
                 <?php

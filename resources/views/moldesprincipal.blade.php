@@ -20,7 +20,7 @@
                     @csrf
                          <button type="submit"  class="btn-info" style="width:100%;" >Sucursal El Paraíso</button> 
                     
-                     </form>     
+                     </form>  
                      </div>
             </div>
         </div>
