@@ -115,7 +115,7 @@
               <div class="row">
 
                   <div class="mb-3 col">
-                  <label for="txt_salon" class="form-label">Salon</label>
+                  <label for="txt_salon" class="form-label">Salón</label>
                   <input class="form-control" id="txt_salon"  name="salon"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
@@ -233,19 +233,31 @@
 
 <!-- INICIO DEL MODAL EDITAR MOLDE -->
 
-<form >
+
+
+ <?php use App\Http\Controllers\MoldesController; ?>
+
+   <div hidden>{{$id_molde_basico=0}}</div>
+     
+<form id = "formulario_mostrar" name = "formulario_mostrar">
+
 
 <div class="modal fade" id="modal_editar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-xl"  style="opacity:.9;background:#212529;width=80%">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel" >Editar Moldes (figura y vitola)</h5>
+      <h5 class="modal-title" id="titulo_figura"  name= "titulo_figura" value="">Editar Moldes (figura y vitola)</h5>
+      
+      <h5 class="modal-title" id="titulo_vitola"  name= "titulo_vitola" value="">Editar Moldes (figura y vitola)</h5>
+        
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" ></button>
       </div>
+
+
      
       <div class="modal-body">
           <div class="card-body">            
-
+   
            
 
 
@@ -255,33 +267,33 @@
 
               <div class="mb-3 col">
                   <label for="txt_total" class="form-label">Total</label>
-                  <input class="form-control" id="txt_total" placeholder="Cantidad" name ="total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
+                  <input class="form-control" id="txt_total" placeholder="Cantidad" name ="txt_total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
                   </div>
 
                   <div class="mb-3 col">
                   <label for="txt_buenos" class="form-label">Buenos</label>
-                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
+                  <input class="form-control" id="txt_buenos"  name="txt_buenos"  placeholder="Cantidad" type="number" value = "" >        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_irregulares" class="form-label">Irregulares</label>
-                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="txt_irregulares" name="txt_irregulares" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_malos" class="form-label">Malos</label>
-                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="txt_malos" name="txt_malos"placeholder="Cantidad" type="number">  
                   </div>
 
                   <div class="mb-3 col">
-                  <label for="txt_salon" class="form-label">Salon</label>
-                  <input class="form-control" id="txt_salon"  name="salon"placeholder="Cantidad" type="number">        
+                  <label for="txt_salon" class="form-label">Bodega</label>
+                  <input class="form-control" id="txt_salon"  name="txt_salon"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
-                  <label for="txt_bodega" class="form-label">Bodega</label>
-                  <input class="form-control" id="txt_bodega" name="bodega" placeholder="Cantidad" type="number">  
+                  <label for="txt_bodega" class="form-label">Reparación</label>
+                  <input class="form-control" id="txt_bodega" name="txt_bodega" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
-                  <label for="txt_reparacion" class="form-label">Reparación</label>
-                  <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
+                  <label for="txt_reparacion" class="form-label">Salón</label>
+                  <input class="form-control" id="txt_reparacion" name="txt_reparacion" placeholder="Cantidad" type="number">  
                
                   </div>
 
@@ -316,6 +328,47 @@
 
 
 
+
+
+
+<script type="text/javascript">
+
+    function datos_modal(id){
+
+
+  
+var datas = '<?php echo json_encode($moldes);?>';
+
+var data = JSON.parse(datas);
+ 
+
+for (var i = 0; i < data.length; i++) {
+  
+  if(data[i].id_molde === id){ 
+
+console.info(data[i]);
+   
+     document.formulario_mostrar.txt_buenos.value = data[i].bueno;
+     document.formulario_mostrar.txt_total.value = data[i].total;
+     document.formulario_mostrar.txt_irregulares.value = data[i].irregulares;
+     document.formulario_mostrar.txt_malos.value = data[i].malos;
+     document.formulario_mostrar.txt_bodega.value = data[i].bodega;
+     document.formulario_mostrar.txt_reparacion.value = data[i].reparacion;
+     document.formulario_mostrar.txt_salon.value = data[i].salon;
+
+     document.getElementById("titulo_figura").innerHTML = " ".concat("Figura y tipo: ", data[i].nombre_figura,"<br> ", "Vitola:", " ", data[i].vitola);
+     document.getElementById("titulo_vitola").innerHTML =  "<br> ".concat("Vitola:", " ", data[i].vitola );
+
+    
+     
+    }
+}
+
+    }
+
+    
+  
+</script>
 
 
 
@@ -357,13 +410,17 @@
                   <td>{{$molde->total}}</td>
 
                   <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
-                  <a data-toggle="modal" data-target="#modal_editar_moldes" >
-                  <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                  </svg>
-                  </a>
-                  
+           
+                  <a data-toggle="modal" data-target="#modal_editar_moldes" onclick ="datos_modal({{ $id_molde_basico = $molde->id_molde }})" >
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+
+                    </a>
+                 
+        
                   
                   </td>
             
@@ -455,6 +512,8 @@ function validar_figura(){
   var figura = '<?php echo json_encode($figuras);?>';
 
   var figuras = JSON.parse(figura);
+
+  
    var nombre_f = 0;
 
    
@@ -466,11 +525,7 @@ function validar_figura(){
     if(figuras[i].nombre_figura.toLowerCase() === v_figura.toLowerCase()){ 
          nombre_f++;
       }
-
-    
   }
-
- 
 
 
   if(v_figura ===""){

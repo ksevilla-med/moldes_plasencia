@@ -33,6 +33,8 @@ Route::get('/sucursal_gualiqueme', function () {
 Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('datos_planta');
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 
+
+
 //RUTA INSERTAR VITOLA
 Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos');
 Route::post('/sucursal_elparaiso/creado/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');

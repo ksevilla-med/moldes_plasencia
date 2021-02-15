@@ -201,7 +201,7 @@ class MoldesController extends Controller
      * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function show(Moldes $moldes)
+    public function show(Request $request)
     {
         //
     }
@@ -212,9 +212,14 @@ class MoldesController extends Controller
      * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Moldes $moldes)
+    public static function edit($id)
     {
-        //
+        
+        $fila_moldes = \DB::select('call mostrar_datos_actualizar(?)',[$id]);
+
+        return response()->json( $fila_moldes);
+
+
     }
 
     /**
@@ -224,9 +229,33 @@ class MoldesController extends Controller
      * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Moldes $moldes)
+    public function update(Request $request, $id)
     {
-        //
+
+        
+        $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
+                    [ 'id_planta' =>'requerid' ,
+                    'id_vitola' =>  'requerid',
+                     'id_figura' => 'requerid',
+                       'bueno' => 'requerid',
+                    'irregular' => 'requerid',
+                    'malo' => 'requerid',
+                    'reparacion' => 'requerid',
+                    'bodega' => 'requerid',
+                    'salon' => 'requerid'
+        ]);
+                    $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
+                            
+                    $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
+                    $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+
+
+                    return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                    ->with('id_planta', $request->id);
+
+ 
+        
     }
 
     /**

@@ -17,7 +17,7 @@ class ActualizarMoldes extends Migration
     
         DB::unprepared('
 
-        CREATE  PROCEDURE `actualizar_moldes`(
+        CREATE PROCEDURE `actualizar_moldes`(
             IN `pa_id_molde` INT,
             IN `pa_bueno` INT,
             IN `pa_irregular` INT,
@@ -27,12 +27,27 @@ class ActualizarMoldes extends Migration
             IN `pa_salon` INT
         )
         
+        BEGIN
         
+        
+         DECLARE nuevo_total_estado INT;
+         DECLARE nuevo_total_ubicacion INT; 
+                        
+                        
+                        SET nuevo_total_estado = pa_bueno+ pa_irregular+ pa_malo;
+                        SET nuevo_total_ubicacion = pa_bodega + pa_reparacion + pa_salon;
+                        if  nuevo_total_estado = nuevo_total_ubicacion then
+                        
         UPDATE moldes SET moldes.bueno = pa_bueno, moldes.irregulares = pa_irregular, moldes.malos =  pa_malo , 
-        moldes.reparacion=pa_reparacion, moldes.bodega= pa_bodega, moldes.salon =    pa_salon  WHERE moldes.id_molde = pa_id_molde;
-        
-        
-        
+                moldes.reparacion=pa_reparacion, moldes.bodega= pa_bodega, moldes.salon = pa_salon , moldes.total = nuevo_total_estado
+                   WHERE moldes.id_molde = pa_id_molde;
+                   
+                   else
+                   
+                   SELECT "No se puede actualizar";
+                   
+                   END if;
+                
         END
 
         ');
