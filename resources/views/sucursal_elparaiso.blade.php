@@ -203,14 +203,14 @@
       <div class="modal-body">
       <div class="mb-3 col">            
       <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-      <input class="form-control" id="txt_figuraytipo" type="text" name="figura" placeholder="Cantidad" maxLength="30">  
+      <input class="form-control" id="figura" type="text" name="figura" placeholder="Cantidad" maxLength="30">  
       </div>
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
         </button>
-        <button type="submit" class=" btn-info float-right"  style="margin-right: 10px">
+        <button onclick= "validar_figura()" class=" btn-info float-right"  style="margin-right: 10px">
             <span>Guardar</span>
         </button>
 
@@ -442,6 +442,67 @@
     </table>
 <!-- FIN DEL TABLA MOLDE -->
 
+
+
+
+<!-- VALIDACION VENTANA FIGURAS Y TIPOS -->
+
+<script type="text/javascript">
+
+function validar_figura(){
+  var v_figura = document.getElementById('figura').value;
+  
+  var figura = '<?php echo json_encode($figuras);?>';
+
+  var figuras = JSON.parse(figura);
+   var nombre_f = 0;
+
+   
+              
+
+  for (var i = 0; i < figuras.length; i++) {
+  
+    
+    if(figuras[i].nombre_figura.toLowerCase() === v_figura.toLowerCase()){ 
+         nombre_f++;
+      }
+
+    
+  }
+
+ 
+
+
+  if(v_figura ===""){
+    toastr.error( 'Complete el nombre de la Figura','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(nombre_f> 0){
+    toastr.error( 'Esta Figura ya existe, favor ingrese una nueva','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  
+  }else
+
+  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+  theForm.addEventListener('submit', function (event) {
+    });
+
+}
+
+</script>
+
+
+
+
+
+
+
+<!-- VALIDACION VENTANA VITOLA -->
+
+
 <script type="text/javascript">
 
 function validar_vitola(){
@@ -450,10 +511,19 @@ function validar_vitola(){
   var vitola = '<?php echo json_encode($vitolas);?>';
 
   var vitolas = JSON.parse(vitola);
+   var nombre = 0;
 
 
-  for (var i = 0; i < vitola.length; i++) {
-    console.info(vitolas[i].nombre_vitola);
+  for (var i = 0; i < vitolas.length; i++) {
+  
+    
+      console.info(vitolas[i]);
+
+      if(vitolas[i].nombre_vitola === v_vitola){ 
+         nombre++;
+      }
+      
+    
     
   }
 
@@ -462,7 +532,7 @@ function validar_vitola(){
     , "preventOpenDuplicates": true} );
     event.preventDefault();
 
-  }else if(vitola.include(v_vitola)){
+  }else if(nombre> 0){
     toastr.error( 'Esta vitola ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );
     event.preventDefault();
