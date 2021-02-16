@@ -245,11 +245,8 @@
 <div class="modal fade" id="modal_editar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-xl"  style="opacity:.9;background:#212529;width=80%">
     <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="titulo_figura"  name= "titulo_figura" value="">Editar Moldes (figura y vitola)</h5>
+      <div class="modal-header" id="titulo_figura"  name= "titulo_figura">
       
-      <h5 class="modal-title" id="titulo_vitola"  name= "titulo_vitola" value="">Editar Moldes (figura y vitola)</h5>
-        
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" ></button>
       </div>
 
@@ -356,7 +353,7 @@ console.info(data[i]);
      document.formulario_mostrar.txt_reparacion.value = data[i].reparacion;
      document.formulario_mostrar.txt_salon.value = data[i].salon;
 
-     document.getElementById("titulo_figura").innerHTML = " ".concat("Figura y tipo: ", data[i].nombre_figura,"<br> ", "Vitola:", " ", data[i].vitola);
+     document.getElementById("titulo_figura").innerHTML = "        ".concat("Figura y tipo: ", data[i].nombre_figura,"<br> ", "Vitola:", " ", data[i].vitola);
      document.getElementById("titulo_vitola").innerHTML =  "<br> ".concat("Vitola:", " ", data[i].vitola );
 
     
