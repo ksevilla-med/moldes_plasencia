@@ -58,9 +58,9 @@ class UsuariosController extends Controller
 
     public function destroy(Request $request)
     {
-        $usuario = \DB::select('call eliminar_usuarios(:id_usuario)',
+        $usuario = \DB::select('call eliminar_usuario(:id_usuario)',
         [
-            'id_usuario' => (int)$request->id_usuario,
+            'id_usuario' => (int)$request->id_usuarioE
          ]);
 
 

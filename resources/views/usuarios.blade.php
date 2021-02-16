@@ -69,27 +69,12 @@
 <!-- FIN DEL TABLA USUARIOS -->
 
 
-<script type="text/javascript">
-    function datos_modal_eliminar(id){ 
-      
-var datas = '<?php echo json_encode($usuarios);?>';
-var dataE = JSON.parse(datas); 
 
-for (var i = 0; i < dataE.length; i++) {  
-  if(dataE[i].id_usuario === id){ 
-console.info(dataE[i]);   
-     document.formulario_mostrarE.txt_usuarioE.value = dataE[i].nombre_usuario;
-     document.formulario_mostrarE.id_usuarioE.value = dataE[i].id_usuario;
-     console.log("usuario" +dataE[i].nombre_usuario);
-     console.log("id_usuario" + dataE[i].id_usuario);
-     }
-}
-}    
-</script>
 
 <!-- INICIO MODAL ELMINAR USUARIO -->
-<form id = "formulario_mostrarE" name = "formulario_mostrarE" action =  "{{Route('eliminar_usuario')}}" method="POST">
+<form id = "formulario_mostrarE" name = "formulario_mostrarE" action = "{{Route('eliminar_usuario')}}"  method="POST">
 
+@csrf
 <?php use App\Http\Controllers\UsuariosController; ?>
 <div hidden>{{$id_usuario_basicoE=0}}</div>
   
@@ -103,13 +88,13 @@ console.info(dataE[i]);
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      ¿Estás seguro que quieres eliminar a <span id="txt_usuarioE" name= "txt_usuarioE" > </span>?
+      ¿Estás seguro que quieres eliminar a <input value ="" id="txt_usuarioE" name= "txt_usuarioE" />?
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
             <span>Cancelar</span>
         </button>
-        <button type="button" class=" btn-info "  onclick="eliminar_usuario()" >
+        <button type="submit" class=" btn-info "   >
             <span>Eliminar</span>
         </button>
       </div>
@@ -503,8 +488,7 @@ var data = JSON.parse(datas);
  
 
 for (var i = 0; i < data.length; i++) {  
-  if(data[i].id_usuario === id){ 
-console.info(data[i]);   
+  if(data[i].id_usuario === id){  
      document.formulario_mostrar.txt_nombre_completo.value = data[i].nombre_usuario;
      document.formulario_mostrar.txt_correo.value = data[i].correo;
      document.formulario_mostrar.txt_codigo.value = data[i].codigo;
@@ -517,6 +501,28 @@ console.info(data[i]);
 
     }   
   
+</script>
+
+
+<script type="text/javascript">
+    function datos_modal_eliminar(id){ 
+var datas = '<?php echo json_encode($usuarios);?>';
+
+var data = JSON.parse(datas);
+ 
+
+for (var i = 0; i < data.length; i++) {  
+  if(data[i].id_usuario === id){ 
+console.info(data[i].id_usuario);   
+console.info(data[i].nombre_usuario);   
+     document.formulario_mostrarE.id_usuarioE.value = data[i].id_usuario;
+     document.formulario_mostrarE.txt_usuarioE.value = data[i].nombre_usuario;
+  
+     
+    }
+}
+
+    }   
 </script>
 
 
