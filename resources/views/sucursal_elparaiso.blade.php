@@ -621,18 +621,9 @@ function validar_vitola(){
        if(v_salon==""){ v_salon = "0";}
 
        if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
-
 toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
-
-
-}else if( parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
-parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){              
-
-toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
-document.FormMoldes.submit();
-
-  if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+}else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
   parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
   toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );
@@ -660,7 +651,7 @@ toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true
 event.preventDefault();
 }
 }
-    }
+    
  </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 

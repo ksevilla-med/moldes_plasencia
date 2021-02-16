@@ -34,7 +34,7 @@
                  
 
                   <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
-                  <a data-toggle="modal" data-target="#modal_editar_usuario" >
+                  <a data-toggle="modal" data-target="#modal_editar_usuario" onclick ="datos_modal({{ $id_usuario_basico = $usuario->id_usuario }})">
                   <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -318,8 +318,13 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
 
 
-<!-- INICIO DEL MODAL AGREGAR USUARIO -->
-<form>
+<!-- INICIO DEL MODAL EDITAR USUARIO -->
+
+<?php use App\Http\Controllers\UsuariosController; ?>
+
+<div hidden>{{$id_usuario_basico=0}}</div>
+  
+<form id = "formulario_mostrar" name = "formulario_mostrar">
 
 <div class="modal fade" role="dialog" id="modal_editar_usuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -335,20 +340,25 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
       <div class="row">
         <div class="mb-3 col">
-        <label for="nombre_completo" class="form-label">Nombre Completo</label>
-        <input class="form-control" id="nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
+        <label for="txt_nombre_completo" class="form-label">Nombre Completo</label>
+        <input class="form-control" id="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
+        </div>
+
+        <div class="mb-3 col">
+        <label for="txt_correo" class="form-label">Correo Electrónico</label>
+        <input type="mail" class="form-control" id="txt_correo" placeholder="Ingresa el correo electrónico" required >        
         </div>
       </div>
 
       <div class="row">
         <div class="mb-3 col">
-        <label for="txt_figuraytipo" class="form-label">Código</label>
-        <input class="form-control" type= "number" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
+        <label for="txt_codigo" class="form-label">Código</label>
+        <input class="form-control" type= "number" id="txt_codigo" name="txt_codigo" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
         </div>
 
         <div class="mb-3 col">
         <label for="txt_sucursales" class="form-label">Sucursal</label>
-        <select class="form-control"   id="txt_sucursales"  name="id_sucursal" placeholder="Selecciona la sucursal"  required>
+        <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" placeholder="Selecciona la sucursal"  required>
        
         @foreach($sucursales as $sucursal)
         <option value =  "{{$sucursal-> id_planta}}" >{{$sucursal-> nombre_planta}}</option>
@@ -372,7 +382,36 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 </div>
 
 </form>
-<!-- FIN DEL MODAL NUEVO MOLDE -->
+<!-- FIN DEL MODAL EDITAR USUARIO -->
+
+<script type="text/javascript">
+
+    function datos_modal(id){ 
+var datas = '<?php echo json_encode($usuarios);?>';
+
+var data = JSON.parse(datas);
+ 
+
+for (var i = 0; i < data.length; i++) {
+  
+  if(data[i].id_usuario === id){ 
+
+console.info(data[i]);
+   
+     document.formulario_mostrar.txt_nombre_completo.value = data[i].nombre_usuario;
+     document.formulario_mostrar.txt_correo.value = data[i].correo;
+     document.formulario_mostrar.txt_codigo.value = data[i].codigo;
+     document.formulario_mostrar.txt_sucursales.value = data[i].id_planta;
+  
+     
+    }
+}
+
+    }
+
+    
+  
+</script>
 
 
 
