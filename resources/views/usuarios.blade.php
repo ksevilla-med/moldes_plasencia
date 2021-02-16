@@ -320,11 +320,13 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
 <!-- INICIO DEL MODAL EDITAR USUARIO -->
 
-<?php use App\Http\Controllers\UsuariosController; ?>
+<form id = "formulario_mostrar" name = "formulario_mostrar" action =  "{{Route('actualizar_usuario',)}}" method= "POST">
 
+<?php use App\Http\Controllers\UsuariosController; ?>
 <div hidden>{{$id_usuario_basico=0}}</div>
   
-<form id = "formulario_mostrar" name = "formulario_mostrar">
+<input name = "id_usuario" id="id_usuario" value =" " hidden />
+
 
 <div class="modal fade" role="dialog" id="modal_editar_usuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -341,12 +343,12 @@ if(v_confirmacion_contrasenia != v_contrasenia){
       <div class="row">
         <div class="mb-3 col">
         <label for="txt_nombre_completo" class="form-label">Nombre Completo</label>
-        <input class="form-control" id="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
+        <input class="form-control" id="txt_nombre_completo" name="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
         </div>
 
         <div class="mb-3 col">
         <label for="txt_correo" class="form-label">Correo Electrónico</label>
-        <input type="mail" class="form-control" id="txt_correo" placeholder="Ingresa el correo electrónico" required >        
+        <input type="mail" class="form-control" id="txt_correo" name="txt_correo" placeholder="Ingresa el correo electrónico" required >        
         </div>
       </div>
 
@@ -373,7 +375,7 @@ if(v_confirmacion_contrasenia != v_contrasenia){
             <span>Cancelar</span>
             @csrf
         </button>
-        <button  class=" btn-info " onclick="validar()" >
+        <button  class=" btn-info " onclick="validar_actualizar_moldes()" >
             <span>Guardar</span>
         </button>
       </div>
@@ -383,6 +385,50 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
 </form>
 <!-- FIN DEL MODAL EDITAR USUARIO -->
+
+<script type="text/javascript">
+
+    function validar_actualizar_moldes(){ 
+        var v_id_planta = document.getElementById('txt_sucursales').value;
+        var v_codigo = document.getElementById('txt_codigo').value;
+        var v_nombre = document.getElementById('txt_nombre_completo').value;
+        var v_correo = document.getElementById('txt_correo_electronico').value;  
+
+        
+ if(unico_codigo> 0){
+    toastr.error( 'Este código ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(unico_nombre> 0){
+    toastr.error( 'Este nombre ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else if(unico_correo> 0){
+    toastr.error( 'Este correo ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
+
+  }else{
+  toastr.success( 'El usuario se registró correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+    theForm.addEventListener('submit', function (event) {
+    });
+}
+
+ }
+
+  </script>
+
+
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
 
@@ -402,6 +448,7 @@ console.info(data[i]);
      document.formulario_mostrar.txt_correo.value = data[i].correo;
      document.formulario_mostrar.txt_codigo.value = data[i].codigo;
      document.formulario_mostrar.txt_sucursales.value = data[i].id_planta;
+     document.formulario_mostrar.id_usuario.value = data[i].id_usuario;
   
      
     }
