@@ -89,7 +89,26 @@
               </div> 
 
               
+<<<<<<< Updated upstream
             
+=======
+              <div class="row">
+
+                  <div class="mb-3 col">
+                  <label for="txt_buenos" class="form-label">Buenos</label>
+                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
+                  </div>
+                  <div class="mb-3 col">            
+                  <label for="txt_irregulares" class="form-label">Irregulares</label>
+                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
+                  </div>
+                  <div class="mb-3 col">
+                  <label for="txt_malos" class="form-label">Malos</label>
+                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
+                  </div>
+
+                  </div>
+>>>>>>> Stashed changes
 
 
 
@@ -124,7 +143,11 @@
                   <div class="mb-3 col">
                   <label for="txt_reparacion" class="form-label">Reparación</label>
                   <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
+<<<<<<< Updated upstream
                   <input name = "id_planta"  value ='1' hidden />
+=======
+                  <input name = "id_planta"  value ='2' hidden />
+>>>>>>> Stashed changes
                   </div>
 
               </div>
@@ -180,7 +203,11 @@
             <span>Guardar</span>
         </button>
         @csrf
+<<<<<<< Updated upstream
         <input name = "id_planta"  value ='1' hidden />
+=======
+        <input name = "id_planta"  value ='2' hidden />
+>>>>>>> Stashed changes
       </div>
     </div>
   </div>
@@ -214,7 +241,11 @@
         </button>
 
         @csrf
+<<<<<<< Updated upstream
         <input name = "id_planta"  value ='1' hidden />
+=======
+        <input name = "id_planta"  value ='2' hidden />
+>>>>>>> Stashed changes
       </div>
     </div>
   </div>
@@ -435,7 +466,12 @@ console.info(data[i]);
                   $suma_b+=$molde->bueno;
                 }
                 
+<<<<<<< Updated upstream
                 ?>   {{$suma_b}}    </td>
+=======
+                ?>   {{$suma_b}}
+            </td>
+>>>>>>> Stashed changes
             <td>
               <?php
                $suma_i=0;

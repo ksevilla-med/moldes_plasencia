@@ -36,7 +36,8 @@ class sucursal_moroceli extends Controller
 
         
 
-        return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+<<<<<<< Updated upstream
+        return view('sucursal_moroceli')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta)->with('titulo',$titulo);
     
 
@@ -72,6 +73,10 @@ class sucursal_moroceli extends Controller
 
         
 
+=======
+        return view('sucursal_moroceli')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        ->with('id_planta', $id_planta)->with('titulo',$titulo);
+>>>>>>> Stashed changes
     
 
     }
