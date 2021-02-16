@@ -33,6 +33,8 @@ Route::get('/sucursal_gualiqueme', function () {
 Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('datos_planta');
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 
+// RUTA ACTUALIZAR MOLDES
+Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 
 
 //RUTA INSERTAR VITOLA
@@ -41,8 +43,6 @@ Route::post('/sucursal_elparaiso/creado/{id}',[App\Http\Controllers\MoldesContro
 
 
 
-// RUTA ACTUALIZAR MOLDES
-Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 
 // RUTA INSERTAR VITOLAS
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
