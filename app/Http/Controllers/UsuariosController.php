@@ -68,9 +68,11 @@ class UsuariosController extends Controller
 
         $titulo = "USUARIOS Y ADMINISTRADORES";
         $sucursales = \DB::select('call mostrar_sucursal'); 
-        $usuarios = \DB::select('call mostrar_usuarios');       
+        $usuarios = \DB::select('call mostrar_usuarios');   
+        
+        return REDIRECT('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
 
-        return view('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
+     
 
     }
 
