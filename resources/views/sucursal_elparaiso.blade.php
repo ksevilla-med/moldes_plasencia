@@ -63,7 +63,7 @@
 
                   <div class="mb-3 col">
                     <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                      <input class="form-control" type= "text"list="prediccionfiguraytipo" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa figura y tipo">
+                      <input class="form-control" type= "text"  list="prediccionfiguraytipo" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa figura y tipo">
                         <datalist id="prediccionfiguraytipo" >                
                       
                         @foreach($figuras as $figura)
@@ -612,6 +612,10 @@ function validar_vitola(){
         var v_reparacion = document.getElementById('txt_reparacion').value;
         var v_salon = document.getElementById('txt_salon').value;
         var v_total = document.getElementById('txt_total').value; 
+        var v_vitola = document.getElementById('txt_vitola').value; 
+        var v_figura = document.getElementById('txt_figuraytipo').value; 
+
+
         var theForm = document.forms['Form_Moldes'];
        
         if(v_buenos==""){ v_buenos = "0";}
@@ -624,13 +628,22 @@ function validar_vitola(){
        if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
 toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
+}else
+  if(v_vitola === ""){ 
+    toastr.error( 'Favor complete el campo de la vitola del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+    , "preventOpenDuplicates": true });
+    event.preventDefault();
+  }else
+  if(v_figura === ""){ 
+    toastr.error( 'Favor complete el campo de la figura y tipo del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+    , "preventOpenDuplicates": true });
+    event.preventDefault();
 }else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
   parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
   toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );
     theForm.addEventListener('submit', function (event) {
     });
-  
   }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
     toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
     , "preventOpenDuplicates": true });
@@ -690,13 +703,6 @@ parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salo
 
 toastr.success( 'Tus datos se actualizaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
 document.formulario_actualizar.submit();
-
- }else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
-  parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
-  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );
-    theForm.addEventListener('submit', function (event) {
-    });
   
   }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
     toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
@@ -718,7 +724,7 @@ toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true
     , "preventOpenDuplicates": true} );     
 event.preventDefault();
 }
-}
+
     }
  </script>
 
