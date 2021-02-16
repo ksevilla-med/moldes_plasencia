@@ -30,7 +30,6 @@ class UsuariosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Moldes  $moldes
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)

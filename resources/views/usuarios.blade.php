@@ -69,23 +69,41 @@
 <!-- FIN DEL TABLA USUARIOS -->
 
 
+<script type="text/javascript">
+    function datos_modal_eliminar(id){ 
+      
+var datas = '<?php echo json_encode($usuarios);?>';
+var dataE = JSON.parse(datas); 
+
+for (var i = 0; i < dataE.length; i++) {  
+  if(dataE[i].id_usuario === id){ 
+console.info(dataE[i]);   
+     document.formulario_mostrarE.txt_usuarioE.value = dataE[i].nombre_usuario;
+     document.formulario_mostrarE.id_usuarioE.value = dataE[i].id_usuario;
+     console.log("usuario" +dataE[i].nombre_usuario);
+     console.log("id_usuario" + dataE[i].id_usuario);
+     }
+}
+}    
+</script>
 
 <!-- INICIO MODAL ELMINAR USUARIO -->
-<form id = "formulario_mostrarE" name = "formulario_mostrarE" action =  "{{Route('eliminar_usuario')}}" method= "DELETE">
+<form id = "formulario_mostrarE" name = "formulario_mostrarE" action =  "{{Route('eliminar_usuario')}}" method="POST">
 
+<?php use App\Http\Controllers\UsuariosController; ?>
 <div hidden>{{$id_usuario_basicoE=0}}</div>
   
-<input name = "id_usuario" id="id_usuario" value =" " hidden />
+<input name = "id_usuarioE" id="id_usuarioE" value ="" hidden />
 
 <div class="modal fade" id="modal_eliminar_usuario" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Eliminar Sesión</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Eliminar Usuario</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      ¿Estás seguro que quieres eliminar a <span id="txt_usuarioE"></span>?
+      ¿Estás seguro que quieres eliminar a <span id="txt_usuarioE" name= "txt_usuarioE" > </span>?
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
@@ -99,13 +117,17 @@
   </div>
 </div>
 </form>
+
+
 <!-- FIN MODAL ELMINAR USUARIO -->
 <script type="text/javascript">
 
     function eliminar_usuario(){ 
+      
+      var theFormE = document.forms['formulario_mostrarE'];
 
       toastr.success( 'El usuario se eliminó correctamente','BIEN',{"progressBar": true,"closeButton": false} );
-    theForm.addEventListener('submit', function (event) {
+      theFormE.addEventListener('submit', function (event) {
     });
  }
 
@@ -363,8 +385,8 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
 <!-- INICIO DEL MODAL EDITAR USUARIO -->
 
-<form id = "formulario_mostrar" name = "formulario_mostrar" action =  "{{Route('actualizar_usuario',)}}" method= "POST">
-<?php use App\Http\Controllers\UsuariosController; ?>
+<form id = "formulario_mostrar" name = "formulario_mostrar" action =  "{{Route('actualizar_usuario')}}" method= "POST">
+
 <div hidden>{{$id_usuario_basico=0}}</div>
   
 <input name = "id_usuario" id="id_usuario" value =" " hidden />
@@ -497,20 +519,7 @@ console.info(data[i]);
   
 </script>
 
-<script type="text/javascript">
-    function datos_modal_eliminar(id){ 
-var datas = '<?php echo json_encode($usuarios);?>';
-var data = JSON.parse(datas); 
 
-for (var i = 0; i < data.length; i++) {  
-  if(data[i].id_usuario === id){ 
-console.info(data[i]);   
-     document.formulario_mostrarE.txt_usuarioE.value = data[i].nombre_usuario;
-     document.formulario_mostrarE.id_usuario.value = data[i].id_usuario;
-     }
-}
-}    
-</script>
 
 
 
