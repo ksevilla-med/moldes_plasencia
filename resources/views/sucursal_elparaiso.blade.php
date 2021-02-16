@@ -234,12 +234,12 @@
 <!-- INICIO DEL MODAL EDITAR MOLDE -->
 
 
-
+<form action =  "{{Route('actualizar_moldes',1)}}" method= "POST" name = "formulario_actualizar">
  <?php use App\Http\Controllers\MoldesController; ?>
 
    <div hidden>{{$id_molde_basico=0}}</div>
      
-<form id = "formulario_mostrar" name = "formulario_mostrar">
+
 
 
 <div class="modal fade" id="modal_editar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
@@ -264,34 +264,35 @@
 
               <div class="mb-3 col">
                   <label for="txt_total" class="form-label">Total</label>
-                  <input class="form-control" id="txt_total" placeholder="Cantidad" name ="txt_total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
+                  <input class="form-control" id="mo_total" placeholder="Cantidad" name ="mo_total"required type="number" min="1" max="999999" minLength="1" maxLength="6">        
                   </div>
 
                   <div class="mb-3 col">
                   <label for="txt_buenos" class="form-label">Buenos</label>
-                  <input class="form-control" id="txt_buenos"  name="txt_buenos"  placeholder="Cantidad" type="number" value = "" >        
+                  <input class="form-control" id="mo_bueno"  name="mo_bueno"  placeholder="Cantidad" type="number" value = "" >        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_irregulares" class="form-label">Irregulares</label>
-                  <input class="form-control" id="txt_irregulares" name="txt_irregulares" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_irregular" name="mo_irregular" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_malos" class="form-label">Malos</label>
-                  <input class="form-control" id="txt_malos" name="txt_malos"placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_malo" name="mo_malo"placeholder="Cantidad" type="number">  
                   </div>
 
                   <div class="mb-3 col">
                   <label for="txt_salon" class="form-label">Bodega</label>
-                  <input class="form-control" id="txt_salon"  name="txt_salon"placeholder="Cantidad" type="number">        
+                  <input class="form-control" id="mo_salon"  name="mo_salon"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_bodega" class="form-label">Reparación</label>
-                  <input class="form-control" id="txt_bodega" name="txt_bodega" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_bodega" name="mo_bodega" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_reparacion" class="form-label">Salón</label>
-                  <input class="form-control" id="txt_reparacion" name="txt_reparacion" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_reparacion" name="mo_reparacion" placeholder="Cantidad" type="number">  
                
+                  <input name = "id_molde" id =  "id_molde" value =" " hidden />
                   </div>
 
               </div>
@@ -308,7 +309,7 @@
             <span>Cancelar</span>
             @csrf
         </button>
-        <button  class=" btn-info " onclick="validar()" >
+        <button  class=" btn-info " onclick="validar_actualizar_moldes()" >
             <span>Guardar</span>
         </button>
 
@@ -345,14 +346,14 @@ for (var i = 0; i < data.length; i++) {
 
 console.info(data[i]);
    
-     document.formulario_mostrar.txt_buenos.value = data[i].bueno;
-     document.formulario_mostrar.txt_total.value = data[i].total;
-     document.formulario_mostrar.txt_irregulares.value = data[i].irregulares;
-     document.formulario_mostrar.txt_malos.value = data[i].malos;
-     document.formulario_mostrar.txt_bodega.value = data[i].bodega;
-     document.formulario_mostrar.txt_reparacion.value = data[i].reparacion;
-     document.formulario_mostrar.txt_salon.value = data[i].salon;
-
+     document.formulario_actualizar.mo_bueno.value = data[i].bueno;
+     document.formulario_actualizar.mo_total.value = data[i].total;
+     document.formulario_actualizar.mo_irregular.value = data[i].irregulares;
+     document.formulario_actualizar.mo_malo.value = data[i].malos;
+     document.formulario_actualizar.mo_bodega.value = data[i].bodega;
+     document.formulario_actualizar.mo_reparacion.value = data[i].reparacion;
+     document.formulario_actualizar.mo_salon.value = data[i].salon;
+     document.formulario_actualizar.id_molde.value = data[i].id_molde;
      document.getElementById("titulo_figura").innerHTML = "        ".concat("Figura y tipo: ", data[i].nombre_figura,"<br> ", "Vitola:", " ", data[i].vitola);
      document.getElementById("titulo_vitola").innerHTML =  "<br> ".concat("Vitola:", " ", data[i].vitola );
 
@@ -408,7 +409,7 @@ console.info(data[i]);
 
                   <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
            
-                  <a data-toggle="modal" data-target="#modal_editar_moldes" onclick ="datos_modal({{ $id_molde_basico = $molde->id_molde }})" >
+                  <a data-toggle="modal" data-target="#modal_editar_moldes" onclick ="datos_modal({{ $id_molde_basico = $molde->id_molde }})"  >
                     <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
                       <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                       <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -655,6 +656,70 @@ event.preventDefault();
  </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 
+
+
+ <!--  VALIDACION  DE MODAL,EDITAR MOLDES -->   
+    <script type="text/javascript">
+
+    function validar_actualizar_moldes(){ 
+        var v_buenos = document.getElementById('mo_bueno').value;
+        var v_irregulares = document.getElementById('mo_irregular').value;
+        var v_malos = document.getElementById('mo_malo').value;
+        var v_bodega = document.getElementById('mo_bodega').value;
+        var v_reparacion = document.getElementById('mo_reparacion').value;
+        var v_salon = document.getElementById('mo_salon').value;
+        var v_total = document.getElementById('mo_total').value; 
+        var theForm = document.forms['formulario_actualizar'];
+       
+        if(v_buenos==""){ v_buenos = "0";}
+       if(v_irregulares==""){ v_irregulares = "0";}
+       if(v_malos==""){ v_malos = "0";}
+       if(v_bodega==""){ v_bodega = "0";}
+       if(v_reparacion==""){ v_reparacion = "0";}
+       if(v_salon==""){ v_salon = "0";}
+
+       if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+
+toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
+
+
+
+}else if( parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+parseInt(v_total) === (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){              
+
+toastr.success( 'Tus datos se actualizaron correctamente','BIEN',{"progressBar": true,"closeButton": false} );
+document.formulario_actualizar.submit();
+
+  if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+  parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
+  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    theForm.addEventListener('submit', function (event) {
+    });
+  
+  }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
+    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+    , "preventOpenDuplicates": true });
+    event.preventDefault();
+  }  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+event.preventDefault();
+}else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+event.preventDefault();
+}else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
+toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );     
+event.preventDefault();
+}
+}
+    }
+ </script>
 
 
 

@@ -233,17 +233,20 @@ class MoldesController extends Controller
     {
 
         
-        $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
-                    [ 'id_planta' =>'requerid' ,
-                    'id_vitola' =>  'requerid',
-                     'id_figura' => 'requerid',
-                       'bueno' => 'requerid',
-                    'irregular' => 'requerid',
-                    'malo' => 'requerid',
-                    'reparacion' => 'requerid',
-                    'bodega' => 'requerid',
-                    'salon' => 'requerid'
-        ]);
+        $molde = \DB::select('call actualizar_moldes(:id_molde, :bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
+                    [
+                        'id_molde' => (int)$request->id_molde,
+                        'bueno' => (int)$request->mo_bueno,
+                        'irregular' => (int)$request->mo_irregular,
+                        'malo' => (int)$request->mo_malo,
+                        'reparacion' => (int)$request->mo_reparacion,
+                        'bodega' => (int)$request->mo_bodega
+                        ,'salon' => (int)$request->mo_salon
+                     ]);
+
+            
+                      
+
                     $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
                             
                     $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);

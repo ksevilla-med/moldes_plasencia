@@ -40,6 +40,10 @@ Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 's
 Route::post('/sucursal_elparaiso/creado/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
 
 
+
+// RUTA ACTUALIZAR MOLDES
+Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
+
 // RUTA INSERTAR VITOLAS
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
 
