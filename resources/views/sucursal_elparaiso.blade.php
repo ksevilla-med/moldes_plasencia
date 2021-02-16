@@ -63,25 +63,21 @@
 
                   <div class="mb-3 col">
                     <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                      <input class="form-control" type= "text"  list="prediccionfiguraytipo" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa figura y tipo">
-                        <datalist id="prediccionfiguraytipo" >                
-                      
-                        @foreach($figuras as $figura)
-                        <option value =  "{{$figura-> nombre_figura}}" >
+                      <select class="form-control" id="txt_figuraytipo" name="id_figura" placeholder="Ingresa figura y tipo" required>
+                         @foreach($figuras as $figura)
+                        <option > {{$figura-> nombre_figura}}</option>
                         @endforeach
-                        
-                        </datalist> 
+                        </select> 
                   </div>
 
                   <div class="mb-3 col">
                     <label for="txt_vitola" class="form-label">Vitola</label>
-                        <input class="form-control"  type= "text" list="prediccionvitola" id="txt_vitola"  name="id_vitola" placeholder="Ingresa la vitola">
-                          <datalist id="prediccionvitola" class= "row">
+                        <select class="form-control"  type= "text" list="prediccionvitola" id="txt_vitola"  name="id_vitola" placeholder="Ingresa la vitola" required>
                             @foreach($vitolas as $vitola)
-                              <option value =  "{{$vitola-> nombre_vitola}}" >
-                            @endforeach
-                           
-                          </datalist> 
+                              <option >{{$vitola-> nombre_vitola}}</option>
+                            @endforeach 
+                            
+                        </select>                         
                   </div>
 
                   <div class="mb-3 col">
@@ -91,6 +87,23 @@
             
               </div> 
 
+              
+              <div class="row">
+
+                  <div class="mb-3 col">
+                  <label for="txt_buenos" class="form-label">Buenos</label>
+                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
+                  </div>
+                  <div class="mb-3 col">            
+                  <label for="txt_irregulares" class="form-label">Irregulares</label>
+                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
+                  </div>
+                  <div class="mb-3 col">
+                  <label for="txt_malos" class="form-label">Malos</label>
+                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
+                  </div>
+
+                  </div>
 
 
 
