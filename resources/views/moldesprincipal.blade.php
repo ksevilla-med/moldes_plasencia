@@ -30,12 +30,7 @@
             <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="sucursalMoroceli.png" class="card-img-top" alt="Sucursal Morocelí" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-<<<<<<< Updated upstream
-                    <form action=  "{{Route('sucursal_moroceli',2)}}" method= "POST">
-=======
-                    
-                    <form action=  "{{Route('moroceli',2)}}" method= "POST">
->>>>>>> Stashed changes
+                    <form action=  "" method= "POST">
                     @csrf
                          <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
                     

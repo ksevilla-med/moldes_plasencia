@@ -24,6 +24,7 @@
   </button>
   
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
+  @csrf
  
  
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
