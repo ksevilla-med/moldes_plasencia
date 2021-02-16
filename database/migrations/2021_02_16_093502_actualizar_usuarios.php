@@ -13,11 +13,11 @@ class ActualizarUsuarios extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `actualizar_moldes`');
+        DB::unprepared('DROP procedure if exists `actualizar_usuarios`');
     
         DB::unprepared('
 
-        CREATE PROCEDURE `actualizar_moldes`(
+        CREATE PROCEDURE `actualizar_usuarios`(
             IN `pa_id_planta` INT,
             IN `pa_id_usuario` INT,
             IN `pa_codigo` INT,
@@ -25,17 +25,19 @@ class ActualizarUsuarios extends Migration
             IN `pa_correo` VARCHAR(50)
         )
         
-        BEGIN
         
-        UPDATE usuarios 
-        SET  
-              usuarios.codigo=pa_codigo,
-              usuarios.nombre_usuario = pa_nombre, 
-              usuarios.id_planta =  pa_id_planta , 
-              usuarios.correo = pa_correo
-        WHERE  usuarios.id_usuario = pa_id_usuario;
+         BEGIN
                 
-        END
+                UPDATE usuarios 
+                SET usuarios.codigo=pa_codigo,
+                      usuarios.nombre_usuario = pa_nombre, 
+                      usuarios.id_planta =  pa_id_planta , 
+                      usuarios.correo = pa_correo
+        
+                WHERE usuarios.id_usuario = pa_id_usuario;
+                        
+                END
+                
 
         ');
     }

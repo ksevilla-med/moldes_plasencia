@@ -63,9 +63,7 @@ Route::get('/sucursal_sanmarcos', function () {
 
 Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
 
-Route::get('/sucursal_moroceli', function () {
-    return view('sucursal_moroceli');
-});
+Route::post('/sucursal_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'index'])->name('sucursal_moroceli');
 
 Route::get('/sucursales_total', function () {
     return view('sucursales_total');
