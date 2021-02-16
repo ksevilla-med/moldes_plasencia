@@ -30,7 +30,12 @@
             <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="sucursalMoroceli.png" class="card-img-top" alt="Sucursal Morocelí" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                     <div class="card-body">
-                    <form action=  "{{Route('id_planta',1)}}" method= "POST">
+<<<<<<< Updated upstream
+                    <form action=  "{{Route('sucursal_moroceli',2)}}" method= "POST">
+=======
+                    
+                    <form action=  "{{Route('moroceli',2)}}" method= "POST">
+>>>>>>> Stashed changes
                     @csrf
                          <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
                     
@@ -57,7 +62,7 @@
                     <div class="card-body">
                     <form action=  "{{Route('id_planta',1)}}" method= "POST">
                     @csrf
-                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal San Marcos</button> 
                     
                      </form> 
                 </div>
@@ -70,7 +75,7 @@
                     <div class="card-body">
                     <form action=  "{{Route('id_planta',1)}}" method= "POST">
                     @csrf
-                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                         <button type="submit"  class="btn-info" style="width:100%;" ></button> 
                     
                      </form> 
                     </div>
@@ -90,7 +95,7 @@
                 <div class="card-body">
                 <form action=  "{{Route('id_planta',1)}}" method= "POST">
                     @csrf
-                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Gualiqueme</button> 
                     
                      </form> 
                     </div>
@@ -103,7 +108,7 @@
                 <div class="card-body">
                 <form action=  "{{Route('id_planta',1)}}" method= "POST">
                     @csrf
-                         <button type="submit"  class="btn-info" style="width:100%;" >Sucursal Moroceli</button> 
+                         <button type="submit"  class="btn-info" style="width:100%;" >Otras plantas</button> 
                     
                      </form> 
                     </div>
