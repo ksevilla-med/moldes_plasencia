@@ -75,7 +75,8 @@ Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update
 Route::post('/usuarios/a',[App\Http\Controllers\UsuariosController::class, 'destroy' ])->name('eliminar_usuario');
 
 Route::get('/ayuda', function () {
-    return view('ayuda');
+    $titulo= "Ayuda";
+    return view('ayuda')->with('titulo',$titulo);
 });
 
 Auth::routes();
