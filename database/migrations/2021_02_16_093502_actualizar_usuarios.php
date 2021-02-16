@@ -17,27 +17,27 @@ class ActualizarUsuarios extends Migration
     
         DB::unprepared('
 
-        CREATE PROCEDURE `actualizar_usuarios`(
-            IN `pa_id_planta` INT,
+        REATE PROCEDURE `actualizar_usuarios`(
             IN `pa_id_usuario` INT,
             IN `pa_codigo` INT,
             IN `pa_nombre` VARCHAR(50),
+            IN `pa_id_planta` INT,
             IN `pa_correo` VARCHAR(50)
         )
         
-        
-         BEGIN
+        BEGIN
                 
                 UPDATE usuarios 
-                SET usuarios.codigo=pa_codigo,
+                SET 
                       usuarios.nombre_usuario = pa_nombre, 
-                      usuarios.id_planta =  pa_id_planta , 
-                      usuarios.correo = pa_correo
+                      usuarios.correo = pa_correo,
+                      usuarios.codigo=pa_codigo,
+                      usuarios.id_planta =  pa_id_planta 
+                      
         
                 WHERE usuarios.id_usuario = pa_id_usuario;
                         
                 END
-                
 
         ');
     }
