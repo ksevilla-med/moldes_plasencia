@@ -37,7 +37,7 @@ class UsuariosController extends Controller
     {
 
         
-        $molde = \DB::select('call actualizar_usuarios(:id_usuario, :codigo,:nombre_usuario,:id_planta,:correo)',
+        $usuario = \DB::select('call actualizar_usuarios(:id_usuario, :codigo,:nombre_usuario,:id_planta,:correo)',
                     [
                         'id_usuario' => (int)$request->id_usuario,
                         'codigo' => (int)$request->txt_codigo,
@@ -56,4 +56,24 @@ class UsuariosController extends Controller
                      return view('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
 
     }
+
+    public function destroy(Request $request)
+    {
+        $usuario = \DB::select('call eliminar_usuarios(:id_usuario)',
+        [
+            'id_usuario' => (int)$request->id_usuario,
+         ]);
+
+
+
+
+        $titulo = "USUARIOS Y ADMINISTRADORES";
+        $sucursales = \DB::select('call mostrar_sucursal'); 
+        $usuarios = \DB::select('call mostrar_usuarios');       
+
+        return view('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
+
+    }
+
+
 }

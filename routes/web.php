@@ -39,6 +39,7 @@ Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesContro
 
 // RUTA ACTUALIZAR USUARIO
 Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update' ])->name('actualizar_usuario');
+Route::delete('/usuarios',[App\Http\Controllers\UsuariosController::class, 'destroy' ])->name('eliminar_usuario');
 
 
 //RUTA INSERTAR VITOLA
