@@ -13,7 +13,7 @@
 */
 
 Route::get('/', function () {
-    $titulo = "PLACENSIA INVENTARIO MÓVIL";
+    $titulo = "PLASENCIA INVENTARIO MÓVIL";
     return view('principallogo')->with('titulo',$titulo);
 });
 
@@ -35,6 +35,10 @@ Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::c
 
 // RUTA ACTUALIZAR MOLDES
 Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
+
+
+// RUTA ACTUALIZAR USUARIO
+Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update' ])->name('actualizar_usuario');
 
 
 //RUTA INSERTAR VITOLA
