@@ -24,7 +24,8 @@
   </button>
   
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
-  @csrf
+ 
+ 
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
       <span> Imprimir Reporte</span>
   </button>
@@ -88,22 +89,7 @@
               </div> 
 
               
-              <div class="row">
-
-                  <div class="mb-3 col">
-                  <label for="txt_buenos" class="form-label">Buenos</label>
-                  <input class="form-control" id="txt_buenos"  name="bueno"placeholder="Cantidad" type="number">        
-                  </div>
-                  <div class="mb-3 col">            
-                  <label for="txt_irregulares" class="form-label">Irregulares</label>
-                  <input class="form-control" id="txt_irregulares" name="irregulares" placeholder="Cantidad" type="number">  
-                  </div>
-                  <div class="mb-3 col">
-                  <label for="txt_malos" class="form-label">Malos</label>
-                  <input class="form-control" id="txt_malos" name="malos"placeholder="Cantidad" type="number">  
-                  </div>
-
-                  </div>
+            
 
 
 
@@ -449,8 +435,7 @@ console.info(data[i]);
                   $suma_b+=$molde->bueno;
                 }
                 
-                ?>   {{$suma_b}}
-            </td>
+                ?>   {{$suma_b}}    </td>
             <td>
               <?php
                $suma_i=0;
