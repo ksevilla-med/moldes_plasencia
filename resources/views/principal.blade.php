@@ -20,10 +20,7 @@
 
 <div class="wrapper">
 
-<nav class="navbar navbar-expand-lg navbar-light bg2" style="    overflow: hidden;
-    top: 0;
-    position:fixed;
-    width: 100%; ">
+<nav class="navbar navbar-expand-lg navbar-light bg2 fixed-top" >
  <div class="container-fluid">
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -37,9 +34,9 @@
             <span>Menú</span>
             </button>
           </div>
-           <div class="col-md-6">
-            <div  class="titulo" ><?php echo $titulo?></div>
-          </div>
+         
+            <div  class="titulo ml-auto " ><?php echo $titulo?></div>
+          
 
           <div class="col">
           <ul class="nav navbar-nav ml-auto " style="position:fixed;right:30px;">
@@ -83,16 +80,16 @@
 
 
 
-<nav id="sidebar" style="margin-top:57px;">
+<nav id="sidebar" style="margin-top:57px;background:black;">
                  
 
             <div  style="position: fixed;  width:250px;">
 
-            <div class="sidebar-header" style="text-align:center;" >
+            <div class="sidebar-header" style="text-align:center;background:black;" >
             <img src="{{ URL::asset('plasenciadorado2.png') }}" style="width: 150px;height:112px;" >
             </div>
 
-            <ul class="list-unstyled components">
+            <ul class="list-unstyled components" style="background:black;">
             <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
             <li><a href="#">Proximamente...</a></li>
             <li><a href="#">Proximamente...</a></li>
@@ -102,8 +99,8 @@
             </div>
 
 
-            <div  style="position: fixed; bottom: 0px; width:250px;">
-            <ul class="list-unstyled CTAs ">
+            <div  style="position: fixed; bottom: 0px; width:250px;background:black;" >
+            <ul class="list-unstyled CTAs " style="background:black;">
             <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
             <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
             </ul>
@@ -220,7 +217,7 @@
 
 <div style = "margin-top:50px;">
             @yield('content')
-</div>
+</div> 
 
 
 

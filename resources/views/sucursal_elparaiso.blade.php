@@ -11,37 +11,63 @@
 
 
 <button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" >
-      <span> Agregar moldes</span>
+      <span> 
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg> 
+      Moldes</span>
   </button>
 
 
 
   <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_vitola" style="margin-right: 10px">
-      <span> Agregar vitola</span>
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg> 
+       Vitola</span>
   </button>
 
   <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_figuraytipo" style="margin-right: 10px">
-      <span> Agregar figura y tipo</span>
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg> 
+      Figura y tipo</span>
   </button>
   
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
   @csrf 
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
-      <span> Imprimir Reporte</span>
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+</svg>
+Reporte</span>
   </button>
   </form>  
 
-  <nav class="navbar navbar-light float-right">
-  <form action=  "{{Route('id_planta',1)}}" method= "POST">
+  <form action=  "{{Route('id_planta',1)}}" method= "POST" class="form-inline">
       @csrf
 
-    <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar vitola" aria-label="Search">
+    <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Vitola" style="width:150px;">
 
-    <input name="figurabuscar"  id="figurabuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar figura y tipo" aria-label="Search">
+    <input name="figurabuscar"  id="figurabuscar" class="form-control mr-sm-2" type="search" placeholder="Figura y tipo" style="width:150px;">
     
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    <button class="btn-info" type="submit">
+    <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+  </svg>
+  </span>
+    </button>
   </form>
-</nav>
+
+  
 
 
 
