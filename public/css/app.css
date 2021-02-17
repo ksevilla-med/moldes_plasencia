@@ -4356,6 +4356,7 @@ input[type=button].btn-block {
   flex-basis: 100%;
   flex-grow: 1;
   align-items: center;
+  justify-content: center !important;
 }
 
 .navbar-toggler {
@@ -7801,6 +7802,7 @@ button.bg-dark:focus {
 
 .w-100 {
   width: 100% !important;
+  height: 80% !important;
 }
 
 .w-auto {
