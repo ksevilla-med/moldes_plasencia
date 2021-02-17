@@ -28,7 +28,7 @@ class MoldesParaiso extends Migration
         moldes.bodega, moldes.reparacion, moldes.salon,moldes.total, moldes.id_molde
         FROM plantas, moldes, figura_tipos, vitolas WHERE  plantas.id_planta = "1" AND
         moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta AND moldes.id_figura = figura_tipos.id_figura AND
-        moldes.id_vitola = vitolas.id_vitola AND vitolas.vitola LIKE CONCAT('%', pa_vitola, '%') AND figura_tipos.nombre_figura LIKE CONCAT('%', pa_figura, '%')      ;
+        moldes.id_vitola = vitolas.id_vitola AND vitolas.vitola LIKE CONCAT("%", pa_vitola, "%") AND figura_tipos.nombre_figura LIKE CONCAT("%", pa_figura, "%")      ;
         
           
           

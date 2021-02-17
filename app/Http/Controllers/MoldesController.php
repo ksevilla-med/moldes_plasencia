@@ -21,20 +21,24 @@ class MoldesController extends Controller
      */
     public function index( Request $request)
     {
-        
+       
         $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
+        
 
-        $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
-        [ 'vitola' => (string)$request->vitolabuscar,
-          'nombre_figura' => (string)$request->figurabuscar]);
 
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+
         $id_planta = [$request->id];
+
+
         
 
         return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-        ->with('id_planta', $id_planta)->with('titulo',$titulo); 
+        ->with('id_planta', $id_planta)->with('titulo',$titulo);
+    
 
     }
 
@@ -48,10 +52,7 @@ class MoldesController extends Controller
      
 
         
-        $moldes =  \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
-        [ 'vitola' => (string)$request->vitolabuscar,
-          'nombre_figura' => (string)$request->figurabuscar]);
-
+        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
         $id_planta = [$request->id];
@@ -270,4 +271,29 @@ class MoldesController extends Controller
     {
         //
     }
+
+    public function totales()
+    {
+       
+        $titulo = "SUMATORIA TOTAL DE LOS MOLDES PLASENCIA";
+
+        $distintos = \DB::select('call distintos_moldes()');
+
+        foreach($distintos as $distinto){
+            $insertar = \DB::select('call insertar_totales_plantas(?)' , [$distinto->figura_vitola]);
+        }
+
+        $totales_moldes = \DB::select('call mostrar_total_todas_plantas()');
+
+        
+        
+
+        return view('sucursales_total')->with('totales',$totales_moldes)->with('titulo',$titulo);
+    
+
+    }
+
+
+
+    
 }

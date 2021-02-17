@@ -67,7 +67,9 @@ Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController:
 
 
 
-
+///////////////////      TOTAL PLANTAS    //////////////////////////
+Route::get('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
+Route::post('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
 
 //USUARIO
 Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
