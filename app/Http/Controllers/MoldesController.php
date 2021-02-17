@@ -23,9 +23,9 @@ class MoldesController extends Controller
     {
        
         $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
-        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
-        
-
+        $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
+        [ 'vitola' => (string)$request->vitolabuscar,
+          'nombre_figura' => (string)$request->figurabuscar]);
 
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
