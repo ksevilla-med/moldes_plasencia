@@ -17,7 +17,7 @@ class ActualizarUsuarios extends Migration
     
         DB::unprepared('
 
-        REATE PROCEDURE `actualizar_usuarios`(
+        CREATE PROCEDURE `actualizar_usuarios`(
             IN `pa_id_usuario` INT,
             IN `pa_codigo` INT,
             IN `pa_nombre` VARCHAR(50),

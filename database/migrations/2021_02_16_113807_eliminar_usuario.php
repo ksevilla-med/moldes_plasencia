@@ -23,7 +23,7 @@ class EliminarUsuario extends Migration
         
         BEGIN
         
-        ELETE FROM usuarios 
+        DELETE FROM usuarios 
         WHERE usuarios.id_usuario = pa_id_usuario;
                 
         END

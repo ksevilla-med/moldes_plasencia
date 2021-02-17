@@ -13,7 +13,7 @@ class MoldesParaiso extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `mostrar_moldes_actualizar`');
+        DB::unprepared('DROP procedure if exists `moldes_paraiso`');
     
         DB::unprepared('
 

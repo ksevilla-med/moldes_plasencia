@@ -215,7 +215,7 @@
 </div>
 <!-- FIN MODAL CERRAR SESION -->
 
-<div style = "margin-top:50px;">
+<div style = "padding-top:50px;">
             @yield('content')
 </div> 
 
