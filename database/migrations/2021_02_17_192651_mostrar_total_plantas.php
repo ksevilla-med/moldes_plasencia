@@ -18,16 +18,16 @@ class MostrarTotalPlantas extends Migration
     
         DB::unprepared('
         
-        CREATE  PROCEDURE `mostrar_total_todas_plantas`()
-
-            BEGIN
-
-
-            SELECT totales_plantas.figura_vitola, totales_plantas.total_bueno, totales_plantas.total_irregulares
-            ,totales_plantas.total_malo,totales_plantas.total_bodega,totales_plantas.total_repacion,totales_plantas.total_salon FROM totales_plantas;
-
-
-            END
+        CREATE PROCEDURE `mostrar_total_todas_plantas`()
+        
+        BEGIN
+        
+        
+        SELECT totales_plantas.figura_vitola, totales_plantas.total_bueno, totales_plantas.total_irregulares
+        ,totales_plantas.total_malo,totales_plantas.total_bodega,totales_plantas.total_repacion,totales_plantas.total_salon FROM totales_plantas;
+        
+        
+        END
         ');
     }
 
