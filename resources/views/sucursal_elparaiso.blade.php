@@ -9,6 +9,7 @@
 
 
 
+
 <button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" >
       <span> Agregar moldes</span>
   </button>
@@ -24,14 +25,23 @@
   </button>
   
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
-  @csrf
- 
- 
+  @csrf 
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
       <span> Imprimir Reporte</span>
   </button>
   </form>  
 
+  <nav class="navbar navbar-light float-right">
+  <form action=  "{{Route('id_planta',1)}}" method= "POST">
+      @csrf
+
+    <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar vitola" aria-label="Search">
+
+    <input name="figurabuscar"  id="figurabuscar" class="form-control mr-sm-2" type="search" placeholder="Buscar figura y tipo" aria-label="Search">
+    
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+  </form>
+</nav>
 
 
 

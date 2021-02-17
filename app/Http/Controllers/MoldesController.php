@@ -21,24 +21,20 @@ class MoldesController extends Controller
      */
     public function index( Request $request)
     {
-       
-        $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
-        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
         
+        $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
 
+        $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
+        [ 'vitola' => (string)$request->vitolabuscar,
+          'nombre_figura' => (string)$request->figurabuscar]);
 
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
-
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
-
         $id_planta = [$request->id];
-
-
         
 
         return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-        ->with('id_planta', $id_planta)->with('titulo',$titulo);
-    
+        ->with('id_planta', $id_planta)->with('titulo',$titulo); 
 
     }
 
@@ -52,7 +48,10 @@ class MoldesController extends Controller
      
 
         
-        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
+        $moldes =  \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
+        [ 'vitola' => (string)$request->vitolabuscar,
+          'nombre_figura' => (string)$request->figurabuscar]);
+
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
         $id_planta = [$request->id];
