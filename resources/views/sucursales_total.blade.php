@@ -43,7 +43,7 @@
              </tr>
              @endforeach
              <tr>
-            <td ><strong>Total moldes de todas las plantas</strong></td>          
+            <td ><strong>Sumatoria total moldes plasencia</strong></td>          
              <td>
             
                 <?php

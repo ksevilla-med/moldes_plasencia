@@ -70,7 +70,7 @@
                     <div class="card-body">
                     <form action=  "{{Route('id_planta',1)}}" method= "POST">
                     @csrf
-                         <button type="submit"  class="btn-info" style="width:100%;" ></button> 
+                         <button type="submit"  class="btn-info" style="width:100%;" >Plasencia</button> 
                     
                      </form> 
                     </div>
