@@ -23,9 +23,10 @@ class sucursal_moroceli extends Controller
     {
        
         $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
-        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
         
-
+        $moldes = \DB::select('call moldes_moroceli(:vitola,:nombre_figura)',
+        [ 'vitola' => (string)$request->vitolabuscar,
+          'nombre_figura' => (string)$request->figurabuscar]);
 
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
@@ -36,8 +37,7 @@ class sucursal_moroceli extends Controller
 
         
 
-<<<<<<< Updated upstream
-        return view('sucursal_moroceli')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta)->with('titulo',$titulo);
     
 
@@ -73,10 +73,6 @@ class sucursal_moroceli extends Controller
 
         
 
-=======
-        return view('sucursal_moroceli')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-        ->with('id_planta', $id_planta)->with('titulo',$titulo);
->>>>>>> Stashed changes
     
 
     }
@@ -110,18 +106,21 @@ class sucursal_moroceli extends Controller
      */
     public function store(Request $request)
     {
-        $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
-                    [ 'id_planta' => (int)$request->id_planta,
+        $molde = \DB::select('call insertar_moldes(:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
+                    [ 
                     'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_planta,$request->id_vitola])[0]->id_vitola,
                     'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_planta,$request->id_figura])[0]->id_figura,
                     'bueno' => (int)$request->bueno,
                     'irregular' => (int)$request->irregulares,
                     'malo' => (int)$request->malos,
                     'reparacion' => (int)$request->reparacion,
-                    'bodega' => (int)$request->bodega
-                    ,'salon' => (int)$request->salon]);
+                    'bodega' => (int)$request->bodega,
+                    'salon' => (int)$request->salon,
+                    'fivi' => (string)$request->fivi
+                    
+                    ]);
 
-                    toastr()->success( 'Tus datos se guardaron correctamente','BIEN' );
+                   
 
                     $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
                             
@@ -131,7 +130,7 @@ class sucursal_moroceli extends Controller
 
 
                     return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-                    ->with('id_planta', $request->id);
+                     ->with('id_planta', $request->id);
 
  
 
@@ -276,4 +275,29 @@ class sucursal_moroceli extends Controller
     {
         //
     }
+
+    public function totales()
+    {
+       
+        $titulo = "SUMATORIA TOTAL DE LOS MOLDES PLASENCIA";
+
+        $distintos = \DB::select('call distintos_moldes()');
+
+        foreach($distintos as $distinto){
+            $insertar = \DB::select('call insertar_totales_plantas(?)' , [$distinto->figura_vitola]);
+        }
+
+        $totales_moldes = \DB::select('call mostrar_total_todas_plantas()');
+
+        
+        
+
+        return view('sucursales_total')->with('totales',$totales_moldes)->with('titulo',$titulo);
+    
+
+    }
+
+
+
+    
 }
