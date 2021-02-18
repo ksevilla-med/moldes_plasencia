@@ -106,8 +106,8 @@ class MoldesController extends Controller
      */
     public function store(Request $request)
     {
-        $molde = \DB::select('call insertar_moldes(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
-                    [ 'id_planta' => (int)$request->id_planta,
+        $molde = \DB::select('call insertar_moldes(:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
+                    [ 
                     'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_planta,$request->id_vitola])[0]->id_vitola,
                     'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_planta,$request->id_figura])[0]->id_figura,
                     'bueno' => (int)$request->bueno,
