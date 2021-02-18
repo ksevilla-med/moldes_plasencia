@@ -26,7 +26,7 @@
                 <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="sucursalMoroceli.png" class="card-img-top" alt="Sucursal Morocelí" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                 <div class="card-body">
-                <form action=  "" method= "POST">
+                <form action=  "{{Route('id_planta_moroceli',2)}}" method= "POST">
                 @csrf
                 <button type="submit"  class="btn-info" style="width:100%;" >Sucursal <br> Moroceli</button> 
                 </form>   

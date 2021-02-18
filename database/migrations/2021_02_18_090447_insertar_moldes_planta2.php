@@ -12,9 +12,7 @@ class InsertarMoldesPlanta2 extends Migration
      * @return void
      */
     public function up()
-    {
-
-        DB::unprepared('DROP procedure if exists `insertar_moldes_planta2`');
+    {   DB::unprepared('DROP procedure if exists `insertar_moldes_planta2`');
     
         DB::unprepared('
         CREATE PROCEDURE `insertar_moldes_planta2`(
