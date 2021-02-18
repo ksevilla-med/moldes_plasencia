@@ -83,7 +83,7 @@ Reporte</span>
 
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
-<form action =  "{{Route('insertar_moldes',1)}}" method= "POST" name="FormMoldes">
+<form action =  "{{Route('insertar_moldes',1)}}" method= "POST" id ="FormMoldes" name="FormMoldes">
 
 <div class="modal fade" role="dialog" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
 <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -162,6 +162,8 @@ Reporte</span>
                   <label for="txt_reparacion" class="form-label">Reparación</label>
                   <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad" type="number">  
                   <input name = "id_planta"  value ='1' hidden />
+                  <input name = "fivi"  id="fivi" value ="" hidden />
+                  
                   </div>
 
               </div>
@@ -649,9 +651,26 @@ function validar_vitola(){
         var v_total = document.getElementById('txt_total').value; 
         var v_vitola = document.getElementById('txt_vitola').value; 
         var v_figura = document.getElementById('txt_figuraytipo').value; 
+        var concat_fivi = v_figura+"  "+v_vitola;
+        document.FormMoldes.fivi.value =  concat_fivi;
 
+          var cadenas_json = '<?php echo json_encode($moldes);?>';
+          var cadenas = JSON.parse(cadenas_json);
+          var nombre = 0;
 
-        var theForm = document.forms['Form_Moldes'];
+          
+        for (var i = 0; i < cadenas.length; i++) {
+          
+          console.info(cadenas[i]);
+
+          if(cadenas[i].nombre_figura+ "  "+ cadenas[i].vitola === concat_fivi){ 
+            nombre++;
+            console.info(nombre+cadenas[i].nombre_figura+ "  "+ cadenas[i].vitola +concat_fivi);
+          }
+        
+          }
+          event.preventDefault();
+         var theForm = document.forms['Form_Moldes'];
        
         if(v_buenos==""){ v_buenos = "0";}
        if(v_irregulares==""){ v_irregulares = "0";}
@@ -660,16 +679,14 @@ function validar_vitola(){
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-       if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
-toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
+if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
-}else
-  if(v_vitola === ""){ 
+}else if(v_vitola === ""){ 
     toastr.error( 'Favor complete el campo de la vitola del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
     , "preventOpenDuplicates": true });
     event.preventDefault();
-  }else
-  if(v_figura === ""){ 
+  }else if(v_figura === ""){ 
     toastr.error( 'Favor complete el campo de la figura y tipo del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
     , "preventOpenDuplicates": true });
     event.preventDefault();
@@ -677,8 +694,7 @@ toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{
   parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
   toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );
-    theForm.addEventListener('submit', function (event) {
-    });
+    theForm.addEventListener('submit', function (event) { });
   }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
     toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
     , "preventOpenDuplicates": true });
@@ -698,6 +714,10 @@ parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon
 toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );     
 event.preventDefault();
+} else if(nombre> 0){
+    toastr.error( 'Esta molde ya existe, favor ingresar uno nuevo','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    , "preventOpenDuplicates": true} );
+    event.preventDefault();
 }
 }
     

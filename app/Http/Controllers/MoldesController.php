@@ -119,7 +119,7 @@ class MoldesController extends Controller
                     
                     ]);
 
-                    toastr()->success( 'Tus datos se guardaron correctamente','BIEN' );
+                   
 
                     $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
                             
@@ -129,7 +129,7 @@ class MoldesController extends Controller
 
 
                     return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-                    ->with('id_planta', $request->id);
+                     ->with('id_planta', $request->id);
 
  
 
