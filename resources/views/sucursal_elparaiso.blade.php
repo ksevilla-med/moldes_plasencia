@@ -657,10 +657,8 @@ function validar_vitola(){
 }
 
 </script>
+  
 
-
-
-    
     <!-- INICIO VALIDACION  DE MODAL,INGRESAR MOLDES -->
     <script type="text/javascript">
     function validar(){ 
@@ -685,14 +683,12 @@ function validar_vitola(){
           
           console.info(cadenas[i]);
 
-          if(cadenas[i].nombre_figura+ "  "+ cadenas[i].vitola === concat_fivi){ 
+          if(cadenas[i].nombre_figura+ "  "+ cadenas[i].vitola === v_figura+"  "+v_vitola){ 
             nombre++;
-            console.info(nombre+cadenas[i].nombre_figura+ "  "+ cadenas[i].vitola +concat_fivi);
           }
-        
+          
           }
-          event.preventDefault();
-         var theForm = document.forms['Form_Moldes'];
+         var theForm = document.forms['FormMoldes'];
        
         if(v_buenos==""){ v_buenos = "0";}
        if(v_irregulares==""){ v_irregulares = "0";}
@@ -701,48 +697,56 @@ function validar_vitola(){
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
-    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
+        if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+            toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
-}else if(v_vitola === ""){ 
-    toastr.error( 'Favor complete el campo de la vitola del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
-    , "preventOpenDuplicates": true });
-    event.preventDefault();
-  }else if(v_figura === ""){ 
-    toastr.error( 'Favor complete el campo de la figura y tipo del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
-    , "preventOpenDuplicates": true });
-    event.preventDefault();
-}else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
-  parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
-  toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );
-    theForm.addEventListener('submit', function (event) { });
-  }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
-    toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
-    , "preventOpenDuplicates": true });
-    event.preventDefault();
-  }  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );
-event.preventDefault();
-}else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
-toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );
-event.preventDefault();
-}else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
-parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
-toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );     
-event.preventDefault();
-} else if(nombre> 0){
-    toastr.error( 'Esta molde ya existe, favor ingresar uno nuevo','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
-    , "preventOpenDuplicates": true} );
-    event.preventDefault();
-}
-}
-    
+          }else if(nombre > 0){
+            toastr.error( 'Esta molde ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );
+            event.preventDefault();
+        }else if(v_vitola === ""){ 
+            toastr.error( 'Favor complete el campo de la vitola del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+            , "preventOpenDuplicates": true });
+            event.preventDefault();
+
+          }else if(v_figura === ""){ 
+            toastr.error( 'Favor complete el campo de la figura y tipo del molde','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+            , "preventOpenDuplicates": true });
+            event.preventDefault();
+
+        }else if( parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          
+          parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon))){          
+          toastr.success( 'Tus datos se guardaron correctamente','BIEN',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );
+     theForm.addEventListener('submit', function (event) { });
+
+          }else  if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1  ) {
+            toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false, "preventDuplicates": true
+            , "preventOpenDuplicates": true });
+            event.preventDefault();
+
+          }  else  if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+        parseInt(v_total) == (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+        toastr.error( 'Tus datos de estado coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );
+        event.preventDefault();
+
+        }else if(parseInt(v_total) == (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+        parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ){
+        toastr.error( 'Tus datos de ubicación coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );
+        event.preventDefault();
+
+        }else if(parseInt(v_total) != (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&& 
+        parseInt(v_total) != (parseInt(v_bodega)+parseInt(v_reparacion)+parseInt(v_salon)) ) {        
+        toastr.error( 'Tus datos no coinciden con el total','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );     
+        event.preventDefault();
+
+       
+
+        }
+  }
  </script>
     <!-- FIN VALIDACION  DE MODAL,INGRESAR MOLDES -->   
 
@@ -768,11 +772,9 @@ event.preventDefault();
        if(v_reparacion==""){ v_reparacion = "0";}
        if(v_salon==""){ v_salon = "0";}
 
-       if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
+ if(v_total == "" || parseInt(v_total) > 999999 ||  parseInt(v_total) < 1   ){
 
 toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
-
-
 
 }else 
 if( parseInt(v_total) === (parseInt(v_buenos)+parseInt(v_irregulares)+parseInt(v_malos))&&          

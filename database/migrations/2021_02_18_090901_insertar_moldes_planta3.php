@@ -17,6 +17,7 @@ class InsertarMoldesPlanta3 extends Migration
     
         DB::unprepared('
         CREATE PROCEDURE `insertar_moldes_planta3`(
+            IN `pa_id_planta` INT,
             IN `pa_id_vitola` INT,
             IN `pa_id_figura ` INT,
             IN `pa_bueno ` INT,
@@ -50,7 +51,7 @@ class InsertarMoldesPlanta3 extends Migration
                         
                         INSERT INTO moldes(moldes.id_planta, moldes.id_vitola, moldes.id_figura,
                          moldes.bueno, moldes.irregulares,moldes.malos, moldes.bodega,moldes.reparacion,moldes.salon, moldes.total)
-                         VALUES("3", pa_id_vitola,pa_id_figura, pa_bueno, pa_irregular, pa_malo, pa_bodega, pa_reparacion, pa_salon, suma_estado);
+                         VALUES(pa_id_planta, pa_id_vitola,pa_id_figura, pa_bueno, pa_irregular, pa_malo, pa_bodega, pa_reparacion, pa_salon, suma_estado);
                        
                         
                         ELSE 
