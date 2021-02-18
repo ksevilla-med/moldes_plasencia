@@ -87,8 +87,8 @@
                     </button>
 
          
-            <div class=" titulo collapse navbar-collapse"  >
-            <?php echo $titulo?>
+            <div class=" titulo mr-auto2"  >
+           <span style="margin-left:20px;">Contenido:    <?php echo $titulo?></span> 
             </div>
           
 

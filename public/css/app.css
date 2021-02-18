@@ -152,7 +152,8 @@ animation: giros 30s infinite ease-in-out;
  }
 
  .titulo{
-  color:rgb(155, 155, 155);text-align:center;
+  color:rgb(155, 155, 155);
+  text-align:center;
   font-size: larger;
  }
  
@@ -8291,6 +8292,8 @@ button.bg-dark:focus {
 .mx-auto {
   margin-left: auto !important;
 }
+
+
 
 @media (min-width: 576px) {
   .m-sm-0 {

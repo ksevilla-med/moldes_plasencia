@@ -84,11 +84,11 @@
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Eliminar Usuario</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Eliminar a <strong><input value ="" id="txt_usuarioE" name= "txt_usuarioE" style="border:none;"></strong> </h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      ¿Estás seguro que quieres eliminar a <input value ="" id="txt_usuarioE" name= "txt_usuarioE" />?
+      ¿Estás seguro que quieres eliminar este usuario?
       </div>
       <div class="modal-footer" >
         <button style=" background: #b39f64; color: #ecedf1;" type="button" class=" btn-info-claro " data-dismiss="modal" >
@@ -409,12 +409,13 @@ if(v_confirmacion_contrasenia != v_contrasenia){
 
         <div class="mb-3 col">
         <label for="txt_sucursales" class="form-label">Sucursal</label>
-        <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" placeholder="Selecciona la sucursal"  required>
+        <select class="form-control"  id="txt_sucursales"  name="txt_sucursales"   placeholder="Selecciona la sucursal"  required>
        
         @foreach($sucursales as $sucursal)
-        <option value =  "{{$sucursal-> id_planta}}" >{{$sucursal-> nombre_planta}}</option>
+        <option id="option_sucursal"   value =  "{{$sucursal-> id_planta}}" >{{$sucursal-> nombre_planta}}</option>
         @endforeach                           
         </select> 
+        
         </div>
       </div>       
 </div>
