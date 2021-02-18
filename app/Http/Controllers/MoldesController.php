@@ -43,6 +43,13 @@ class MoldesController extends Controller
 
     }
 
+    public function remisionesmostrar( Request $request)
+    {       
+        $titulo = "REMISIONES SUCURSAL EL PARAÍSO";     
+       
+        return REDIRECT('remisiones_paraiso');
+    }
+
 
     public function imprimirdatosparaiso( Request $request)
     {
