@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MostrarMoldesActualizar extends Migration
+class MostrarDatosActualizar extends Migration
 {
     /**
      * Run the migrations.
@@ -16,11 +16,11 @@ class MostrarMoldesActualizar extends Migration
         DB::unprepared('DROP procedure if exists `mostrar_datos_actualizar`');
     
         DB::unprepared('
-
-        CREATE  PROCEDURE `mostrar_datos_actualizar`(
+       
+        CREATE PROCEDURE `mostrar_datos_actualizar`(
             IN `pa_id_molde` INT
         )
-       
+        
         BEGIN
         
         
