@@ -20,27 +20,78 @@
 
 <div class="wrapper">
 
-<nav class="navbar navbar-expand-lg navbar-light bg2 fixed-top" >
+
+
+
+
+
+
+<nav id="sidebar" style="background:black;">
+                 
+
+            <div  style="position: fixed;  width:250px;">
+
+            <div class="sidebar-header" style="text-align:center;background:black;" >
+            <img src="{{ URL::asset('plasenciadorado2.png') }}" style="width: 150px;height:112px;" >
+            </div>
+
+            <ul class="list-unstyled components" style="background:black;">
+            <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
+            <li><a href="#">Proximamente...</a></li>
+            <li><a href="#">Proximamente...</a></li>
+            
+            <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            <li><a href=""></a></li>
+            </ul>
+            </div>
+
+
+            <div  style="position: fixed; bottom: 0px; width:250px;background:black;" >
+            <ul class="list-unstyled CTAs " style="background:black;">
+            <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
+            <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
+            </ul>
+            </div>
+
+       </nav>
+
+
+      
+      
+      
+      
+<div id="content" style="background: url('fondoperron.png') center center no-repeat;
+    background-size:100% 100%;">  
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg2 " >
  <div class="container-fluid">
 
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
+        
 
+          <button type="button" id="sidebarCollapse" class="navbar-btn btn-dark" aria-label="Toggle navigation">
+                        <span>Menú</span>
+                    </button>
 
-          <div class="row" style="width:100%;">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                        <span></span>
+                    </button> 
 
-          <div class="col">
-            <button type="button" id="sidebarCollapse" class=" btn-info ">
-            <i class="fas fa-align-left"></i>
-            <span>Menú</span>
-            </button>
-          </div>
          
-            <div  class="titulo ml-auto " ><?php echo $titulo?></div>
+            <div class=" titulo collapse navbar-collapse"  >
+            <?php echo $titulo?>
+            </div>
           
 
-          <div class="col">
-          <ul class="nav navbar-nav ml-auto " style="position:fixed;right:30px;">
+         
 
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="nav navbar-nav ml-auto">
                         
 <li class="nav-item">
     <a class="nav-link" onclick="javascript:window.history.back();" autofocus >
@@ -69,52 +120,12 @@
 
     </li>                       
 
-    </ul>
+</ul>
+</div>
+
+
     </div>
-    </div>
-    </div>
-    </div>
-</nav>
-
-
-
-
-
-<nav id="sidebar" style="margin-top:57px;background:black;">
-                 
-
-            <div  style="position: fixed;  width:250px;">
-
-            <div class="sidebar-header" style="text-align:center;background:black;" >
-            <img src="{{ URL::asset('plasenciadorado2.png') }}" style="width: 150px;height:112px;" >
-            </div>
-
-            <ul class="list-unstyled components" style="background:black;">
-            <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
-            <li><a href="#">Proximamente...</a></li>
-            <li><a href="#">Proximamente...</a></li>
-            
-            <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
-            </ul>
-            </div>
-
-
-            <div  style="position: fixed; bottom: 0px; width:250px;background:black;" >
-            <ul class="list-unstyled CTAs " style="background:black;">
-            <li><a data-toggle="modal" data-target="#modal_acercade" class="download">Acerca de</a></li>
-            <li><a href="/ayuda" class="download" style="background:#b38d1d;">Ayuda</a></li>
-            </ul>
-            </div>
-
-       </nav>
-
-
-      
-      
-      
-      
-<div id="content" style="background: url('fondoperron.png') center center no-repeat;
-    background-size:100% 100%;">         
+</nav>      
 
 
 <!-- INICIO MODAL CERRAR SESION -->
@@ -215,9 +226,8 @@
 </div>
 <!-- FIN MODAL CERRAR SESION -->
 
-<div style = "padding-top:50px;">
             @yield('content')
-</div> 
+
 
 
 

@@ -4,7 +4,6 @@
 @section('content')
 
 
-<div class=" imagenprincipalpadre1" style=" text-align:center;">
 
 
 <div class="col">
@@ -103,7 +102,6 @@
 
     </div>
 
-</div>
 
 
 </div>
