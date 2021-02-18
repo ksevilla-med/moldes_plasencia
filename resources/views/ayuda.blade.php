@@ -2,6 +2,7 @@
 
 
 @section('content')
+
 <nav class="navbar navbar-expand-lg navbar-light bg2" style="margin-top:0px;margin-bottom:0px;">
   <div class="container-fluid">   
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -64,24 +65,24 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" style="heigth:80%;">
-      <img src="carrusel_1.png" class="d-block w-100" alt="...">
+      <img src="carrusel_1.png" class="d-block " style=" height:30rem; width:100%" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Moldes</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <p class="p_carrusel">Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="carrusel_2.png" class="d-block w-100" alt="...">
+      <img src="carrusel_2.png" class="d-block " style=" height:30rem; width:100%"  alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <p class="p_carrusel">Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="carrusel_3.png" class="d-block w-100" alt="..." >
+      <img src="carrusel_3.png" class="d-block " style=" height:30rem; width:100%"  alt="..." >
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <p class="p_carrusel">Some representative placeholder content for the third slide.</p>
       </div>
     </div>
   </div>
@@ -108,24 +109,24 @@
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" style="heigth:80%;">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="..." class="d-block" style=" height:30rem; width:100%"  alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>CAJONES</h5>
-        <p>Some representative placeholder content for the first slide.</p>
+        <p class="p_carrusel">Some representative placeholder content for the first slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="..." class="d-block" style=" height:30rem; width:100%"  alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+        <p class="p_carrusel"> Some representative placeholder content for the second slide.</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="..." class="d-block" style=" height:30rem; width:100%"  alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
+        <p class="p_carrusel">Some representative placeholder content for the third slide.</p>
       </div>
     </div>
   </div>

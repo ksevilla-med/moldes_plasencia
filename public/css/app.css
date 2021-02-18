@@ -14,6 +14,9 @@
      font-family: 'Poppins', sans-serif;
      background: #fafafa;
  }
+ .p_carrusel{
+   color: #000;
+ }
 
  /* TABLA DE IMPRIMIR */
  
@@ -6261,7 +6264,7 @@ a.close.disabled {
   width: 15%;
   color: #fff;
   text-align: center;
-  opacity: 0.5;
+  opacity: 0.1 !important;
   transition: opacity 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -6755,6 +6758,9 @@ button.bg-dark:focus {
 
   .d-md-block {
     display: block !important;
+    background-color: #fff4d6  !important;
+    color: #000  !important;
+    opacity: .8  !important;
   }
 
   .d-md-table {
