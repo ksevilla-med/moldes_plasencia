@@ -46,19 +46,19 @@ Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController:
 
 ///////////////////      MOROCELI    //////////////////////////
 
-Route::get('/sucursal_moroceli/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('datos_planta_moroceli');
-Route::post('/sucursal_moroceli/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta_moroceli');
-Route::post('/sucursal_moroceli/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes_moroceli');
-Route::post('/sucursal_moroceli/crear/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes_moroceli');
+Route::get('/sucursal_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'index' ])->name('datos_planta_moroceli');
+Route::post('/sucursal_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'index' ])->name('id_planta_moroceli');
+Route::post('/sucursal_moroceli/update/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'update' ])->name('actualizar_moldes_moroceli');
+Route::post('/sucursal_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'store' ])->name('insertar_moldes_moroceli');
 // VITOLA
-Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola_moroceli');
-Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos_moroceli');
+Route::post('/agregar_vitolas/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola_moroceli');
+Route::get('/crear_molde/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'store' ])->name('datos_moroceli');
 
 //FIGURA
-Route::post('/agregar_figura/{id}',[App\Http\Controllers\FiguraTipoController::class, 'store' ])->name('insertar_figura_moroceli');
+Route::post('/agregar_figuras/{id}',[App\Http\Controllers\FiguraTipoController::class, 'store' ])->name('insertar_figura_moroceli');
 
 //PDF
-Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso_moroceli');
+Route::post('/imprimirtablamoroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_moroceli');
 
 
 

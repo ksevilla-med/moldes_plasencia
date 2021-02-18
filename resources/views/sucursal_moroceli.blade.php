@@ -39,7 +39,7 @@
       Figura y tipo</span>
   </button>
   
-  <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST">
+  <form action=  "{{Route('imprimirdatos_moroceli',2)}}" method= "POST">
   @csrf 
   <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
       <span>
@@ -51,7 +51,7 @@ Reporte</span>
   </button>
   </form>  
 
-  <form action=  "{{Route('id_planta',2)}}" method= "POST" class="form-inline">
+  <form action=  "{{Route('id_planta_moroceli',2)}}" method= "POST" class="form-inline">
       @csrf
 
     <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Vitola" style="width:150px;">
@@ -83,7 +83,7 @@ Reporte</span>
 
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
-<form action =  "{{Route('insertar_moldes',1)}}" method= "POST" id ="FormMoldes" name="FormMoldes">
+<form action =  "{{Route('insertar_moldes_moroceli',2)}}" method= "POST" id ="FormMoldes" name="FormMoldes">
 
 <div class="modal fade" role="dialog" id="modal_agregar_moldes" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
 <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -196,7 +196,7 @@ Reporte</span>
 
 
 <!-- INICIO MODAL VITOLA -->
-<form action = "{{Route('insertar_vitola',1)}}" method="POST" name = "formvitola">
+<form action = "{{Route('insertar_vitola_moroceli',2)}}" method="POST" name = "formvitola">
 <div class="modal fade" id="modal_agregar_vitola" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -230,7 +230,7 @@ Reporte</span>
 
 
 <!-- INICIO MODAL FIGURA Y TIPO -->
-<form action = "{{Route('insertar_figura',1)}}" method="POST">
+<form action = "{{Route('insertar_figura_moroceli',2)}}" method="POST">
 <div class="modal fade" id="modal_agregar_figuraytipo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -272,7 +272,7 @@ Reporte</span>
 <!-- INICIO DEL MODAL EDITAR MOLDE -->
 
 
-<form action =  "{{Route('actualizar_moldes',1)}}" method= "POST" name = "formulario_actualizar">
+<form action =  "{{Route('actualizar_moldes_moroceli',2)}}" method= "POST" name = "formulario_actualizar">
  <?php use App\Http\Controllers\MoldesController; ?>
 
    <div hidden>{{$id_molde_basico=0}}</div>
