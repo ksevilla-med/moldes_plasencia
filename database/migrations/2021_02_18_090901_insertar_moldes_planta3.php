@@ -23,7 +23,7 @@ class InsertarMoldesPlanta3 extends Migration
             IN `pa_bueno` INT,
             IN `pa_irregular` INT,
             IN `pa_malo` INT,
-            IN ` pa_bodega` INT,
+            IN `pa_bodega` INT,
             IN `pa_reparacion` INT,
             IN `pa_salon` INT,
             IN `pa_fivi` VARCHAR(50)
