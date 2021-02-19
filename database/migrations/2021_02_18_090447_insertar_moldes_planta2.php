@@ -18,14 +18,14 @@ class InsertarMoldesPlanta2 extends Migration
         CREATE PROCEDURE `insertar_moldes_planta2`(
             IN `pa_id_planta` INT,
             IN `pa_id_vitola` INT,
-            IN `pa_id_figura ` INT,
-            IN `pa_bueno ` INT,
+            IN `pa_id_figura` INT,
+            IN `pa_bueno` INT,
             IN `pa_irregular` INT,
-            IN `pa_malo ` INT,
-            IN ` pa_bodega ` INT,
+            IN `pa_malo` INT,
+            IN `pa_bodega` INT,
             IN `pa_reparacion` INT,
-            IN ` pa_salon ` INT,
-            IN ` pa_fivi` VARCHAR(50)
+            IN `pa_salon` INT,
+            IN `pa_fivi` VARCHAR(50)
         )
 
         BEGIN
