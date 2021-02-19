@@ -37,8 +37,7 @@
 
             <ul class="list-unstyled components" style="background:black;">
             <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
-            <li><a href="#">Proximamente...</a></li>
-            <li><a href="#">Proximamente...</a></li>
+            
             
             <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
             <li><a href=""></a></li>
