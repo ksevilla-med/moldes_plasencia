@@ -17,7 +17,7 @@ class MoldesGualiqueme extends Migration
     
         DB::unprepared('
         CREATE PROCEDURE `moldes_gualiqueme`(
-            IN `pa_vitola ` VARCHAR(50),
+            IN `pa_vitola` VARCHAR(50),
             IN `pa_figura` VARCHAR(50)
         )
         

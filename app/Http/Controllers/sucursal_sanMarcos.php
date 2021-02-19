@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Moldes;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -11,8 +12,7 @@ use Illuminate\Support\Facades\Route;
 use PDF;
 use Carbon\Carbon;
 
-
-class sucursal_moroceli extends Controller
+class sucursal_sanMarcos extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +22,9 @@ class sucursal_moroceli extends Controller
     public function index( Request $request)
     {
        
-        $titulo = "INVENTARIO DE MOLDES SUCURSAL MOROCELI";
+        $titulo = "INVENTARIO DE MOLDES SUCURSAL SAN MARCOS";
         
-        $moldes = \DB::select('call moldes_moroceli(:vitola,:nombre_figura)',
+        $moldes = \DB::select('call moldes_sanMarcos(:vitola,:nombre_figura)',
         [ 'vitola' => (string)$request->vitolabuscar,
           'nombre_figura' => (string)$request->figurabuscar]);
 
@@ -35,9 +35,8 @@ class sucursal_moroceli extends Controller
         $id_planta = [$request->id];
 
 
-        
 
-        return view('sucursal_moroceli')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        return view('sucursal_sanMarcos')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta)->with('titulo',$titulo);
     
 
@@ -50,15 +49,13 @@ class sucursal_moroceli extends Controller
         $fecha =Carbon::now();
         $fecha = $fecha->format('d-m-Y');
 
-     
-
         
         $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
         $id_planta = [$request->id];
   
-        $vista = view('imprimirtabla_moroceli',['fecha' =>$fecha])->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+        $vista = view('imprimirtabla_sanMarcos',['fecha' =>$fecha])->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
         ->with('id_planta', $id_planta);
 
         $pdf =  \PDF::loadHTML($vista);
@@ -106,7 +103,8 @@ class sucursal_moroceli extends Controller
      */
     public function store(Request $request)
     {
-        $molde = \DB::select('call insertar_moldes_planta2(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
+
+       $molde = \DB::select('call insertar_moldes_planta3(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
         [ 'id_planta' => (int)$request->id_plantamo,
         'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_plantamo,$request->id_vitola])[0]->id_vitola,
         'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_plantamo,$request->id_figura])[0]->id_figura,
@@ -129,8 +127,8 @@ class sucursal_moroceli extends Controller
                     $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
 
-                    return REDIRECT('sucursal_moroceli/2')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-                     ->with('id_planta', $request->id);
+                   return REDIRECT('sucursal_sanMarcos/3')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                   ->with('id_planta', $request->id);
 
  
 
@@ -258,7 +256,7 @@ class sucursal_moroceli extends Controller
                     $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
 
-                    return REDIRECT('sucursal_moroceli/2')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                    return REDIRECT('sucursal_sanMarcos/3')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
                     ->with('id_planta', $request->id);
 
  
@@ -301,3 +299,4 @@ class sucursal_moroceli extends Controller
 
     
 }
+
