@@ -1,3 +1,5 @@
+
+
 @extends('principal')
 
 
@@ -99,19 +101,23 @@
             <th scope="col">Tipo de molde</th>   
             <th scope="col">Estado</th>   
             <th scope="col">Cantidad</th>    
-            <th scope="col">Chequear</th>            
+            <th scope="col">Chequear</th>    
+            </tr>        
          </thead>
          <tbody>
         
-            <tr> 
-                <td>nada</td>
-                <td>nada</td>
-                <td>nada</td>
-                <td>nada</td>
-                <td>nada</td>
-                <td>boton</td>
+         @foreach($remisionesrecibidas as $remision)
+         <tr> 
+                <td>{{$remision->fecha}}</td>
+                <td>{{$remision->nombre_fabrica}}</td>
+                <td>{{$remision->estado_moldes}}</td>
+                <td>{{$remision->tipo_moldes}}</td>
+                <td>{{$remision->cantidad}}</td>
+                <td>{{$remision->chequear}}</td>
               
             </tr>
+
+            @endforeach 
 
              
            
@@ -129,7 +135,7 @@
 
 
 <!-- INICIO DEL MODAL ENVIAR MOLDES -->
-<form action=  "{{Route('insertarremisiones',1)}}" method= "POST" id ="FormRemisiones" name="FormRemisiones">
+<form action=  "{{Route('insertarremisiones_sanMarcos',3)}}" method= "POST" id ="FormRemisiones" name="FormRemisiones">
 @csrf
 <div class="modal fade" role="dialog" id="modal_enviarmoldes_paraiso" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-xl"  style="opacity:.9;background:#212529;width=80%">
@@ -150,15 +156,15 @@
                        
                                 <div class="mb-3 col">
                                 
-                                <input name="id_planta"  id="id_planta" value="1" style="display:none">
+                                <input name="id_planta"  id="id_planta" value="4" style="display:none">
                                 <input name="chequear"  id="chequear" value="0" style="display:none">
                                 <label for="txt_sucursales" class="form-label">Para</label>
                                 <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" onchange="showDiv('hidden_div', this)" placeholder="Selecciona la sucursal" required >
                             
                              
-                                <option value =  "San Marcos" >San MArcos</option>
+                                <option value =  "El Paraiso" >El Paraíso</option>
                                 <option value =  "Moroceli" >Moroceli</option>
-                                <option value =  "Gualiqueme" >Gualiqueme</option>
+                                <option value =  "San Marcos" >San Marcos</option>
                                 <option value =  "5" >Otra Fabrica</option>                      
                                 </select> 
                                 </div>

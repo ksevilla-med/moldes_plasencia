@@ -64,6 +64,15 @@ Route::post('/agregar_figuras_moroceli/{id}',[App\Http\Controllers\figura_moroce
 Route::post('/imprimirtablamoroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_moroceli');
 
 
+//REMISIONES
+
+Route::get('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
+Route::post('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
+Route::get('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
+Route::post('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
+
+
+
 
 ///////////////////      SAN MARCOS    //////////////////////////
 
@@ -81,6 +90,12 @@ Route::post('/agregar_figuras_sanMarcos/{id}',[App\Http\Controllers\figura_sanMa
 //PDF
 Route::post('/imprimirtablasanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_sanMarcos');
 
+//REMISIONES
+
+Route::get('/remisiones_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'remisiones' ])->name('remisiones_sanMarcos');
+Route::post('/remisiones_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'remisiones' ])->name('remisiones_sanMarcos');
+Route::get('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
+Route::post('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
 
 
 ///////////////////      GUALIQUEME    //////////////////////////
@@ -98,6 +113,17 @@ Route::post('/agregar_figuras_gualiqueme/{id}',[App\Http\Controllers\figura_gual
 
 //PDF
 Route::post('/imprimirtablagualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_gualiqueme');
+
+
+//REMISIONES
+
+Route::get('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'remisiones' ])->name('remisiones_gualiqueme');
+Route::post('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'remisiones' ])->name('remisiones_gualiqueme');
+Route::get('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
+Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
+
+
+
 
 
 

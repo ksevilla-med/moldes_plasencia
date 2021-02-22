@@ -7,10 +7,50 @@
 <script src= "{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
 <link rel="stylesheet" href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
 
+<div class="row">
 
 
 
-<button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" >
+
+
+<div class="col form-inline">
+  
+  <form action=  "{{Route('id_planta',4)}}" method= "POST" class="form-inline">
+      @csrf
+ <input value="" onKeyDown="copiar('vitolabuscar','vitolaimprimir');" name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2"  placeholder="Vitola" style="width:150px;">
+ <input value=""  onKeyDown="copiar2('figurabuscar','figuraimprimir');" name="figurabuscar"  id="figurabuscar" class="form-control mr-sm-2"  placeholder="Figura y tipo" style="width:150px;">
+   <button class="btn-info" type="submit">
+    <span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+  </svg>
+  </span>
+    </button>
+  </form>
+
+
+  <form action=  "{{Route('imprimirdatos_gualiqueme',4)}}" method= "POST" class=" form-inline">
+  @csrf 
+  <input name="vitolaimprimir" id="vitolaimprimir" value="" style="display:none">
+<input name="figuraimprimir"  id="figurabuscar" value="" style="display:none">
+
+  <button type="submit" class=" btn-info float-right "  style="margin-left: 5px; margin-bottom: 0px;">
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+</svg>
+</span>
+  </button>
+  </form>  
+
+
+
+</div>
+
+  
+  <div class="col">
+<button type="button" class=" btn-info float-right"   data-toggle="modal" data-target="#modal_agregar_moldes" style="margin-right: 10px">
       <span> 
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
@@ -18,8 +58,15 @@
       </svg> 
       Moldes</span>
   </button>
-
-
+  
+    <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_figuraytipo" style="margin-right: 10px">
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+      </svg> 
+      Figura y tipo</span>
+  </button>
 
   <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_vitola" style="margin-right: 10px">
       <span>
@@ -30,51 +77,56 @@
        Vitola</span>
   </button>
 
-  <button type="button" class=" btn-info float-right"  data-toggle="modal" data-target="#modal_agregar_figuraytipo" style="margin-right: 10px">
+                               <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
+  <script type="text/javascript">
+function copiar(vitolabuscar, vitolaimprimir){
+    var vitolabuscar = document.getElementById(vitolabuscar).value;
+    document.getElementById(vitolaimprimir).value = vitolabuscar;    
+}
+function copiar2(figurabuscar, figuraimprimir){
+    var figurabuscar = document.getElementById(figurabuscar).value;
+    document.getElementById(figuraimprimir).value = figurabuscar;    
+}
+</script>   <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
+
+  
+
+
+<form action=  "{{Route('remisiones_gualiqueme',4)}}" method= "POST" class="form-inline">
+
+@csrf
+  <button type="submit"  class=" btn-info float-right"  style="margin-right: 10px">
+  <input name="id_planta"  id="id_planta" value="4" style="display:none">
+  <input name="nombre_planta"  id="nombre_planta" value="Gualiqueme" style="display:none">
       <span>
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
         <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
       </svg> 
-      Figura y tipo</span>
+       <a >Remisiones</a></span>
   </button>
-  
-  <form action=  "{{Route('imprimirdatos_gualiqueme',4)}}" method= "POST">
-  @csrf 
-  <button type="submit" class=" btn-info float-right"  style="margin-right: 10px; margin-bottom: 10px;">
-      <span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
-  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
-  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
-</svg>
-Reporte</span>
-  </button>
-  </form>  
-
-  <form action=  "{{Route('id_planta_gualiqueme',4)}}" method= "POST" class="form-inline">
-      @csrf
-
-    <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Vitola" style="width:150px;">
-
-    <input name="figurabuscar"  id="figurabuscar" class="form-control mr-sm-2" type="search" placeholder="Figura y tipo" style="width:150px;">
-    
-    <button class="btn-info" type="submit">
-    <span>
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-  </svg>
-  </span>
-    </button>
   </form>
 
+        <script type="text/javascript">
+        document.getElementById("vitolabuscar").addEventListener('keyup', autoCompleteNew);
+
+        function autoCompleteNew(e) {            
+        var value = $(this).val();         
+        $("#vitolaimprimir").val(value.replace(/\s/g, '')); 
+        }
+        </script>
+
+  </div>
+
+
+</div>
+
+
+
+
   
 
 
-
-
-
-
-  
 
 
 
