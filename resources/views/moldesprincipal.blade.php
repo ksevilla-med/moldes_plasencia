@@ -28,7 +28,7 @@
                 <div class="card-body">
                 <form action=  "{{Route('id_planta_moroceli',2)}}" method= "POST">
                 @csrf
-                <button type="submit"  class="btn-info" style="width:100%;" >Sucursal <br> Moroceli</button> 
+                <button type="submit"  class="btn-info" style="width:100%;" >Sucursal <br> Morocelí</button> 
                 </form>   
                 </div>
                 </div>  

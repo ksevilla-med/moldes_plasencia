@@ -37,8 +37,7 @@
 
             <ul class="list-unstyled components" style="background:black;">
             <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
-            <li><a href="#">Proximamente...</a></li>
-            <li><a href="#">Proximamente...</a></li>
+            
             
             <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
             <li><a href=""></a></li>
@@ -81,7 +80,8 @@
 
 
 
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                         <span></span>
                     </button>

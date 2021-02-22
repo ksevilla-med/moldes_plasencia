@@ -32,7 +32,10 @@ Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::cl
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 Route::post('/sucursal_elparaiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
-Route::get('/remisiones_paraiso',[App\Http\Controllers\MoldesController::class, 'remisionesmostrar' ])->name('remisiones_paraiso');
+Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+
+
 // VITOLA
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
 Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos');
@@ -61,6 +64,15 @@ Route::post('/agregar_figuras_moroceli/{id}',[App\Http\Controllers\figura_moroce
 Route::post('/imprimirtablamoroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_moroceli');
 
 
+//REMISIONES
+
+Route::get('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
+Route::post('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
+Route::get('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
+Route::post('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
+
+
+
 
 ///////////////////      SAN MARCOS    //////////////////////////
 
@@ -78,6 +90,12 @@ Route::post('/agregar_figuras_sanMarcos/{id}',[App\Http\Controllers\figura_sanMa
 //PDF
 Route::post('/imprimirtablasanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_sanMarcos');
 
+//REMISIONES
+
+Route::get('/remisiones_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'remisiones' ])->name('remisiones_sanMarcos');
+Route::post('/remisiones_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'remisiones' ])->name('remisiones_sanMarcos');
+Route::get('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
+Route::post('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
 
 
 ///////////////////      GUALIQUEME    //////////////////////////
@@ -97,6 +115,17 @@ Route::post('/agregar_figuras_gualiqueme/{id}',[App\Http\Controllers\figura_gual
 Route::post('/imprimirtablagualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'imprimirdatosparaiso' ])->name('imprimirdatos_gualiqueme');
 
 
+//REMISIONES
+
+Route::get('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'remisiones' ])->name('remisiones_gualiqueme');
+Route::post('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'remisiones' ])->name('remisiones_gualiqueme');
+Route::get('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
+Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
+
+
+
+
+
 
 ///////////////////      TOTAL PLANTAS    //////////////////////////
 Route::get('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
@@ -106,6 +135,7 @@ Route::post('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'to
 Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
 Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update' ])->name('actualizar_usuario');
 Route::post('/usuarios/a',[App\Http\Controllers\UsuariosController::class, 'destroy' ])->name('eliminar_usuario');
+
 
 Route::get('/ayuda', function () {
     $titulo= "Ayuda";

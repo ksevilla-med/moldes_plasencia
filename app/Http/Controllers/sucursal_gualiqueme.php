@@ -64,20 +64,78 @@ class sucursal_gualiqueme extends Controller
         $pdf =  \PDF::loadHTML($vista);
         return $pdf->stream('nombre.pdf');
 
-
+    }
 
         // $pdf = PDF::loadView('imprimirtablaparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)->with('id_planta', $id_planta);
         //  return $pdf->stream();
    
-    
-
+        public function remisiones( Request $request)
+        {
+        $titulo = "REMISIONES SAN MARCOS";
+        $moldes = \DB::select('call moldes_remision(1)'); 
+        $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+        [ 
+        'id_planta' => (int)$request->id_planta
+        ]); 
         
-
+        $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
+        [ 
+            'nombre_planta' => $request->nombre_planta
+        ]); 
     
-
+    
+        return view('remisionesgualiqueme')
+        ->with('titulo',$titulo)
+        ->with('moldes',$moldes)
+        ->with('remisionesenviadas',$remisionesenviadas)
+        ->with('remisionesrecibidas',$remisionesrecibidas);
+    
     }
-
-
+    
+    
+        public function insertarremisiones( Request $request)
+        {
+    
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('Y-m-d');
+            $empresa = "";
+    
+            
+    
+            if($request->txt_otra_fabrica != null){
+                $empresa = $request->txt_otra_fabrica;
+            }else{
+                $empresa = $request->txt_sucursales;
+            }
+    
+            $molde = \DB::select('call insertar_remisiones(:fecha,:id_planta,:nombre_fabrica,:estado_moldes,:tipo_molde,:cantidad,:chequear)',
+            [ 
+            'fecha' => $fecha,
+            'id_planta' => (int)$request->id_planta,
+            'nombre_fabrica'=> $empresa,
+            'estado_moldes' => (string)$request->txt_estado,
+            'tipo_molde' => (string)$request->id_tipo,
+            'cantidad' => (int)$request->txt_cantidad, 
+            'chequear' => (int)$request->chequear
+            ]);
+    
+            $titulo = "REMISIONES SAN MARCOS";
+            $moldes = \DB::select('call moldes_remision(1)');  
+             $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+            [ 
+            'id_planta' => (int)$request->id_planta
+            ]);   
+    
+            $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
+            [ 
+            'nombre_planta' => $request->nombre_planta
+            ]); 
+            return view('remisionesgualiqueme')->with('titulo',$titulo)->with('moldes',$moldes)
+            ->with('remisionesenviadas',$remisionesenviadas)        
+        ->with('remisionesrecibidas',$remisionesrecibidas);
+        }
+    
+    
 
 
     public function index_vitola(Request $request)
@@ -135,67 +193,6 @@ class sucursal_gualiqueme extends Controller
  
 
     }
-
-
-
-
-     /* 
-        $v_buenos = $request->bueno;
-        $v_irregulares = $request->irregulares;
-        $v_malos = $request->malos;
-        $v_bodega = $request->bodega;
-        $v_reparacion = $request->reparacion;
-        $v_salon =$request->salon;
-        $v_total =$request->total;
-       
-       if($v_buenos==""){ $v_buenos = "0";}
-       if($v_irregulares==""){ $v_irregulares = "0";}
-       if($v_malos==""){ $v_malos = "0";}
-       if($v_bodega==""){ $v_bodega = "0";}
-       if($v_reparacion==""){ $v_reparacion = "0";}
-       if($v_salon==""){ $v_salon = "0";}
-       */
-
-
-     // validaciones para guardar
-       /*
-       if($v_total == "" || (int)($v_total) > 999999 ||  (int)($v_total) < 1   ){          
-
-             toastr()->error('El total de ser mayor o igual a 1, o menor que 1000000' , 'ERROR');
-
-        }else if( (int)($v_total) === ((int)($v_buenos)+(int)($v_irregulares)+(int)($v_malos))&&            
-                  (int)($v_total) === ((int)($v_bodega)+(int)($v_reparacion)+(int)($v_salon))){              
-
-                 
-                   
-
-
-
-        }else if((int)($v_total) != ((int)($v_buenos)+(int)($v_irregulares)+(int)($v_malos))&& 
-                 (int)($v_total) === ((int)($v_bodega)+(int)($v_reparacion)+(int)($v_salon)) ){
-
-                    toastr()->error( 'Tus datos de estado coinciden con el total','ERROR' );
-
-        }else if((int)($v_total) === ((int)($v_buenos)+(int)($v_irregulares)+(int)($v_malos))&& 
-                 (int)($v_total) != ((int)($v_bodega)+(int)($v_reparacion)+(int)($v_salon)) ){
-
-                 toastr()->error( 'Tus datos de ubicación coinciden con el total','ERROR' );
-
-        }else {        
-                  toastr()->error( 'Tus datos no coinciden con el total','ERROR' ,[
-                    'timeOut' => 2000,
-                    'positionClass' => "toast-top-full-width",
-                    'progressBar' => TRUE,
-                    'showDuration'=> 300,
-                    ]); 
-
-        }
-            */
-     
-
-
-
-
 
 
 

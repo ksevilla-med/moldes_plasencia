@@ -276,6 +276,75 @@ class sucursal_moroceli extends Controller
         //
     }
 
+    public function remisiones( Request $request)
+    {
+    $titulo = "REMISIONES SAN MARCOS";
+    $moldes = \DB::select('call moldes_remision(1)'); 
+    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+    [ 
+    'id_planta' => (int)$request->id_planta
+    ]); 
+    
+    $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
+    [ 
+        'nombre_planta' => $request->nombre_planta
+    ]); 
+
+
+    return view('remisionesmoroceli')
+    ->with('titulo',$titulo)
+    ->with('moldes',$moldes)
+    ->with('remisionesenviadas',$remisionesenviadas)
+    ->with('remisionesrecibidas',$remisionesrecibidas);
+
+}
+
+
+    public function insertarremisiones( Request $request)
+    {
+
+        $fecha =Carbon::now();
+        $fecha = $fecha->format('Y-m-d');
+        $empresa = "";
+
+        
+
+        if($request->txt_otra_fabrica != null){
+            $empresa = $request->txt_otra_fabrica;
+        }else{
+            $empresa = $request->txt_sucursales;
+        }
+
+        $molde = \DB::select('call insertar_remisiones(:fecha,:id_planta,:nombre_fabrica,:estado_moldes,:tipo_molde,:cantidad,:chequear)',
+        [ 
+        'fecha' => $fecha,
+        'id_planta' => (int)$request->id_planta,
+        'nombre_fabrica'=> $empresa,
+        'estado_moldes' => (string)$request->txt_estado,
+        'tipo_molde' => (string)$request->id_tipo,
+        'cantidad' => (int)$request->txt_cantidad, 
+        'chequear' => (int)$request->chequear
+        ]);
+
+        $titulo = "REMISIONES SAN MARCOS";
+        $moldes = \DB::select('call moldes_remision(1)');  
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+        [ 
+        'id_planta' => (int)$request->id_planta
+        ]);   
+
+        $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
+        [ 
+        'nombre_planta' => $request->nombre_planta
+        ]); 
+        return view('remisionesmoroceli')->with('titulo',$titulo)->with('moldes',$moldes)
+        ->with('remisionesenviadas',$remisionesenviadas)        
+    ->with('remisionesrecibidas',$remisionesrecibidas);
+    }
+
+
+
+
     public function totales()
     {
        
