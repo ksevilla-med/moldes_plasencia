@@ -105,6 +105,8 @@
          
          @foreach($remisionesrecibidas as $remision)
 
+          
+
          
          <tr> 
                 <td>{{$remision->fecha}}</td>
@@ -122,6 +124,7 @@
                 </td>  
               
             </tr>
+
 
             @endforeach 
 
