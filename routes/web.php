@@ -32,7 +32,10 @@ Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::cl
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 Route::post('/sucursal_elparaiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
-Route::get('/remisiones_paraiso',[App\Http\Controllers\MoldesController::class, 'remisionesmostrar' ])->name('remisiones_paraiso');
+Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+
+
 // VITOLA
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
 Route::get('/crear_molde/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('datos');
@@ -91,6 +94,7 @@ Route::post('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'to
 Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
 Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update' ])->name('actualizar_usuario');
 Route::post('/usuarios/a',[App\Http\Controllers\UsuariosController::class, 'destroy' ])->name('eliminar_usuario');
+
 
 Route::get('/ayuda', function () {
     $titulo= "Ayuda";

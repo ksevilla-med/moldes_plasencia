@@ -43,12 +43,57 @@ class MoldesController extends Controller
 
     }
 
-    public function remisionesmostrar( Request $request)
-    {       
-        $titulo = "REMISIONES SUCURSAL EL PARAÍSO";     
-       
-        return REDIRECT('remisiones_paraiso');
+    public function remisiones( Request $request)
+    {
+    $titulo = "REMISIONES EL PARAÍSO";
+    $moldes = \DB::select('call moldes_remision(1)'); 
+    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+    [ 
+    'id_planta' => (int)$request->id_planta
+    ]);   
+
+
+    return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas);
+
+}
+
+
+    public function insertarremisiones( Request $request)
+    {
+
+        $fecha =Carbon::now();
+        $fecha = $fecha->format('Y-m-d');
+        $empresa = "";
+
+        
+
+        if($request->txt_otra_fabrica != null){
+            $empresa = $request->txt_otra_fabrica;
+        }else{
+            $empresa = $request->txt_sucursales;
+        }
+
+        $molde = \DB::select('call insertar_remisiones(:fecha,:id_planta,:nombre_fabrica,:estado_moldes,:tipo_molde,:cantidad,:chequear)',
+        [ 
+        'fecha' => $fecha,
+        'id_planta' => (int)$request->id_planta,
+        'nombre_fabrica'=> $empresa,
+        'estado_moldes' => (string)$request->txt_estado,
+        'tipo_molde' => (string)$request->id_tipo,
+        'cantidad' => (int)$request->txt_cantidad, 
+        'chequear' => (int)$request->chequear
+        ]);
+
+        $titulo = "REMISIONES EL PARAÍSO";
+        $moldes = \DB::select('call moldes_remision(1)');  
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+        [ 
+        'id_planta' => (int)$request->id_planta
+        ]);      
+        return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas);
     }
+
+
 
 
     public function imprimirdatosparaiso( Request $request)
@@ -60,7 +105,10 @@ class MoldesController extends Controller
      
 
         
-        $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
+        $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
+        [ 'vitola' => (string)$request->vitolaimprimir,
+          'nombre_figura' => (string)$request->figuraimprimir]);
+            
         $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
         $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
         $id_planta = [$request->id];
