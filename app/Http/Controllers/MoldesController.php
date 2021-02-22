@@ -50,10 +50,17 @@ class MoldesController extends Controller
     $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
     [ 
     'id_planta' => (int)$request->id_planta
-    ]);   
+    ]); 
+    
+    $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:id_planta)',
+    [ 
+    'id_planta' => (int)$request->id_planta
+    ]); 
 
 
-    return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas);
+    return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+    ->with('remisionesenviadas',$remisionesenviadas)
+    ->with('remisionesrecibidas',$remisionesrecibidas);
 
 }
 
