@@ -678,7 +678,7 @@ function validar_vitola(){
     event.preventDefault();
 
   }else if(nombre> 0){
-    toastr.error( 'Esta vitola ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+    toastr.error( 'Esta vitola ya existe, favor ingrese una nueva','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
     , "preventOpenDuplicates": true} );
     event.preventDefault();
 
@@ -735,7 +735,7 @@ function validar_vitola(){
             toastr.error( 'El total de ser mayor o igual a 1, o menor que 1000000','ERROR',{"progressBar": true,"closeButton": false} );
 
           }else if(nombre > 0){
-            toastr.error( 'Esta molde ya existe','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            toastr.error( 'Este molde ya existe, favor ingrese uno nuevo','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
             , "preventOpenDuplicates": true} );
             event.preventDefault();
         }else if(v_vitola === ""){ 

@@ -24,8 +24,9 @@ class InsertarFigura extends Migration
        
         BEGIN
         
-        if EXISTS(SELECT * FROM figura_tipos WHERE figura_tipos.nombre_figura = pa_nombre_figura ) then
-         SELECT"el registro ya existe";
+        if EXISTS(SELECT * FROM figura_tipos WHERE figura_tipos.nombre_figura = pa_nombre_figura and figura_tipos.id_planta = pa_id_planta)
+         then
+         SELECT " el registro ya existe ";
         
         
         ELSE
@@ -33,11 +34,8 @@ class InsertarFigura extends Migration
             INSERT INTO figura_tipos(figura_tipos.nombre_figura, figura_tipos.id_planta)  VALUES(pa_nombre_figura, pa_id_planta);
             
         END if;
-        
-        
-        END
 
-
+END
         ');
     }
 

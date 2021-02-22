@@ -24,7 +24,7 @@ class InsertarVitola extends Migration
         
         BEGIN
         
-        if EXISTS(SELECT * FROM vitolas WHERE pa_nombre_vitola = vitolas.vitola ) then 
+        if EXISTS(SELECT * FROM vitolas WHERE pa_nombre_vitola = vitolas.vitola AND pa_id_planta = vitolas.id_planta) then 
         
         SELECT "esta vitola ya exista";
         
