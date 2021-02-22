@@ -13,7 +13,7 @@ class MoldesRemision extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `moldes_gualiqueme`');
+        DB::unprepared('DROP procedure if exists `moldes_remision`');
     
         DB::unprepared('
         CREATE PROCEDURE `moldes_remision`(

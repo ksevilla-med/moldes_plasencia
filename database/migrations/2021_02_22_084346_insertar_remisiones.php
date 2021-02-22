@@ -13,7 +13,7 @@ class InsertarRemisiones extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `moldes_gualiqueme`');
+        DB::unprepared('DROP procedure if exists `insertar_remisiones`');
     
         DB::unprepared('
 
