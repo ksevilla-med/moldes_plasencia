@@ -34,8 +34,8 @@ class InsertarFigura extends Migration
             INSERT INTO figura_tipos(figura_tipos.nombre_figura, figura_tipos.id_planta)  VALUES(pa_nombre_figura, pa_id_planta);
             
         END if;
+END;
 
-END
         ');
     }
 
