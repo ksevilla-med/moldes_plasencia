@@ -13,7 +13,7 @@ class MostrarRemisionesRecibidas extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `moldes_gualiqueme`');
+        DB::unprepared('DROP procedure if exists `mostrar_remisiones_recibidas`');
     
         DB::unprepared('
 

@@ -72,7 +72,7 @@ class sucursal_gualiqueme extends Controller
         public function remisiones( Request $request)
         {
         $titulo = "REMISIONES SAN MARCOS";
-        $moldes = \DB::select('call moldes_remision(1)'); 
+        $moldes = \DB::select('call moldes_remision(4)'); 
         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
         [ 
         'id_planta' => (int)$request->id_planta
