@@ -22,8 +22,8 @@ class MostrarRemisionesRecibidas extends Migration
         )
       
         BEGIN
-             SELECT  remisiones.fecha,remisiones.nombre_fabrica,remisiones.estado_moldes,remisiones.tipo_moldes,remisiones.cantidad
-                                       FROM remisiones WHERE remisiones.nombre_fabrica = pa_nombre_fabrica;
+             SELECT plantas.nombre_planta, remisiones.fecha,remisiones.nombre_fabrica,remisiones.estado_moldes,remisiones.tipo_moldes,remisiones.cantidad, remisiones.chequear
+                 FROM remisiones, plantas WHERE remisiones.nombre_fabrica = pa_nombre_fabrica AND plantas.id_planta = remisiones.id_planta;
         END
         '); 
     }
