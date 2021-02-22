@@ -17,9 +17,9 @@ class TablaRemisiones extends Migration
             $table->increments('id_remision');
             $table->integer('id_planta');
             $table->date('fecha');
-            $table->varchar('nombre_fabrica',50);
-            $table->varchar('estado_moldes',50);
-            $table->varchar('tipo_moldes',50);
+            $table->string('nombre_fabrica',50);
+            $table->string('estado_moldes',50);
+            $table->string('tipo_moldes',50);
             $table->integer('cantidad');
             $table->integer('chequear');
         });
