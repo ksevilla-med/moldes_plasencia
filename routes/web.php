@@ -35,6 +35,7 @@ Route::post('/sucursal_elparaiso/crear/{id}',[App\Http\Controllers\MoldesControl
 Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
 Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
 
+Route::post('/remisiones_paraiso/a',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 // VITOLA
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');

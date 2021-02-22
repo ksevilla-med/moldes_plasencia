@@ -112,6 +112,35 @@ class MoldesController extends Controller
 
 
 
+
+
+
+
+    public function actualizarremision(Request $request){
+
+        $remision = \DB::select('call actualizar_(:id_remision, :id_planta,:nombre_fabrica,:estado_moldes,:tipo_moldes,:cantidad,:chequear)',
+        [
+            'id_remision' => (int)$request->txt_id_remision,
+            'id_planta' => (int)$request->txt_id_planta,
+            'nombre_fabrica' => (int)$request->txt_nombre_fabrica,
+            'estado_moldes' => (string)$request->txt_estado_moldes,
+            'tipo_moldes' => (string)$request->txt_tipo_moldes,
+            'cantidad' => (string)$request->txt_cantidad,
+            'chequear' => (string)$request->txt_chequear
+         ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function imprimirdatosparaiso( Request $request)
     {
         
