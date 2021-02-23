@@ -47,10 +47,7 @@ class MoldesController extends Controller
     {
     $titulo = "REMISIONES EL PARAÍSO";
     $moldes = \DB::select('call moldes_remision(1)'); 
-    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
-    [ 
-    'id_planta' => (int)$request->id_planta
-    ]); 
+    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(1)'); 
     
     $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
 
@@ -92,15 +89,10 @@ class MoldesController extends Controller
 
         $titulo = "REMISIONES EL PARAÍSO";
         $moldes = \DB::select('call moldes_remision(1)');  
-         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
-        [ 
-        'id_planta' => (int)$request->id_planta
-        ]);   
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(1)');   
 
-        $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
-        [ 
-        'nombre_planta' => $request->nombre_planta
-        ]); 
+        $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
+        
         return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)        
     ->with('remisionesrecibidas',$remisionesrecibidas);
@@ -116,7 +108,7 @@ class MoldesController extends Controller
     public function actualizarremision(Request $request, $id){ 
 
 
-
+         
         $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
         :cantidad,:id_molde,:planta_recibido)',
 
@@ -131,19 +123,17 @@ class MoldesController extends Controller
          ]);
 
          $titulo = "REMISIONES EL PARAÍSO";
-         $moldes = \DB::select('call moldes_remision(1)');  
-          $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
-         [ 
-         'id_planta' => (int)$request->id_planta
-         ]);   
- 
-         $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
-         [ 
-         'nombre_planta' => $request->nombre_planta
-         ]); 
-        // return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-         //->with('remisionesenviadas',$remisionesenviadas)        
-    // ->with('remisionesrecibidas',$remisionesrecibidas);
+         $moldes = \DB::select('call moldes_remision(1)'); 
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(1)'); 
+         
+         $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
+     
+     
+         return view('remisionesparaiso')
+        ->with('titulo',$titulo)
+         ->with('moldes',$moldes)
+         ->with('remisionesenviadas',$remisionesenviadas)
+        ->with('remisionesrecibidas',$remisionesrecibidas);
 
 
     }
