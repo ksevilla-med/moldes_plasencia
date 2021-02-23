@@ -160,8 +160,8 @@
                                 <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" onchange="showDiv('hidden_div', this)" placeholder="Selecciona la sucursal" required >
                             
                              
-                                <option value =  "El Paraiso" >El Paraíso</option>
-                                <option value =  "Moroceli" >Moroceli</option>
+                                <option value =  "Paraíso Cigar" >El Paraíso</option>
+                                <option value =  "Morocelí" >Moroceli</option>
                                 <option value =  "Gualiqueme" >Gualiqueme</option>
                                 <option value =  "5" >Otra Fabrica</option>                      
                                 </select> 
