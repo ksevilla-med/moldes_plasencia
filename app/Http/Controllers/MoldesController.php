@@ -52,10 +52,7 @@ class MoldesController extends Controller
     'id_planta' => (int)$request->id_planta
     ]); 
     
-    $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
-    [ 
-        'nombre_planta' => $request->nombre_planta
-    ]); 
+    $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
 
 
     return view('remisionesparaiso')
@@ -116,27 +113,40 @@ class MoldesController extends Controller
 
 
 
-    public function actualizarremision(Request $request){
+    public function actualizarremision(Request $request, $id){ 
 
-        $remision = \DB::select('call actualizar_(:id_remision, :id_planta,:nombre_fabrica,:estado_moldes,:tipo_moldes,:cantidad,:chequear)',
+
+
+        $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
+        :cantidad,:id_molde,:planta_recibido)',
+
         [
             'id_remision' => (int)$request->txt_id_remision,
             'id_planta' => (int)$request->txt_id_planta,
-            'nombre_fabrica' => (int)$request->txt_nombre_fabrica,
-            'estado_moldes' => (string)$request->txt_estado_moldes,
-            'tipo_moldes' => (string)$request->txt_tipo_moldes,
-            'cantidad' => (string)$request->txt_cantidad,
-            'chequear' => (string)$request->txt_chequear
+            'estado' => (string)$request->txt_estado_moldes,
+             'fivi' => (string)$request->txt_tipo_moldes,
+            'cantidad' => (int)$request->txt_cantidad,
+            'id_molde' => (int)$request->id_molde,
+            'planta_recibido' => (string)$request->nombre_recibido
          ]);
+
+         $titulo = "REMISIONES EL PARAÍSO";
+         $moldes = \DB::select('call moldes_remision(1)');  
+          $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
+         [ 
+         'id_planta' => (int)$request->id_planta
+         ]);   
+ 
+         $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
+         [ 
+         'nombre_planta' => $request->nombre_planta
+         ]); 
+        // return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+         //->with('remisionesenviadas',$remisionesenviadas)        
+    // ->with('remisionesrecibidas',$remisionesrecibidas);
+
+
     }
-
-
-
-
-
-
-
-
 
 
 

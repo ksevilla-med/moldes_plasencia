@@ -109,6 +109,8 @@
          <?php if ($remision->chequear == 0): ?>
          
          <tr > 
+  
+         <tr> 
                 <td>{{$remision->fecha}}</td>
                 <td>{{$remision->nombre_planta}}</td>
                 <td>{{$remision->estado_moldes}}</td>
@@ -145,14 +147,45 @@
           <tbody>
     </table>
 <!-- FIN DEL TABLA REMISIONES PARAISO -->
+
+
+
 <script type="text/javascript">
 
-    function datos_remisiones(id){ 
+function datos_remisiones(id){ 
 var datas = '<?php echo json_encode($remisionesrecibidas);?>';
 console.info(datas);
 var data = JSON.parse(datas);
+
  
 
+
+var datas_re = '<?php echo json_encode($remisionesrecibidas);?>';
+console.info(datas_re);
+var data_remi = JSON.parse(datas_re);
+
+
+
+for (var i = 0; i < data_remi.length; i++) {  
+  if(data_remi[i].id_remision === id){ 
+    document.formulario_mostrar.nombre_recibido.value = data_remi[i].nombre_planta;
+
+  }
+
+}
+
+var datas_id = '<?php echo json_encode($moldes);?>';
+console.info(datas_id);
+var data_i = JSON.parse(datas_id);
+
+
+for (var i = 0; i < data_i.length; i++) {  
+  if(data_i[i].fivi === document.getElementById('id_tipo').value){ 
+    document.formulario_mostrar.id_molde.value = data_i[i].id_molde;
+
+  }
+
+}
 for (var i = 0; i < data.length; i++) {  
   if(data[i].id_remision === id){  
      document.formulario_mostrar.txt_id_remision.value = data[i].id_remision;
@@ -161,9 +194,12 @@ for (var i = 0; i < data.length; i++) {
      document.formulario_mostrar.txt_estado_moldes.value = data[i].estado_moldes;  
      document.formulario_mostrar.txt_tipo_moldes.value = data[i].tipo_moldes;  
      document.formulario_mostrar.txt_cantidad.value = data[i].cantidad;  
-     document.formulario_mostrar.txt_chequear.value = data[i].chequear;       
+     document.formulario_mostrar.txt_chequear.value = data[i].chequear;        
     }
+
 }
+
+
 
     }   
   
@@ -171,7 +207,7 @@ for (var i = 0; i < data.length; i++) {
 
 <!-- INICIO MODAL CHEQUEAR REMISION -->
 <form id = "formulario_mostrar" name = "formulario_mostrar"
- action = "{{Route('actualizarremision')}}"  
+ action = "{{Route('actualizarremision',1)}}"  
  method="POST">
 
 @csrf
@@ -195,6 +231,8 @@ for (var i = 0; i < data.length; i++) {
 <input name = "txt_tipo_moldes" id="txt_tipo_moldes" value ="" hidden />
 <input name = "txt_cantidad" id="txt_cantidad" value ="" hidden />
 <input name = "txt_chequear" id="txt_chequear" value ="" hidden />
+<input name = "id_molde" id="id_molde" value ="" hidden />
+<input name = "nombre_recibido" id="nombre_recibido" value ="" hidden />
       ¿Estás seguro que la transacción coincide con la remisión?
       </div>
       <div class="modal-footer" >
@@ -249,9 +287,9 @@ for (var i = 0; i < data.length; i++) {
                                 <label for="txt_sucursales" class="form-label">Para</label>
                                 <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" onchange="showDiv('hidden_div', this)" placeholder="Selecciona la sucursal" required >
                             
-                             
-                                <option value =  "San Marcos" >San MArcos</option>
-                                <option value =  "Moroceli" >Moroceli</option>
+                        
+                                <option value =  "San Marcos" >San Marcos</option>
+                                <option value =  "Morocelí" >Morocelí</option>
                                 <option value =  "Gualiqueme" >Gualiqueme</option>
                                 <option value =  "5" >Otra Fabrica</option>                      
                                 </select> 
