@@ -14,9 +14,8 @@ use App\Http\Controllers\UserController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('register', 'UserController@register');
 Route::post('login', [App\Http\Controllers\UserController::class,'authenticate']);
-Route::get('open', 'DataController@open');
+Route::post('register/{id}', [App\Http\Controllers\UserController::class,'register'])->name('registrar_usuario');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('user', 'UserController@getAuthenticatedUser');
@@ -24,3 +23,26 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('open', 'DataController@open');

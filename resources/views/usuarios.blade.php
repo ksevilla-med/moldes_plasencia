@@ -124,7 +124,7 @@
 
 
 <!-- INICIO DEL MODAL AGREGAR USUARIO -->
-<form>
+<form  action=  "{{Route('registrar_usuario',1)}}" method= "POST" id ="FormRegistroUsuario" name="FormRegistroUsuario">
 
 <div class="modal fade" role="dialog" id="modal_agregar_usuarios" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;width=800px;">
   <div class="modal-dialog modal-dialog-centered modal-lg"  style="opacity:.9;background:#212529;width=80%">
@@ -158,7 +158,7 @@
 
         <div class="mb-3 col">
         <label for="txt_sucursales" class="form-label">Sucursal</label>
-        <select class="form-control"   id="txt_sucursales"  name="id_sucursal" placeholder="Selecciona la sucursal"  required>
+        <select class="form-control"   id="txt_sucursales"  name="txt_sucursales" placeholder="Selecciona la sucursal"  required>
        
         @foreach($sucursales as $sucursal)
         <option value =  "{{$sucursal-> id_planta}}" >{{$sucursal-> nombre_planta}}</option>
@@ -297,7 +297,7 @@
       } 
     if(usuarios[i].correo.toLowerCase() === v_correo.toLowerCase()){ 
       unico_correo++;
-      }    
+      } 
   }
         
 if(v_confirmacion_contrasenia != v_contrasenia){

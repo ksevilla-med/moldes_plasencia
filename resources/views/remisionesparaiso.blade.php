@@ -25,7 +25,7 @@
                     <a style="background:#b39f64;" class="nav-link mr-sm-2  download" onclick="recibidas()" id="a_recibidas" >Recibidas</a>
                     </li>  
                     <li class="nav-item">
-                    <a style="background:#b39f64;" class="nav-link download" data-toggle="modal" data-target="#modal_enviarmoldes_paraiso"  >Enviar Moldes</a>
+                    <a style="background:#111;" class="nav-link download " data-toggle="modal" data-target="#modal_enviarmoldes_paraiso"  >Enviar Moldes</a>
                   </li>   
                     </ul>
     
@@ -106,28 +106,40 @@
          @foreach($remisionesrecibidas as $remision)
 
           
-
+         <?php if ($remision->chequear == 0): ?>
          
-         <tr> 
+         <tr > 
                 <td>{{$remision->fecha}}</td>
                 <td>{{$remision->nombre_planta}}</td>
                 <td>{{$remision->estado_moldes}}</td>
                 <td>{{$remision->tipo_moldes}}</td>
                 <td>{{$remision->cantidad}}</td>   
-               <td style="padding:0px; text-align:center;    vertical-align: inherit;" >
+               <td   class="table-warning" style="padding:0px; text-align:center;    vertical-align: inherit;" >
                   <a data-toggle="modal" data-target="#modal_confirmar_remision" onclick ="datos_remisiones({{ $id_remision_basico = $remision->id_remision }})">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-check-circle" viewBox="0 0 16 16">
                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                   <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
                 </svg>
                   </a>
-                </td>  
+                </td>
+              
+            </tr>
+
+           <?php else:; ?>
+
+           <tr > 
+                <td>{{$remision->fecha}}</td>
+                <td>{{$remision->nombre_planta}}</td>
+                <td>{{$remision->estado_moldes}}</td>
+                <td>{{$remision->tipo_moldes}}</td>
+                <td>{{$remision->cantidad}}</td>   
+               <td style="text-align:center;" class="table-success">  Chequeado</td>
               
             </tr>
 
 
+            <?php endif; ?>
             @endforeach 
-
              
            
           <tbody>

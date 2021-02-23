@@ -92,7 +92,7 @@ function copiar2(figurabuscar, figuraimprimir){
   
 
 
-<form action=  "{{Route('remisiones',1)}}" method= "POST" class="form-inline">
+<form action=  "{{Route('remisiones',1)}}" method= "POST" >
 
 @csrf
   <button type="submit"  class=" btn-info float-right"  style="margin-right: 10px">

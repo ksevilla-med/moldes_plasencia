@@ -25,6 +25,51 @@ class UsuariosController extends Controller
 
 
 
+
+    public function register(Request $request)
+    {
+        'nombre' -> $request->txt_nombre_completo;
+        'correo' ->  $request->txt_correo_electronico;
+        'codigo' -> $request->txt_codigo;
+        'sucursal' -> $request->txt_sucursales;
+        'contrasenia' -> $request->confirmacion_contrasenia;
+
+            $validator = Validator::make($request->all(), [                
+            'codigo' => 'required|string|max:255',
+            'nombre' => 'required|string|max:255',
+            'correo' => 'required|string|email|max:255|unique:users',
+            'contrasenia' => 'required|string|min:6|confirmed',
+            'sucursal' => 'required|string|max:255',
+        ]);
+
+        if($validator->fails()){
+                return response()->json($validator->errors()->toJson(), 400);
+        }
+
+
+
+        $user = \DB::select('call insertar_usuarios(:nombre,:correo,:codigo,:sucursal,:contrasenia)',
+        [ 
+            'nombre' => $request->txt_nombre_completo,
+            'correo' =>  $request->txt_correo_electronico,
+            'codigo' => $request->txt_codigo,
+            'sucursal' => $request->txt_sucursales,
+            'contrasenia' => Hash::make($request->confirmacion_contrasenia)
+        ]);
+
+        // $user = User::create([
+        //     'name' => $request->get('name'),
+        //     'email' => $request->get('email'),
+        //     'password' => Hash::make($request->get('password')),
+        // ]);
+
+        $token = JWTAuth::fromUser($user);
+
+        return response()->json(compact('user','token'),201);
+    }
+
+
+
     
     /**
      * Update the specified resource in storage.
