@@ -44,18 +44,23 @@ class MoldesController extends Controller
 
     public function remisiones( Request $request)
     {
+
+       
     $titulo = "REMISIONES EL PARAÍSO";
     $moldes = \DB::select('call moldes_remision(1)'); 
     $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(1)'); 
     
     $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
+    
+    $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
 
+  
 
-    return view('remisionesparaiso')
-    ->with('titulo',$titulo)
-    ->with('moldes',$moldes)
-    ->with('remisionesenviadas',$remisionesenviadas)
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+    return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+    ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 }
 
@@ -63,6 +68,8 @@ class MoldesController extends Controller
     public function insertarremisiones( Request $request)
     {
 
+
+        
         $fecha =Carbon::now();
         $fecha = $fecha->format('Y-m-d');
         $empresa = "";
@@ -74,6 +81,16 @@ class MoldesController extends Controller
         }else{
             $empresa = $request->txt_sucursales;
         }
+
+
+
+        $bodega = \DB::select('call traer_cantidad(:id_planta)',
+        [
+            'id_planta' => (int)$request->id_planta
+        ]);
+
+    
+       
 
         $molde = \DB::select('call insertar_remisiones(:fecha,:id_planta,:nombre_fabrica,:estado_moldes,:tipo_molde,:cantidad,:chequear)',
         [ 
@@ -92,9 +109,8 @@ class MoldesController extends Controller
 
         $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
         
-        return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-        ->with('remisionesenviadas',$remisionesenviadas)        
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+      return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+      ->with('remisionesenviadas',$remisionesenviadas)      ->with('remisionesrecibidas',$remisionesrecibidas) ->with('bodega',$bodega);
     }
 
 
@@ -111,13 +127,17 @@ class MoldesController extends Controller
             'id_planta' => (int)$request->txt_id_planta,
             'estado' => (string)$request->txt_estado_moldes,
              'fivi' => (string)$request->txt_tipo_moldes,
-            'cantidad' => (int)$request->txt_cantidad,
+            'cantidad' => (int)$request->cantidad,
             'id_molde' => (int)$request->id_molde,
             'planta_recibido' => (string)$request->nombre_recibido,
             'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
          ]);
 
-
+         $bodega = \DB::select('call traer_cantidad(:id_planta)',
+         [
+             'id_planta' => (int)$request->id_planta
+         ]);
+     
         
          $titulo = "REMISIONES EL PARAISO";
          $moldes = \DB::select('call moldes_remision(1)'); 
@@ -130,7 +150,7 @@ class MoldesController extends Controller
         ->with('titulo',$titulo)
         ->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)
-         ->with('remisionesrecibidas',$remisionesrecibidas);
+         ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 
     }

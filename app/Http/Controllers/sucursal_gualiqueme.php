@@ -76,13 +76,17 @@ class sucursal_gualiqueme extends Controller
         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(4)'); 
         
         $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Gualiqueme')"); 
+        $bodega = \DB::select('call traer_cantidad(:id_planta)',
+        [
+            'id_planta' => (int)$request->id_planta
+        ]);
     
     
         return view('remisionesgualiqueme')
         ->with('titulo',$titulo)
         ->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)
-        ->with('remisionesrecibidas',$remisionesrecibidas);
+        ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
     
     }
     
@@ -113,6 +117,11 @@ class sucursal_gualiqueme extends Controller
             'chequear' => (int)$request->chequear
             ]);
     
+            $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
+
             $titulo = "REMISIONES GUALIQUEME";
             $moldes = \DB::select('call moldes_remision(4)');  
             $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(4)'); 
@@ -120,7 +129,7 @@ class sucursal_gualiqueme extends Controller
             $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Gualiqueme')"); 
             return view('remisionesgualiqueme')->with('titulo',$titulo)->with('moldes',$moldes)
             ->with('remisionesenviadas',$remisionesenviadas)        
-        ->with('remisionesrecibidas',$remisionesrecibidas);
+        ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
         }
 
 
@@ -140,12 +149,16 @@ class sucursal_gualiqueme extends Controller
             'id_planta' => (int)$request->txt_id_planta,
             'estado' => (string)$request->txt_estado_moldes,
              'fivi' => (string)$request->txt_tipo_moldes,
-            'cantidad' => (int)$request->txt_cantidad,
+            'cantidad' => (int)$request->cantidad,
             'id_molde' => (int)$request->id_molde,
             'planta_recibido' => (string)$request->nombre_recibido,
             'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
          ]);
 
+$bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
 
         
          $titulo = "REMISIONES GUALIQUEME";
@@ -159,7 +172,7 @@ class sucursal_gualiqueme extends Controller
         ->with('titulo',$titulo)
         ->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)
-         ->with('remisionesrecibidas',$remisionesrecibidas);
+         ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 
     }

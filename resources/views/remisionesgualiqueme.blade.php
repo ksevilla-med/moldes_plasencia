@@ -201,7 +201,7 @@ for (var i = 0; i < data.length; i++) {
      document.formulario_mostrar.txt_nombre_fabrica.value = data[i].nombre_fabrica;
      document.formulario_mostrar.txt_estado_moldes.value = data[i].estado_moldes;  
      document.formulario_mostrar.txt_tipo_moldes.value = data[i].tipo_moldes;  
-     document.formulario_mostrar.txt_cantidad.value = data[i].cantidad;  
+     document.formulario_mostrar.cantidad.value = data[i].cantidad;  
      document.formulario_mostrar.txt_chequear.value = data[i].chequear;        
     }
 
@@ -237,8 +237,8 @@ for (var i = 0; i < data.length; i++) {
 <input name = "txt_nombre_fabrica" id="txt_nombre_fabrica" value ="" hidden />
 <input name = "txt_estado_moldes" id="txt_estado_moldes" value ="" hidden />
 <input name = "txt_tipo_moldes" id="txt_tipo_moldes" value ="" hidden />
-<input name = "txt_cantidad" id="txt_cantidad" value ="" hidden />
 <input name = "txt_chequear" id="txt_chequear" value ="" hidden />
+<input name = "cantidad" id="cantidad" value ="" hidden />
 <input name = "id_molde" id="id_molde" value ="" hidden />
 <input name = "nombre_recibido" id="nombre_recibido" value ="" hidden />
       ¿Estás seguro que la transacción coincide con la remisión?
@@ -363,23 +363,52 @@ for (var i = 0; i < data.length; i++) {
 </script>
 
 
+
 <script>
 
 function agregarremision(){  
   var empresa = document.getElementById('txt_otra_fabrica').value ;
   var select = document.getElementById('txt_sucursales').value ;
-  console.info(select);
 
- if( empresa =="" && select == "5"){
+  var cantidad_input = document.getElementById('txt_cantidad').value ;
+  
+  var theForm = document.forms['FormRemisiones'];
+
+
+
+  
+
+  var bodegas = '<?php echo json_encode($bodega);?>';
+  var bodega = JSON.parse(bodegas);
+  var cantidad = 0;
+
+
+  for (var i = 0; i < bodega.length; i++) {
+
+    if(bodega[i].fivi === document.getElementById('id_tipo').value){ 
+      cantidad = bodega[i].bodega;
+      
+      
+    }
+}
+
+
+if(cantidad_input > cantidad){
+            toastr.error( 'Esta cantidad supera a la de su inventario','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
+            , "preventOpenDuplicates": true} );
+            event.preventDefault();
+
+  }else if( empresa =="" && select == "5"){
             toastr.error( 'Ingresa el nombre de la empresa','ERROR',{"progressBar": true,"closeButton": false,"preventDuplicates": true
             , "preventOpenDuplicates": true} );
             event.preventDefault();
-            }else{
-              theForm.addEventListener('submit', function (event) { });
-            }
-}
-</script>
+  }else  
+  theForm.addEventListener('submit', function (event) { });
 
+
+   }
+
+</script>
 
 
 <!-- FIN DEL MODAL AGREGAR MOLDE-->

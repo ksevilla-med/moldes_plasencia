@@ -32,10 +32,6 @@ Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::cl
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 Route::post('/sucursal_elparaiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
-Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
-Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
-
-Route::post('/remisiones_paraiso/a/{id}',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 // VITOLA
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
@@ -46,6 +42,14 @@ Route::post('/agregar_figura/{id}',[App\Http\Controllers\FiguraTipoController::c
 
 //PDF
 Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso');
+
+//REMISIONES
+Route::get('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::get('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+
+Route::post('/remisiones_paraiso/a/{id}',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 
 ///////////////////      MOROCELI    //////////////////////////

@@ -283,13 +283,17 @@ class sucursal_moroceli extends Controller
     $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
     
     $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
+    $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
 
 
     return view('remisionesmoroceli')
     ->with('titulo',$titulo)
     ->with('moldes',$moldes)
     ->with('remisionesenviadas',$remisionesenviadas)
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+    ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 }
 
@@ -301,7 +305,11 @@ class sucursal_moroceli extends Controller
         $fecha = $fecha->format('Y-m-d');
         $empresa = "";
 
-        
+        $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
+
 
         if($request->txt_otra_fabrica != null){
             $empresa = $request->txt_otra_fabrica;
@@ -329,7 +337,7 @@ class sucursal_moroceli extends Controller
 
         return view('remisionesmoroceli')->with('titulo',$titulo)->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)        
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+    ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
     }
 
 
@@ -349,13 +357,17 @@ class sucursal_moroceli extends Controller
             'id_planta' => (int)$request->txt_id_planta,
             'estado' => (string)$request->txt_estado_moldes,
              'fivi' => (string)$request->txt_tipo_moldes,
-            'cantidad' => (int)$request->txt_cantidad,
+            'cantidad' => (int)$request->cantidad,
             'id_molde' => (int)$request->id_molde,
             'planta_recibido' => (string)$request->nombre_recibido,
             'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
          ]);
 
-
+         $bodega = \DB::select('call traer_cantidad(:id_planta)',
+         [
+             'id_planta' => (int)$request->id_planta
+         ]);
+     
         
          $titulo = "REMISIONES MOROCELI";
          $moldes = \DB::select('call moldes_remision(2)'); 
@@ -368,7 +380,7 @@ class sucursal_moroceli extends Controller
         ->with('titulo',$titulo)
         ->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)
-         ->with('remisionesrecibidas',$remisionesrecibidas);
+         ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 
     }
