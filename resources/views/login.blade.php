@@ -18,14 +18,16 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<div id="content" style="background: url('fondoperron.png') center center no-repeat;
+    background-size:100% 100%;">  
+
 
 <!-- Card de Login -->
-<div class="imagenprincipalpadre2">
-<div class="imagenprincipalhijo" >
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; opacity:.9 " >
+<div class="card text-white bg-dark divayudauno " style="width: 30%;height:100%; opacity:.9;position:fixed;right:0px; " >
   <div class="card-body" style= "padding-bottom: 0px">
-
+  
+<div class="imagenprincipalpadre3">
+<div class="imagenprincipalhijo">
 <!-- Imagen LogioPlasencia Dorado
         align= centraliza -->
 <div style="text-align:center;" >
@@ -33,11 +35,11 @@
 </div>
 
 <b> <i> 
-<div class="card-header" style= "color:#ead187";>Inventario Movil Plasencia</div> 
+<div class="card-header" style= "color:#ead187;text-align:center;">Inventario Movil Plasencia</div> 
 </b> </i>
   
   <!-- Ingreso de Usuario-->
-    <form>
+    
     </p>
   <div class="mb-3">
 
@@ -46,8 +48,12 @@
   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
   </svg>
 
-    <label for="exampleInputEmail1" class="form-label"  style= "color:#d0b15e"; > Usuario</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+  <form id = "formulario_login" name = "formulario_login"
+ action = "{{Route('autenticacion_usuario',1)}}"  
+ method="POST">
+ @csrf
+    <label for="codigologin" class="form-label"  style= "color:#d0b15e"; > Código Empleado</label>
+    <input type="text" class="form-control" id="codigologin" name="codigologin" aria-describedby="emailHelp"placeholder="Ingresa código" required>
    
   </div>
   <div class="mb-3">
@@ -58,50 +64,97 @@
   <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"/>
   </svg>
 
-    <label for="exampleInputPassword1" class="form-label" style= "color:#d0b15e";>Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
+
+
+
+  
+
+    <label for="contrasenialogin" class="form-label" style= "color:#d0b15e";>Contraseña</label>
+    <div class="row"style="margin-left:0px;    margin-right: 0px;">
+    <input type="password" class="form-control" id="contrasenialogin" name="contrasenialogin" placeholder="Ingresa contraseña" required>
+    <a type="button" onclick="mostrarContrasena()" style="position:absolute;right:24%;margin-top: 7px;">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisible" style="position:absolute;">
+<path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+<path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="icononovisible"> 
+<path d="M10.79 12.912l-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.027 7.027 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.088z"/>
+<path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708l-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6l-12-12 .708-.708 12 12-.708.707z"/>
+</svg>
+</a>
+  </div>
+
     
   </div>
   <div class="mb-3 form-check">
   
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" >
-    <label class="form-check-label" for="exampleCheck1" style= "color:#d0b15e";>Verificar Datos</label>
   </div>
   
-  <!-- Boton de ingreso-->
-  <div style="text-align:center;" >
 
-  <button class="btn-login">Ingresar </button>  
+<!-- Boton de ingreso-->
+  <div style="text-align:center;" >
+  <button  type= "submit" class="btn-login">Ingresar </button>  
   </div>
 
+  </form>
 
 </p>
 
   <div style= "text-align:center; position:initial;bottom:0; " >
   <a  class="nav-link" style ="font-size: small" data-toggle="modal" data-target="#modal_recuperarcontraseña">
   ¿Olvidaste tu Contraseña?
-                            </a>   
+ </a>   
  
+ </div>
+  </div>
   </div>
 
+</div>
 
-  
-
-
-</form>
 
 
     
-  </div>
-
-</div>
 </div>
 
 
 
 
 
-<!-- Modal cerrar sesion -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function mostrarContrasena(){
+      var tipo = document.getElementById("contrasenialogin");
+      var iconovisible = document.getElementById("iconovisible");
+      var icononovisible = document.getElementById("icononovisible");
+      if(tipo.type == "password"){
+          tipo.type = "text";      
+          icononovisible.style.visibility= "hidden";
+      iconovisible.style.visibility= "inherit";
+      }else{
+          tipo.type = "password";
+          icononovisible.style.visibility= "inherit ";
+        iconovisible.style.visibility= "hidden";
+      }
+      
+  }
+</script>
+
+
+<!-- Modal RECUPERAR CONTRASENIA -->
 <div class="modal fade" id="modal_recuperarcontraseña" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" style="opacity:.9;background:#212529;">
   <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
@@ -140,6 +193,7 @@
     </div>
   </div>
 </div>
+<!-- FIN Modal RECUPERAR CONTRASENIA -->
 
 
 
@@ -160,5 +214,4 @@
             });
         });
     </script>
-  </body>
 

@@ -133,9 +133,12 @@ Route::get('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'tot
 Route::post('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
 
 //USUARIO
-Route::get('/usuarios',[App\Http\Controllers\UsuariosController::class, 'index' ]);
-Route::post('/usuarios',[App\Http\Controllers\UsuariosController::class, 'update' ])->name('actualizar_usuario');
-Route::post('/usuarios/a',[App\Http\Controllers\UsuariosController::class, 'destroy' ])->name('eliminar_usuario');
+Route::get('/usuarios',[App\Http\Controllers\UserController::class, 'index' ]);
+Route::post('/usuarios',[App\Http\Controllers\UserController::class, 'update' ])->name('actualizar_usuario');
+Route::post('/usuarios/a',[App\Http\Controllers\UserController::class, 'destroy' ])->name('eliminar_usuario');
+Route::post('register/{id}', [App\Http\Controllers\UserController::class,'register'])->name('registrar_usuario');
+Route::post('autenticacion_usuario/{id}', [App\Http\Controllers\UserController::class,'ingresarUsuario'])->name('autenticacion_usuario');
+
 
 
 Route::get('/ayuda', function () {

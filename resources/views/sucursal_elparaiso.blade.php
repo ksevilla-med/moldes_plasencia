@@ -31,8 +31,8 @@
 
   <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST" class=" form-inline">
   @csrf 
-  <input name="vitolaimprimir" id="vitolaimprimir" value="" style="display:none">
-<input name="figuraimprimir"  id="figurabuscar" value="" style="display:none">
+  <input name="vitolaimprimir" id="vitolaimprimir" hidden value={{$vitolaB}} >
+<input name="figuraimprimir"  id="figurabuscar" hidden value={{$figuraB}} >
 
   <button type="submit" class=" btn-info float-right "  style="margin-left: 5px; margin-bottom: 0px;">
       <span>
@@ -77,17 +77,7 @@
        Vitola</span>
   </button>
 
-                               <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
-  <script type="text/javascript">
-function copiar(vitolabuscar, vitolaimprimir){
-    var vitolabuscar = document.getElementById(vitolabuscar).value;
-    document.getElementById(vitolaimprimir).value = vitolabuscar;    
-}
-function copiar2(figurabuscar, figuraimprimir){
-    var figurabuscar = document.getElementById(figurabuscar).value;
-    document.getElementById(figuraimprimir).value = figurabuscar;    
-}
-</script>   <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
+     
 
   
 
@@ -107,14 +97,7 @@ function copiar2(figurabuscar, figuraimprimir){
   </button>
   </form>
 
-        <script type="text/javascript">
-        document.getElementById("vitolabuscar").addEventListener('keyup', autoCompleteNew);
 
-        function autoCompleteNew(e) {            
-        var value = $(this).val();         
-        $("#vitolaimprimir").val(value.replace(/\s/g, '')); 
-        }
-        </script>
 
   </div>
 

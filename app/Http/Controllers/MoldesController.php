@@ -23,6 +23,8 @@ class MoldesController extends Controller
     {
        
         $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
+        $vitolaB = $request->vitolabuscar;
+        $figuraB = $request->figurabuscar;
         
         $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
         [ 'vitola' => (string)$request->vitolabuscar,
@@ -34,14 +36,11 @@ class MoldesController extends Controller
 
         $id_planta = [$request->id];
 
-
-        
-
         return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-        ->with('id_planta', $id_planta)->with('titulo',$titulo);
-    
-
+        ->with('id_planta', $id_planta)->with('titulo',$titulo)->with('vitolaB',$vitolaB)->with('figuraB',$figuraB);
     }
+
+    
 
     public function remisiones( Request $request)
     {

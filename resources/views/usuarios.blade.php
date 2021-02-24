@@ -141,19 +141,19 @@
       <div class="row">
         <div class="mb-3 col">
         <label for="txt_nombre_completo" class="form-label">Nombre Completo</label>
-        <input class="form-control" id="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
+        <input class="form-control" id="txt_nombre_completo" name="txt_nombre_completo" placeholder="Ingresa el nombre completo" required minLength="5" maxLength="50">        
         </div>
 
         <div class="mb-3 col">
         <label for="txt_correo_electronico" class="form-label">Correo Electrónico</label>
-        <input type="mail"class="form-control" id="txt_correo_electronico" placeholder="Ingresa el corro electronico" required >        
+        <input type="mail"class="form-control" id="txt_correo_electronico" name="txt_correo_electronico" placeholder="Ingresa el corro electronico" required >        
         </div>
       </div>
 
       <div class="row">
         <div class="mb-3 col">
         <label for="txt_codigo" class="form-label">Código</label>
-        <input class="form-control" type= "number" id="txt_codigo" name="id_figura" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
+        <input class="form-control" type= "number" id="txt_codigo" name="txt_codigo" placeholder="Ingresa código de empleado" minLength="1" maxLength="10" required>
         </div>
 
         <div class="mb-3 col">
@@ -194,7 +194,7 @@
         <div class="mb-3 col">
         <label for="confirmacion_contrasenia" class="form-label">Confirmación contraseña</label>
         <div class="row"style="margin-left:0px;    margin-right: 0px;">
-        <input type="password" name="password" class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
+        <input type="password" name="confirmacion_contrasenia" class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
         <a type="button" onclick="mostrarConfirmacion()" style="position:absolute;right:20px;margin-top: 7px;">
       
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisibleC" style="position:absolute;">
@@ -322,6 +322,13 @@ if(v_confirmacion_contrasenia != v_contrasenia){
   toastr.success( 'El usuario se registró correctamente','BIEN',{"progressBar": true,"closeButton": false} );
     theForm.addEventListener('submit', function (event) {
     });
+       document.getElementById('contrasenia').value =" ";
+       document.getElementById('confirmacion_contrasenia').value = " ";
+       document.getElementById('contrasenia').value= " ";
+      document.getElementById('txt_codigo').value= " ";
+       document.getElementById('txt_nombre_completo').value = " ";
+        document.getElementById('txt_correo_electronico').value= " ";
+
 }
 
  }
