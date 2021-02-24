@@ -42,6 +42,20 @@
   padding: 5px;text-align: center;border: solid .05px;
 }
 
+.divayudauno{
+  width: 30%;
+    height: 50px;
+    background-color: transparent;
+    position: relative;
+    animation: ayudauno;
+    animation-duration: 7s;
+  }
+  @keyframes ayudauno {
+    
+    0%   {background-color:#f1db10; right:-310px; bottom:0px;}
+    75%  {background-color:#1928d4; right:0px; bottom:0px;} 
+    100% {background-color: #1928d4; right:0px; bottom:0px;} 
+  }
 
 
  /* dddddddddddddddddddddddddddddddddddddd */
@@ -74,6 +88,12 @@ height: 90%;
 .imagenprincipalpadre2{
   display: flex;
   background-color: #dee2e6;
+justify-content: center;
+align-items: center;
+height: 100%;
+}
+.imagenprincipalpadre3{
+  display: flex;
 justify-content: center;
 align-items: center;
 height: 100%;
