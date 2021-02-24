@@ -67,11 +67,12 @@ Route::post('/imprimirtablamoroceli/{id}',[App\Http\Controllers\sucursal_morocel
 
 //REMISIONES
 
-Route::get('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
+Route::get('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroce');
 Route::post('/remisiones_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'remisiones' ])->name('remisiones_moroceli');
-Route::get('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
+Route::get('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroc');
 Route::post('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
 
+Route::post('/remisiones_moroceli/a/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'actualizarremision' ])->name('actualizarremision_moroceli');
 
 
 
@@ -98,6 +99,8 @@ Route::post('/remisiones_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarco
 Route::get('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
 Route::post('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
 
+Route::post('/remisiones_sanMarcos/ac/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'actualizarremision' ])->name('actualizarremision_sanMarcos');
+
 
 ///////////////////      GUALIQUEME    //////////////////////////
 
@@ -122,6 +125,8 @@ Route::get('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualique
 Route::post('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'remisiones' ])->name('remisiones_gualiqueme');
 Route::get('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
 Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
+Route::post('/remisiones_gualiqueme/a/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'actualizarremision' ])->name('actualizarremision_gualiqueme');
+
 
 
 

@@ -99,7 +99,7 @@
             <th scope="col">Tipo de molde</th>   
             <th scope="col">Estado</th>   
             <th scope="col">Cantidad</th>    
-            <th scope="col">Chequear</th>            
+            <th scope="col">Confirmar</th>            
          </thead>
          <tbody>
          

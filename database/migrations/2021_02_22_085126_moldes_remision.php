@@ -23,7 +23,7 @@ class MoldesRemision extends Migration
         BEGIN
         
         SELECT id_molde, CONCAT(figura_tipos.nombre_figura, "  ",vitolas.vitola) AS fivi
-                                    FROM plantas, moldes, figura_tipos, vitolas WHERE "1" = plantas.id_planta AND
+                                    FROM plantas, moldes, figura_tipos, vitolas WHERE pa_idplanta = plantas.id_planta AND
                                     moldes.id_planta = pa_idplanta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
                                     AND moldes.id_figura = figura_tipos.id_figura AND
                                    moldes.id_vitola = vitolas.id_vitola ;      

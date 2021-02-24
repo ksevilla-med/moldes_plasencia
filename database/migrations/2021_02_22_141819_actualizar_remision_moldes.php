@@ -50,17 +50,17 @@ class ActualizarRemisionMoldes extends Migration
                 moldes.bodega = moldes.bodega - pa_cantidad WHERE  moldes.id_molde = otra_planta;
                 
                 SELECT "si se puede";
-                ELSE if  pa_estado = "irregulares" then 
-                
-                UPDATE moldes SET moldes.irregulares = moldes.irregulares - pa_cantidad  , moldes.total = moldes.total - pa_cantidad ,
-                moldes.bodega = moldes.bodega - pa_cantidad WHERE  moldes.id_molde = pa_id_molde;
-                
-                
-                UPDATE moldes SET moldes.irregulares = moldes.irregulares + pa_cantidad  , moldes.total = moldes.total + pa_cantidad ,
-                moldes.bodega = moldes.bodega + pa_cantidad WHERE  moldes.id_molde = otra_planta;
-                
-                 SELECT "si se puede";
-                ELSE
+                ELSE if  pa_estado = "Irregulares" then 
+        
+        UPDATE moldes SET moldes.irregulares = moldes.irregulares + pa_cantidad  , moldes.total = moldes.total + pa_cantidad ,
+        moldes.bodega = moldes.bodega + pa_cantidad WHERE  moldes.id_molde = pa_id_molde;
+        
+        
+        UPDATE moldes SET moldes.irregulares = moldes.irregulares - pa_cantidad  , moldes.total = moldes.total - pa_cantidad ,
+        moldes.bodega = moldes.bodega - pa_cantidad WHERE  moldes.id_molde = otra_planta;
+        
+         SELECT "si se puede";
+        ELSE
                 
                 
                 SELECT "no se puede"; 

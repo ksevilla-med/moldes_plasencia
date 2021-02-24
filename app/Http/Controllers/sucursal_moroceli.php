@@ -278,17 +278,11 @@ class sucursal_moroceli extends Controller
 
     public function remisiones( Request $request)
     {
-    $titulo = "REMISIONES SAN MARCOS";
-    $moldes = \DB::select('call moldes_remision(1)'); 
-    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
-    [ 
-    'id_planta' => (int)$request->id_planta
-    ]); 
+    $titulo = "REMISIONES MOROCELI";
+    $moldes = \DB::select('call moldes_remision(2)'); 
+    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
     
-    $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
-    [ 
-        'nombre_planta' => $request->nombre_planta
-    ]); 
+    $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
 
 
     return view('remisionesmoroceli')
@@ -326,23 +320,50 @@ class sucursal_moroceli extends Controller
         'chequear' => (int)$request->chequear
         ]);
 
-        $titulo = "REMISIONES SAN MARCOS";
-        $moldes = \DB::select('call moldes_remision(1)');  
-         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(:id_planta)',
-        [ 
-        'id_planta' => (int)$request->id_planta
-        ]);   
+        $titulo = "REMISIONES MOROCELI";
+        $moldes = \DB::select('call moldes_remision(2)');  
+        
+    $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
+    
+    $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')");
 
-        $remisionesrecibidas = \DB::select('call mostrar_remisiones_recibidas(:nombre_planta)',
-        [ 
-        'nombre_planta' => $request->nombre_planta
-        ]); 
         return view('remisionesmoroceli')->with('titulo',$titulo)->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)        
     ->with('remisionesrecibidas',$remisionesrecibidas);
     }
 
 
+
+    public function actualizarremision(Request $request, $id){ 
+
+
+        $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
+        :cantidad,:id_molde,:planta_recibido)',
+
+        [
+            'id_remision' => (int)$request->txt_id_remision,
+            'id_planta' => (int)$request->txt_id_planta,
+            'estado' => (string)$request->txt_estado_moldes,
+             'fivi' => (string)$request->txt_tipo_moldes,
+            'cantidad' => (int)$request->txt_cantidad,
+            'id_molde' => (int)$request->id_molde,
+            'planta_recibido' => (string)$request->nombre_recibido
+         ]);
+
+         $titulo = "REMISIONES MOROCELI";
+         $moldes = \DB::select('call moldes_remision(2)'); 
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
+    
+    $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
+     
+         return view('remisionesmoroceli')
+       ->with('titulo',$titulo)
+       ->with('moldes',$moldes)
+       ->with('remisionesenviadas',$remisionesenviadas)
+       ->with('remisionesrecibidas',$remisionesrecibidas);
+
+
+    }
 
 
     public function totales()
