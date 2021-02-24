@@ -63,11 +63,11 @@
 <table class="table table-striped table-secondary table-bordered border-primary " id="tablaenviadas">
         <thead class= "table-dark">
         <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">Para</th>
-            <th scope="col">Tipo de molde</th>   
-            <th scope="col">Estado</th>   
-            <th scope="col">Cantidad</th>            
+            <th style='text-align: center;' scope="col">Fecha</th>
+            <th style='text-align: center;' scope="col">Para</th>
+            <th style='text-align: center;' scope="col">Estado</th>   
+            <th style='text-align: center;' scope="col">Tipo de molde</th>   
+            <th style='text-align: center;' scope="col">Cantidad</th>            
          </thead>
          <tbody>
         
@@ -91,15 +91,15 @@
 
 
 
-<table class="table table-striped table-secondary table-bordered border-primary " id="tablarecibidas" style="display:none;">
-        <thead class= "table-dark">
-        <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">De</th>
-            <th scope="col">Tipo de molde</th>   
-            <th scope="col">Estado</th>   
-            <th scope="col">Cantidad</th>    
-            <th scope="col">Confirmar</th>            
+<table class="table table-striped table-secondary table-bordered border-primary " id="tablarecibidas" style="display:none;" >
+        <thead class= "table-dark" text-align = "center">
+        <tr  >
+            <th style='text-align: center;'  scope="col" >Fecha</th>
+            <th style='text-align: center;'  scope="col">De</th>
+            <th style='text-align: center;' scope="col">Estado</th>   
+            <th style='text-align: center;' scope="col">Tipo de molde</th>   
+            <th style='text-align: center;' scope="col">Cantidad</th>    
+            <th style='text-align: center;' scope="col">Confirmar</th>            
          </thead>
          <tbody>
          
@@ -299,7 +299,7 @@ for (var i = 0; i < data.length; i++) {
 
                                 <div style="display:none;" class="mb-3 col" id="hidden_div">
                                 <label for="txt_otra_fabrica" class="form-label">Otra empresa</label>
-                                <input   class="form-control" type= "text" id="txt_otra_fabrica" name="txt_otra_fabrica" placeholder="Ingresa el nombre" minLength="1" maxLength="10" >
+                                <input   class="form-control" type= "text" id="txt_otra_fabrica" name="txt_otra_fabrica" placeholder="Ingresa el nombre" minLength="1" >
                                 </div>
 
                                 <div class="mb-3 col">

@@ -32,6 +32,6 @@ class TablaRemisiones extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('remisiones');
     }
 }

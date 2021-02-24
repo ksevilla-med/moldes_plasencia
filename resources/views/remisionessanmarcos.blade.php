@@ -63,11 +63,12 @@
 <table class="table table-striped table-secondary table-bordered border-primary " id="tablaenviadas">
         <thead class= "table-dark">
         <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">Para</th>
-            <th scope="col">Tipo de molde</th>   
-            <th scope="col">Estado</th>   
-            <th scope="col">Cantidad</th>            
+            <<th style='text-align: center;' scope="col">Fecha</th>
+            <th style='text-align: center;' scope="col">Para</th>
+            <th style='text-align: center;' scope="col">Estado</th>   
+            <th style='text-align: center;' scope="col">Tipo de molde</th>   
+            <th style='text-align: center;' scope="col">Cantidad</th>            
+                   
          </thead>
          <tbody>
         
@@ -94,13 +95,13 @@
 <table class="table table-striped table-secondary table-bordered border-primary " id="tablarecibidas" style="display:none;">
         <thead class= "table-dark">
         <tr>
-            <th scope="col">Fecha</th>
-            <th scope="col">De</th>
-            <th scope="col">Tipo de molde</th>   
-            <th scope="col">Estado</th>   
-            <th scope="col">Cantidad</th>    
-            <th scope="col">Confirmar</th>    
-            </tr>        
+        <th style='text-align: center;'  scope="col" >Fecha</th>
+            <th style='text-align: center;'  scope="col">De</th>
+            <th style='text-align: center;' scope="col">Estado</th>   
+            <th style='text-align: center;' scope="col">Tipo de molde</th>   
+            <th style='text-align: center;' scope="col">Cantidad</th>    
+            <th style='text-align: center;' scope="col">Confirmar</th>            
+        </tr>        
          </thead>
          <tbody>
         
@@ -130,8 +131,8 @@
             <tr > 
                 <td>{{$remision->fecha}}</td>
                 <td>{{$remision->nombre_planta}}</td>
-                <td>{{$remision->estado_moldes}}</td>
-                <td>{{$remision->tipo_moldes}}</td>
+                <th scope="col">Estado</th>   
+                <th scope="col">Tipo de molde</th>  
                 <td>{{$remision->cantidad}}</td>   
                 <td style="text-align:center;" class="table-success">  Chequeado</td>
               

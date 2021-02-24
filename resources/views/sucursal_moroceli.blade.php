@@ -372,15 +372,15 @@ function copiar2(figurabuscar, figuraimprimir){
 
                   <div class="mb-3 col">
                   <label for="txt_salon" class="form-label">Bodega</label>
-                  <input class="form-control" id="mo_salon"  name="mo_salon"placeholder="Cantidad" type="number">        
+                  <input class="form-control" id="mo_bodega"  name="mo_bodega"placeholder="Cantidad" type="number">        
                   </div>
                   <div class="mb-3 col">            
                   <label for="txt_bodega" class="form-label">Reparación</label>
-                  <input class="form-control" id="mo_bodega" name="mo_bodega" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_reparacion" name="mo_reparacion" placeholder="Cantidad" type="number">  
                   </div>
                   <div class="mb-3 col">
                   <label for="txt_reparacion" class="form-label">Salón</label>
-                  <input class="form-control" id="mo_reparacion" name="mo_reparacion" placeholder="Cantidad" type="number">  
+                  <input class="form-control" id="mo_salon" name="mo_salon" placeholder="Cantidad" type="number">  
                
                   <input name = "id_molde" id =  "id_molde" value =" " hidden />
                   </div>
@@ -470,18 +470,18 @@ console.info(data[i]);
     <table class="table table-striped table-secondary table-bordered border-primary ">
         <thead class= "table-dark">
         <tr>
-            <th scope="col">Planta</th>
-            <th scope="col">Vitola</th>
-            <th scope="col">Figura y tipo</th>
-            <th scope="col">Buenos</th>
-            <th scope="col">Irregulares</th>
-            <th scope="col">Malos</th>
-            <th scope="col">Bodega</th>
-            <th scope="col">Reparación</th>
-            <th scope="col">Salón</th>
-            <th scope="col">Total</th>
-            <th scope="col">Editar</th>
-            
+        <th style='text-align: center;'  scope="col">Planta</th>
+            <th style='text-align: center;' scope="col">Vitola</th>
+            <th style='text-align: center;' scope="col">Figura y tipo</th>
+            <th style='text-align: center;'  scope="col">Buenos</th>
+            <th style='text-align: center;' scope="col">Irregulares</th>
+            <th style='text-align: center;' scope="col">Malos</th>
+            <th style='text-align: center;' scope="col">Bodega</th>
+            <th style='text-align: center;' scope="col">Reparación</th>
+            <th style='text-align: center;' scope="col">Salón</th>
+            <th style='text-align: center;' scope="col">Total</th>
+            <th style='text-align: center;' scope="col">Editar</th>
+            <tr>
          </thead>
          <tbody>
             @foreach($moldes as $molde)

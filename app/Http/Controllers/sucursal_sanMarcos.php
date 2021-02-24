@@ -102,8 +102,9 @@ class sucursal_sanMarcos extends Controller
 
 
 
+
         $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
-        :cantidad,:id_molde,:planta_recibido)',
+        :cantidad,:id_molde,:planta_recibido,:nombre_otra_planta)',
 
         [
             'id_remision' => (int)$request->txt_id_remision,
@@ -112,24 +113,27 @@ class sucursal_sanMarcos extends Controller
              'fivi' => (string)$request->txt_tipo_moldes,
             'cantidad' => (int)$request->txt_cantidad,
             'id_molde' => (int)$request->id_molde,
-            'planta_recibido' => (string)$request->nombre_recibido
+            'planta_recibido' => (string)$request->nombre_recibido,
+            'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
          ]);
 
-         $titulo = "REMISIONES SAN MARCOS";
-         $moldes = \DB::select('call moldes_remision(3)');  
-         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(3)');   
 
-        $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('San Marcos')"); 
+        
+         $titulo = "REMISIONES SAN MARCOS";
+         $moldes = \DB::select('call moldes_remision(3)'); 
+         $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(3)'); 
+        
+         $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('San Marcos')"); 
+         
+     
          return view('remisionessanmarcos')
-         ->with('titulo',$titulo)
-         ->with('moldes',$moldes)
-         ->with('remisionesenviadas',$remisionesenviadas)
+        ->with('titulo',$titulo)
+        ->with('moldes',$moldes)
+        ->with('remisionesenviadas',$remisionesenviadas)
          ->with('remisionesrecibidas',$remisionesrecibidas);
 
 
     }
-
-
 
     public function imprimirdatosparaiso( Request $request)
     {
@@ -192,7 +196,7 @@ class sucursal_sanMarcos extends Controller
     public function store(Request $request)
     {
 
-       $molde = \DB::select('call insertar_moldes_planta3(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
+       $molde = \DB::select('call insertar_moldes_planta3(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:bodega,:reparacion,:salon,:fivi)',
         [ 'id_planta' => (int)$request->id_plantamo,
         'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_plantamo,$request->id_vitola])[0]->id_vitola,
         'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_plantamo,$request->id_figura])[0]->id_figura,
@@ -323,7 +327,7 @@ class sucursal_sanMarcos extends Controller
     {
 
         
-        $molde = \DB::select('call actualizar_moldes(:id_molde, :bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
+        $molde = \DB::select('call actualizar_moldes(:id_molde, :bueno,:irregular,:malo,:bodega,:reparacion,:salon)',
                     [
                         'id_molde' => (int)$request->id_molde,
                         'bueno' => (int)$request->mo_bueno,

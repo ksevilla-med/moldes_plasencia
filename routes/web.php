@@ -128,7 +128,10 @@ Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_g
 Route::post('/remisiones_gualiqueme/a/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'actualizarremision' ])->name('actualizarremision_gualiqueme');
 
 
+///////////////////      OTRAS PLANTAS   //////////////////////////
 
+
+Route::post('/moldes_prestados',[App\Http\Controllers\moldes_prestados::class, 'remisiones' ])->name('remisiones_prestadas');
 
 
 
