@@ -27,15 +27,15 @@ class ActualizarUsuarios extends Migration
         
         BEGIN
                 
-                UPDATE usuarios 
+                UPDATE users 
                 SET 
-                      usuarios.nombre_usuario = pa_nombre, 
-                      usuarios.correo = pa_correo,
-                      usuarios.codigo=pa_codigo,
-                      usuarios.id_planta =  pa_id_planta 
+                users.nombre_usuario = pa_nombre, 
+                users.correo = pa_correo,
+                users.codigo=pa_codigo,
+                users.id_planta =  pa_id_planta 
                       
         
-                WHERE usuarios.id_usuario = pa_id_usuario;
+                WHERE users.id_usuario = pa_id_usuario;
                         
                 END
 

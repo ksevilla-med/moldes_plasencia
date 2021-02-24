@@ -22,8 +22,8 @@ class MostrarUsuarios extends Migration
             
             BEGIN
 
-            SELECT  usuarios.id_usuario, plantas.nombre_planta,  usuarios.nombre_usuario, usuarios.correo,usuarios.codigo
-                               FROM plantas, usuarios WHERE usuarios.id_planta = plantas.id_planta;
+            SELECT  users.id_usuario, plantas.nombre_planta,  users.nombre_usuario, users.correo,users.codigo
+                               FROM plantas, users WHERE users.id_planta = plantas.id_planta;
            
            END
 
