@@ -304,7 +304,7 @@ for (var i = 0; i < data.length; i++) {
 
                                 <div style="display:none;" class="mb-3 col" id="hidden_div">
                                 <label for="txt_otra_fabrica" class="form-label">Otra empresa</label>
-                                <input   class="form-control" type= "text" id="txt_otra_fabrica" name="txt_otra_fabrica" placeholder="Ingresa el nombre" minLength="1" maxLength="10" >
+                                <input   class="form-control" type= "text" id="txt_otra_fabrica" name="txt_otra_fabrica" placeholder="Ingresa el nombre" minLength="1"  >
                                 </div>
 
                                 <div class="mb-3 col">
