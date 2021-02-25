@@ -46,6 +46,9 @@ Route::post('/agregar_figura/{id}',[App\Http\Controllers\FiguraTipoController::c
 
 //PDF
 Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso');
+//  REMISIONES
+
+Route::post('/buscar_remision/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision' ])->name('buscar_remision');
 
 
 ///////////////////      MOROCELI    //////////////////////////

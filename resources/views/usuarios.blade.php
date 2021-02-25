@@ -173,8 +173,9 @@
         <label for="contrasenia" class="form-label">Contraseña</label>
 
         <div class="row"style="margin-left:0px;    margin-right: 0px;">
+        <div class="input-group ">
            <input type="password" name="password" class="form-control " id="contrasenia" placeholder="Ingresa contraseña" required minLength="5" maxLength="50">        
-        <a type="button" onclick="mostrarContrasena()" style="position:absolute;right:20px;margin-top: 7px;">
+        <a type="button"  class="input-group-text" onclick="mostrarContrasena()" >
       
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisible" style="position:absolute;">
   <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -186,6 +187,7 @@
 </svg>
 </a>
         </div>
+        </div>
      
       </div>
 
@@ -194,8 +196,10 @@
         <div class="mb-3 col">
         <label for="confirmacion_contrasenia" class="form-label">Confirmación contraseña</label>
         <div class="row"style="margin-left:0px;    margin-right: 0px;">
+        
+        <div class="input-group ">
         <input type="password" name="confirmacion_contrasenia" class="form-control" id="confirmacion_contrasenia" placeholder="Confirma tu contraseña" required minLength="5" maxLength="50">        
-        <a type="button" onclick="mostrarConfirmacion()" style="position:absolute;right:20px;margin-top: 7px;">
+        <a type="button" onclick="mostrarConfirmacion()"  class="input-group-text">
       
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisibleC" style="position:absolute;">
 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
@@ -208,6 +212,7 @@
 </a>
        
        
+        </div>
         </div>
         </div>
       </div>   

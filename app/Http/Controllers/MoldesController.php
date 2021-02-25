@@ -59,6 +59,28 @@ class MoldesController extends Controller
 
 }
 
+public function buscar_remision( Request $request)
+{
+$titulo = "REMISIONES EL PARAÍSO";
+$moldes = \DB::select('call moldes_remision(1)'); 
+$remisionesenviadas = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+[ 'fecha_inicio' => $request->fecha_inicio,
+  'fecha_fin' => $request->fecha_fin,
+  'id_planta_remision' => $request->id_planta_remision]);
+
+$remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
+
+
+return view('remisionesparaiso')
+->with('titulo',$titulo)
+->with('moldes',$moldes)
+->with('remisionesenviadas',$remisionesenviadas)
+->with('remisionesrecibidas',$remisionesrecibidas);
+
+}
+
+
+
 
     public function insertarremisiones( Request $request)
     {
