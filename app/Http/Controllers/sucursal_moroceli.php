@@ -106,7 +106,7 @@ class sucursal_moroceli extends Controller
      */
     public function store(Request $request)
     {
-        $molde = \DB::select('call insertar_moldes_planta2(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:reparacion,:bodega,:salon,:fivi)',
+        $molde = \DB::select('call insertar_moldes_planta2(:id_planta,:id_vitola,:id_figura,:bueno,:irregular,:malo,:bodega,:reparacion,:salon,:fivi)',
         [ 'id_planta' => (int)$request->id_plantamo,
         'id_vitola' =>  \DB::select('call traer_id_vitola(?,?)', [$request->id_plantamo,$request->id_vitola])[0]->id_vitola,
         'id_figura' => \DB::select('call traer_id_figura(?,?)', [$request->id_plantamo,$request->id_figura])[0]->id_figura,
@@ -237,7 +237,7 @@ class sucursal_moroceli extends Controller
     {
 
         
-        $molde = \DB::select('call actualizar_moldes(:id_molde, :bueno,:irregular,:malo,:reparacion,:bodega,:salon)',
+        $molde = \DB::select('call actualizar_moldes(:id_molde, :bueno,:irregular,:malo,:bodega,:reparacion,:salon)',
                     [
                         'id_molde' => (int)$request->id_molde,
                         'bueno' => (int)$request->mo_bueno,
@@ -283,13 +283,17 @@ class sucursal_moroceli extends Controller
     $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
     
     $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
+    $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
 
 
     return view('remisionesmoroceli')
     ->with('titulo',$titulo)
     ->with('moldes',$moldes)
     ->with('remisionesenviadas',$remisionesenviadas)
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+    ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 }
 
@@ -301,7 +305,11 @@ class sucursal_moroceli extends Controller
         $fecha = $fecha->format('Y-m-d');
         $empresa = "";
 
-        
+        $bodega = \DB::select('call traer_cantidad(:id_planta)',
+    [
+        'id_planta' => (int)$request->id_planta
+    ]);
+
 
         if($request->txt_otra_fabrica != null){
             $empresa = $request->txt_otra_fabrica;
@@ -329,41 +337,57 @@ class sucursal_moroceli extends Controller
 
         return view('remisionesmoroceli')->with('titulo',$titulo)->with('moldes',$moldes)
         ->with('remisionesenviadas',$remisionesenviadas)        
-    ->with('remisionesrecibidas',$remisionesrecibidas);
+    ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
     }
 
 
 
+      
+
     public function actualizarremision(Request $request, $id){ 
 
 
+
+
         $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
-        :cantidad,:id_molde,:planta_recibido)',
+        :cantidad,:id_molde,:planta_recibido,:nombre_otra_planta)',
 
         [
             'id_remision' => (int)$request->txt_id_remision,
             'id_planta' => (int)$request->txt_id_planta,
             'estado' => (string)$request->txt_estado_moldes,
              'fivi' => (string)$request->txt_tipo_moldes,
-            'cantidad' => (int)$request->txt_cantidad,
+            'cantidad' => (int)$request->cantidad,
             'id_molde' => (int)$request->id_molde,
-            'planta_recibido' => (string)$request->nombre_recibido
+            'planta_recibido' => (string)$request->nombre_recibido,
+            'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
          ]);
 
+         $bodega = \DB::select('call traer_cantidad(:id_planta)',
+         [
+             'id_planta' => (int)$request->id_planta
+         ]);
+     
+        
          $titulo = "REMISIONES MOROCELI";
          $moldes = \DB::select('call moldes_remision(2)'); 
          $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(2)'); 
-    
-    $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
+        
+         $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Morocelí')"); 
+         
      
          return view('remisionesmoroceli')
-       ->with('titulo',$titulo)
-       ->with('moldes',$moldes)
-       ->with('remisionesenviadas',$remisionesenviadas)
-       ->with('remisionesrecibidas',$remisionesrecibidas);
+        ->with('titulo',$titulo)
+        ->with('moldes',$moldes)
+        ->with('remisionesenviadas',$remisionesenviadas)
+         ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega);
 
 
     }
+
+    
+    
+
 
 
     public function totales()

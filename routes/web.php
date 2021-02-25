@@ -32,10 +32,6 @@ Route::get('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::cl
 Route::post('/sucursal_elparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'index' ])->name('id_planta');
 Route::post('/sucursal_elparaiso/update/{id}',[App\Http\Controllers\MoldesController::class, 'update' ])->name('actualizar_moldes');
 Route::post('/sucursal_elparaiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'store' ])->name('insertar_moldes');
-Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
-Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
-
-Route::post('/remisiones_paraiso/a/{id}',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 // VITOLA
 Route::post('/agregar_vitola/{id}',[App\Http\Controllers\VitolaController::class, 'store' ])->name('insertar_vitola');
@@ -49,6 +45,14 @@ Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController:
 //  REMISIONES
 
 Route::post('/buscar_remision/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision' ])->name('buscar_remision');
+
+//REMISIONES
+Route::get('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::post('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
+Route::get('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesController::class, 'insertarremisiones' ])->name('insertarremisiones');
+
+Route::post('/remisiones_paraiso/a/{id}',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 
 ///////////////////      MOROCELI    //////////////////////////
@@ -131,7 +135,10 @@ Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_g
 Route::post('/remisiones_gualiqueme/a/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'actualizarremision' ])->name('actualizarremision_gualiqueme');
 
 
+///////////////////      OTRAS PLANTAS   //////////////////////////
 
+
+Route::post('/moldes_prestados',[App\Http\Controllers\moldes_prestados::class, 'remisiones' ])->name('remisiones_prestadas');
 
 
 
