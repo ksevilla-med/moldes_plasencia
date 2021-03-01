@@ -13,7 +13,7 @@ class BuscarRemision extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `mostrar_remisiones_enviadas`');
+        DB::unprepared('DROP procedure if exists `buscar_remision`');
     
         DB::unprepared('
 
