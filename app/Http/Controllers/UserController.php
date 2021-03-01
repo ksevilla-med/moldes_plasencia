@@ -33,7 +33,7 @@ class UserController extends Controller
         
         $titulo = "USUARIOS Y ADMINISTRADORES";
         $sucursales = \DB::select('call mostrar_sucursal'); 
-        $usuarios = \DB::select('call mostrar_usuarios');       
+        $usuarios = \DB::select('call mostrar_usuarios');      
 
         return view('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
     
@@ -44,7 +44,7 @@ class UserController extends Controller
     public function login(Request $request)
     {
 
-        return response()->json($request);
+
         $credentials = $request->only('codigo', 'contrasenia');
         $validator = Validator::make($credentials, 
             [
@@ -54,25 +54,24 @@ class UserController extends Controller
 
             ]);
 
-            if ($validator->fails()){ 
+            if (!$validator->fails()){ 
 
                 try {
                     if (! $token = JWTAuth::attempt($credentials)) {
                         return response()->json([
                             'status' => false,
-                            'message'=> "Invalid Credential"]);
+                            'message'=> "Credencial no valida" ]);
 
                     }
                 } catch (JWTException $e) {
                     return response()->json([
                         'status' => false,
                         'error' => $e ->getmessage(),
-                        'message'=> "Invalid Credential"
-                        
-                        ]);   
+                        'message'=> "Invalid Credential"                        
+                        ]);    
                 }
 
-                return response()->json(compact('token'));
+                return response()->json(JWTAuth::user() );   
 
              } else{
 
@@ -97,8 +96,8 @@ class UserController extends Controller
     // es correcta, arrojando diferentes resultados segun sea el caso.
     public function ingresarUsuario(Request $request){
 
-        $codigo = $request->codigologin;
-        $contrasenia = $request->contrasenialogin;
+        $codigo = $request->codigo;
+        $contrasenia = $request->contrasenia;
 
         //verifico si el numero de cuenta del usuario existe en la base de datos
         if($usuario = DB::table('users')->where('codigo', $codigo)->first()){
@@ -150,14 +149,11 @@ class UserController extends Controller
 
 
         $user = User::create([
-            'codigo' => $request->get('txt_codigo'),
+            'email' => $request->get('txt_codigo'),
             'nombre_usuario' => $request->get('txt_nombre_completo'),
             'correo' => $request->get('txt_correo_electronico'),
             'id_planta' => $request->get('txt_sucursales'),
-            'contrasenia' => bcrypt($request->get('confirmacion_contrasenia')),
-        ]);
-
-        
+            'password' => bcrypt($request->get('confirmacion_contrasenia')),     ]);        
 
 
         $titulo = "USUARIOS Y ADMINISTRADORES";
@@ -191,7 +187,7 @@ class UserController extends Controller
 
                 }
 
-                return response()->json(compact('user'));
+                return response()->json(compact('user'));  
         }
 
 

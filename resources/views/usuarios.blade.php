@@ -27,7 +27,7 @@
         
          @foreach($usuarios as $usuario)
             <tr> 
-                  <td>{{$usuario->codigo}}</td>
+                  <td>{{$usuario->email}}</td>
                   <td>{{$usuario->nombre_usuario}}</td>
                   <td>{{$usuario->correo}}</td>
                   <td>{{$usuario->nombre_planta}}</td>

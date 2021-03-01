@@ -20,7 +20,8 @@ class CreatePlantasTable extends Migration
         });
 
         DB::unprepared('
-        
+            
+        INSERT INTO plantas(plantas.id_planta , plantas.nombre_planta) VALUES("0","Todas Sucursales");
             INSERT INTO plantas(plantas.id_planta , plantas.nombre_planta) VALUES("1","Paraíso Cigar");
             INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("2","Morocelí");
             INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("3","San Marcos");

@@ -51,11 +51,11 @@
   </svg>
 
   <form id = "formulario_login" name = "formulario_login"
- action = "{{Route('autenticacion_usuario',1)}}"  
+ action = "{{Route('logueo')}}"  
  method="POST">
  @csrf
-    <label for="codigologin" class="form-label"  style= "color:#d0b15e"; > Código Empleado</label>
-    <input type="text" class="form-control" id="codigologin" name="codigologin" aria-describedby="emailHelp"placeholder="Ingresa código" required>
+    <label for="codigo" class="form-label"  style= "color:#d0b15e"; > Código Empleado</label>
+    <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp"placeholder="Ingresa código" required>
    
   </div>
   <div class="mb-3">
@@ -77,7 +77,7 @@
 
 
     <div class="input-group ">
-     <input type="password" class="form-control" id="contrasenialogin" name="contrasenialogin" placeholder="Ingresa contraseña" required>
+     <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa contraseña" required>
    
     <a type="button" class="input-group-text"onclick="mostrarContrasena()" >
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" id="iconovisible" style="position:absolute;">

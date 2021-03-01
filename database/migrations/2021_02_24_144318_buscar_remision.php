@@ -13,30 +13,21 @@ class BuscarRemision extends Migration
      */
     public function up()
     {
-        DB::unprepared('DROP procedure if exists `buscar_remision`');
+        DB::unprepared('DROP procedure if exists `mostrar_remisiones_enviadas`');
     
         DB::unprepared('
 
-        CREATE  PROCEDURE `buscar_remision`(
-            IN `pa_fecha_inicio` VARCHAR(50),
-            IN `pa_fecha_fin` VARCHAR(50),
-            IN `pa_id_planta` INT
+        CREATE PROCEDURE `buscar_remision`(
+            IN `pa_fecha_inicio` DATE, 
+            IN `pa_fecha_fin` DATE
         )
-      
+  
         BEGIN
-         if pa_fecha_inicio= "0" && pa_fecha_fin = "0" then 
-                 select *
-                  from remisiones
-                 where  pa_id_planta = remisiones.id_planta;
-                  
-               
-          else
-                select *
-                  from remisiones
-                 where remisiones.fecha between pa_fecha_inicio AND pa_fecha_fin AND pa_id_planta = remisiones.id_planta;
-                 
-            END if;
-                END
+        select *
+          from remisiones
+         where remisiones.fecha between pa_fecha_inicio AND pa_fecha_fin;
+        END
+        
         '); 
     }
 

@@ -36,7 +36,7 @@
             </div>
 
             <ul class="list-unstyled components" style="background:black;">
-            <li><a  class="nav-link" id="moldes" href="/moldesprincipal" >Moldes</a></li>
+            <li><a  class="nav-link" id="moldes" href= "{{Route('moldesprincipal_r'}}" >Moldes</a></li>
             
             
             <li><a class="nav-link" id="usuarios" href="/usuarios">Usuarios</a></li>
@@ -88,7 +88,7 @@
 
          
             <div class=" titulo mr-auto2"  >
-           <span style="margin-left:20px;">Contenido:    <?php echo $titulo?></span> 
+           <span style="margin-left:20px;">Contenido:    <?php echo Auth::user()->nombre_usuario;?></span> 
             </div>
           
 

@@ -1,6 +1,8 @@
 <?php
 
 
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,14 +17,26 @@
 Route::get('/entrada', function () {
     return view('login');
 });
+
+
+Route::post('logueo', [App\Http\Controllers\AuthenticateController::class,'authenticate'])->name('logueo');
+
+
+Route::middleware(['jwt.auth'])->group(function(){
+
 Route::get('/', function () {
     $titulo = "PLASENCIA INVENTARIO MÓVIL";
-    return view('principallogo')->with('titulo',$titulo);
+    return view('principallogo')->with('titulo',$titulo)->name('principlalogo');
 });
-Route::get('/moldesprincipal', function () {
-    $titulo = "SUCURSALES PLASENCIA";
-    return view('moldesprincipal')->with('titulo',$titulo);
-});
+
+
+
+
+
+
+
+
+Route::get('/moldesprincipal/{Authoritation}' ,[App\Http\Controllers\MoldesController::class, 'moldesprincipal' ])->name('moldesprincipal_r');
 
 
 ///////////////////      EL PARAISO    //////////////////////////
@@ -175,13 +189,15 @@ Route::get('/usuarios',[App\Http\Controllers\UserController::class, 'index' ]);
 Route::post('/usuarios',[App\Http\Controllers\UserController::class, 'update' ])->name('actualizar_usuario');
 Route::post('/usuarios/a',[App\Http\Controllers\UserController::class, 'destroy' ])->name('eliminar_usuario');
 Route::post('register/{id}', [App\Http\Controllers\UserController::class,'register'])->name('registrar_usuario');
-Route::post('autenticacion_usuario/{id}', [App\Http\Controllers\UserController::class,'ingresarUsuario'])->name('autenticacion_usuario');
 
 
 
 Route::get('/ayuda', function () {
     $titulo= "Ayuda";
     return view('ayuda')->with('titulo',$titulo);
+});
+
+
 });
 
 Auth::routes();

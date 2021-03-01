@@ -95,7 +95,13 @@ use Carbon\Carbon;
                 ->with('id_planta', $request->id);
      }
 
-            
+
+     public function moldesprincipal()  {
+        $titulo = "SUCURSALES PLASENCIA";
+
+        return Auth::user();
+        // return view('moldesprincipal')->with('Authoritation',Auth::user()->token)->with('titulo',$titulo);
+     }            
 
          public function remisiones( Request $request)  {
 
