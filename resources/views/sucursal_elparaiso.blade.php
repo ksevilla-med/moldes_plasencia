@@ -162,7 +162,7 @@
                             <div class="mb-3 col">
                                 <label for="txt_total" class="form-label">Total</label>
                                 <input class="form-control" id="txt_total" placeholder="Cantidad" name="total" required
-                                    type="number" min="1" max="999999" minLength="1" maxLength="6">
+                                    type="number" min="1" max="999999" minLength="1" maxLength="6" autocomplete="off">
                             </div>
 
                         </div>
@@ -172,17 +172,17 @@
                             <div class="mb-3 col">
                                 <label for="txt_buenos" class="form-label">Buenos</label>
                                 <input class="form-control" id="txt_buenos" name="bueno" placeholder="Cantidad"
-                                    type="number">
+                                    type="number"autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_irregulares" class="form-label">Irregulares</label>
                                 <input class="form-control" id="txt_irregulares" name="irregulares"
-                                    placeholder="Cantidad" type="number">
+                                    placeholder="Cantidad" type="number"autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_malos" class="form-label">Malos</label>
                                 <input class="form-control" id="txt_malos" name="malos" placeholder="Cantidad"
-                                    type="number">
+                                    type="number"autocomplete="off">
                             </div>
 
                         </div>
@@ -193,17 +193,17 @@
                             <div class="mb-3 col">
                                 <label for="txt_salon" class="form-label">Salón</label>
                                 <input class="form-control" id="txt_salon" name="salon" placeholder="Cantidad"
-                                    type="number">
+                                    type="number"autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_bodega" class="form-label">Bodega</label>
                                 <input class="form-control" id="txt_bodega" name="bodega" placeholder="Cantidad"
-                                    type="number">
+                                    type="number"autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_reparacion" class="form-label">Reparación</label>
                                 <input class="form-control" id="txt_reparacion" name="reparacion" placeholder="Cantidad"
-                                    type="number">
+                                    type="number"autocomplete="off">
                                 <input name="id_planta" value='1' hidden />
                                 <input name="fivi" id="fivi" value="" hidden />
 
@@ -250,7 +250,7 @@
                     <div class="mb-3 col">
                         <label for="txt_vitola" class="form-label">Vitola</label>
                         <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola"
-                            maxLength="30">
+                            maxLength="30"autocomplete="off">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -280,14 +280,14 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Figura y tipo</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 col">
                         <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
                         <input class="form-control" id="figura" type="text" name="figura" placeholder="Cantidad"
-                            maxLength="30">
+                            maxLength="30" autocomplete="off">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -341,39 +341,39 @@
                             <div class="mb-3 col">
                                 <label for="txt_total" class="form-label">Total</label>
                                 <input class="form-control" id="mo_total" placeholder="Cantidad" name="mo_total"
-                                    required type="number" min="1" max="999999" minLength="1" maxLength="6">
+                                    required type="number" min="1" max="999999" minLength="1" maxLength="6" autocomplete="off">
                             </div>
 
                             <div class="mb-3 col">
                                 <label for="txt_buenos" class="form-label">Buenos</label>
                                 <input class="form-control" id="mo_bueno" name="mo_bueno" placeholder="Cantidad"
-                                    type="number" value="">
+                                    type="number" value=""autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_irregulares" class="form-label">Irregulares</label>
                                 <input class="form-control" id="mo_irregular" name="mo_irregular" placeholder="Cantidad"
-                                    type="number">
+                                    type="number" autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_malos" class="form-label">Malos</label>
                                 <input class="form-control" id="mo_malo" name="mo_malo" placeholder="Cantidad"
-                                    type="number">
+                                    type="number" autocomplete="off">
                             </div>
 
                             <div class="mb-3 col">
                                 <label for="txt_salon" class="form-label">Bodega</label>
                                 <input class="form-control" id="mo_bodega" name="mo_bodega" placeholder="Cantidad"
-                                    type="number">
+                                    type="number" autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_bodega" class="form-label">Reparación</label>
                                 <input class="form-control" id="mo_reparacion" name="mo_reparacion"
-                                    placeholder="Cantidad" type="number">
+                                    placeholder="Cantidad" type="number"autocomplete="off">
                             </div>
                             <div class="mb-3 col">
                                 <label for="txt_reparacion" class="form-label">Salón</label>
                                 <input class="form-control" id="mo_salon" name="mo_salon" placeholder="Cantidad"
-                                    type="number">
+                                    type="number" autocomplete="off">
 
                                 <input name="id_molde" id="id_molde" value=" " hidden />
                             </div>
