@@ -143,15 +143,6 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
 <form action="{{Route('insertar_moldes_moroceli',2)}}" method="POST" id="FormMoldes" name="FormMoldes">
@@ -273,10 +264,6 @@
 
 </form>
 <!-- FIN DEL MODAL NUEVO MOLDE -->
-
-
-
-
 
 <!-- INICIO MODAL VITOLA -->
 <form action="{{Route('insertar_vitola_moroceli',2)}}" method="POST" name="formvitola">
