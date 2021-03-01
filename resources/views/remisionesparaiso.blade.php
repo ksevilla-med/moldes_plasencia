@@ -29,10 +29,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav nav ">
           <li class="nav-item active">
-          <a style="background:#b38d1d;" class="nav-link  mr-sm-2 download"  onclick="enviadas()" id="a_enviadas"  >Enviadas</a>
+          <a style="background:#b38d1d;" class="nav-link  mr-sm-2 download"  onclick="enviadas()"  id="a_enviadas"  >Enviadas</a>
           </li>
           <li class="nav-item">
-          <a style="background:#b39f64;" class="nav-link mr-sm-2  download" onclick="recibidas()" id="a_recibidas" >Recibidas</a>
+          <a style="background:#b39f64;" class="nav-link mr-sm-2  download" onclick="recibidas()"  id="a_recibidas" >Recibidas</a>
           </li>  
           <li class="nav-item">
           <a style="background:#111;" class="nav-link download " data-toggle="modal" data-target="#modal_enviarmoldes_paraiso"  >Enviar Moldes</a>
@@ -42,62 +42,15 @@
   </div>
 </nav>
 
-<script type="text/javascript">   
-      function enviadas(){  
-      var tablaenviadas = document.getElementById("tablaenviadas"); 
-      var tablarecibidas = document.getElementById("tablarecibidas"); 
-      var a_enviadas = document.getElementById("a_enviadas"); 
-      var a_recibidas = document.getElementById("a_recibidas"); 
-     
-      tablaenviadas.style.display = 'inline-table'; 
-      tablarecibidas.style.display = 'none'; 
-      a_enviadas.style.background = '#b38d1d'; 
-      a_recibidas.style.background = '#b39f64';       
-      }
-      function recibidas(){  
-      var tablaenviadas = document.getElementById("tablaenviadas"); 
-      var tablarecibidas = document.getElementById("tablarecibidas"); 
-      var a_enviadas = document.getElementById("a_enviadas"); 
-      var a_recibidas = document.getElementById("a_recibidas");        
-      tablaenviadas.style.display = 'none'; 
-      tablarecibidas.style.display = 'inline-table';  
-      a_enviadas.style.background = '#b39f64'; 
-      a_recibidas.style.background = '#b38d1d';        
-      }    
- </script>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+       
 <div class="col form-inline">
-  
-  <form action=  "{{Route('buscar_remision',1)}}" method= "POST" class="form-inline">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <form action= "{{Route('buscar_remision',1)}}"
+                method= "POST" class="form-inline" name= "formulario_enviadas" id= "formulario_enviadas">
       @csrf
       <input  type="text"  name="id_planta_remision" value="1"hidden >
   
@@ -109,20 +62,18 @@
   </div>
 
       <button class="btn-info" type="submit">
-        <span>
+      <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
       </svg>
       </span>
       </button>
+
+      
   </form>
 
-  <form action=  "{{Route('imprimirdatosparaiso',1)}}" method= "POST" class=" form-inline">
 
-
-
-
-
+  <form action="{{Route('imprimirdatosparaiso',1)}}" method= "POST" class=" form-inline">
 
   @csrf 
   <input name="vitolaimprimir" id="vitolaimprimir" hidden >
@@ -136,6 +87,8 @@
 </svg>
 </span>
   </button>
+
+  
   </form> 
 
   <script type="text/javascript">
@@ -153,7 +106,42 @@ function obtenerFechaFin(e){
 
 
 
- 
+<script type="text/javascript">   
+      function enviadas(){  
+      var tablaenviadas = document.getElementById("tablaenviadas"); 
+      var tablarecibidas = document.getElementById("tablarecibidas"); 
+      var a_enviadas = document.getElementById("a_enviadas"); 
+      var a_recibidas = document.getElementById("a_recibidas"); 
+      
+       
+     
+      tablaenviadas.style.display = 'inline-table'; 
+      tablarecibidas.style.display = 'none'; 
+      a_enviadas.style.background = '#b38d1d'; 
+      a_recibidas.style.background = '#b39f64'; 
+      document.formulario_enviadas.action = '/buscar_remision/1'
+
+  
+     
+    
+
+      }
+      function recibidas(){  
+      var tablaenviadas = document.getElementById("tablaenviadas"); 
+      var tablarecibidas = document.getElementById("tablarecibidas"); 
+      var a_enviadas = document.getElementById("a_enviadas"); 
+      var a_recibidas = document.getElementById("a_recibidas");
+      var theForm = document.forms['formulario_enviadas'];
+
+      tablaenviadas.style.display = 'none'; 
+      tablarecibidas.style.display = 'inline-table';  
+      a_enviadas.style.background = '#b39f64'; 
+      a_recibidas.style.background = '#b38d1d';  
+
+      document.formulario_enviadas.action = '/buscar_remision_re/1'
+     
+      }    
+ </script>
 
 <table class="table table-striped table-secondary table-bordered border-primary " id="tablaenviadas">
         <thead class= "table-dark">
@@ -167,6 +155,9 @@ function obtenerFechaFin(e){
          <tbody>
         
          @foreach($remisionesenviadas as $remision)
+
+
+      
             <tr> 
                 <td>{{$remision->fecha}}</td>
                 <td>{{$remision->nombre_fabrica}}</td>
@@ -498,8 +489,14 @@ if(cantidad_input > cantidad){
    }
 
 </script>
-
-
+<script>
+var inicio = '<?php echo $abrir; ?>'; 
+if(inicio==="3"){
+enviadas();
+} else{
+  recibidas();
+}
+</script>
 
 <!-- FIN DEL MODAL AGREGAR MOLDE-->
 

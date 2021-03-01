@@ -44,7 +44,12 @@ Route::post('/agregar_figura/{id}',[App\Http\Controllers\FiguraTipoController::c
 Route::post('/imprimirtablaparaiso/{id}',[App\Http\Controllers\MoldesController::class, 'imprimirdatosparaiso' ])->name('imprimirdatosparaiso');
 //  REMISIONES
 
+Route::get('/buscar_remision/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision' ])->name('buscar_remision');
 Route::post('/buscar_remision/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision' ])->name('buscar_remision');
+
+
+Route::get('/buscar_remision_re/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision_recibida' ])->name('buscar_remision_re');
+Route::post('/buscar_remision_re/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision_recibida' ])->name('buscar_remision_re');
 
 //REMISIONES
 Route::get('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
@@ -81,6 +86,12 @@ Route::post('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_mor
 
 Route::post('/remisiones_moroceli/a/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'actualizarremision' ])->name('actualizarremision_moroceli');
 
+Route::get('/buscar_remision_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision' ])->name('buscar_remision_moroceli');
+Route::post('/buscar_remision_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision' ])->name('buscar_remision_moroceli');
+
+
+Route::get('/buscar_remision_re_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_moroceli');
+Route::post('/buscar_remision_re_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_moroceli');
 
 
 ///////////////////      SAN MARCOS    //////////////////////////
@@ -107,6 +118,12 @@ Route::get('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_san
 Route::post('/remisiones_sanMarcos/crear/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertarremisiones' ])->name('insertarremisiones_sanMarcos');
 
 Route::post('/remisiones_sanMarcos/ac/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'actualizarremision' ])->name('actualizarremision_sanMarcos');
+Route::get('/buscar_remision_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'buscar_remision' ])->name('buscar_remision_sanMarcos');
+Route::post('/buscar_remision_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'buscar_remision' ])->name('buscar_remision_sanMarcos');
+
+
+Route::get('/buscar_remision_re_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_sanMarcos');
+Route::post('/buscar_remision_re_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_sanMarcos');
 
 
 ///////////////////      GUALIQUEME    //////////////////////////
@@ -133,6 +150,12 @@ Route::post('/remisiones_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqu
 Route::get('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
 Route::post('/remisiones_gualiqueme/crear/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertarremisiones' ])->name('insertarremisiones_gualiqueme');
 Route::post('/remisiones_gualiqueme/a/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'actualizarremision' ])->name('actualizarremision_gualiqueme');
+Route::get('/buscar_remision_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision' ])->name('buscar_remision_gualiqueme');
+Route::post('/buscar_remision_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision' ])->name('buscar_remision_gualiqueme');
+
+
+Route::get('/buscar_remision_re_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_gualiqueme');
+Route::post('/buscar_remision_re_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_gualiqueme');
 
 
 ///////////////////      OTRAS PLANTAS   //////////////////////////

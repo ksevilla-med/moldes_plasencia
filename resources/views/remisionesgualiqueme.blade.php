@@ -9,6 +9,16 @@
 <script src= "{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}"></script>
 <link rel="stylesheet" href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
 
+<!-- para saber la fecha -->
+<script src="https://momentjs.com/downloads/moment.js"></script>
+
+
+
+
+<head>
+
+<body>
+
 <!-- INICIO DEL TABLA REMISIONES PARAISO -->
 
 
@@ -46,7 +56,9 @@
       tablaenviadas.style.display = 'inline-table'; 
       tablarecibidas.style.display = 'none'; 
       a_enviadas.style.background = '#b38d1d'; 
-      a_recibidas.style.background = '#b39f64';       
+      a_recibidas.style.background = '#b39f64';   
+      
+      document.formulario_enviadas.action = '/buscar_remision_gualiqueme/4'    
       }
 
 
@@ -54,13 +66,78 @@
       var tablaenviadas = document.getElementById("tablaenviadas"); 
       var tablarecibidas = document.getElementById("tablarecibidas"); 
       var a_enviadas = document.getElementById("a_enviadas"); 
-      var a_recibidas = document.getElementById("a_recibidas");        
+      var a_recibidas = document.getElementById("a_recibidas");    
+
       tablaenviadas.style.display = 'none'; 
       tablarecibidas.style.display = 'inline-table';  
       a_enviadas.style.background = '#b39f64'; 
       a_recibidas.style.background = '#b38d1d';        
+      document.formulario_enviadas.action = '/buscar_remision_re_gualiqueme/4'
       }    
  </script>
+
+
+
+
+
+
+<div class="col form-inline">
+  
+  <form action=  "{{Route('buscar_remision_gualiqueme',4)}}" method= "POST" class="form-inline" name= "formulario_enviadas" id= "formulario_enviadas">
+      @csrf
+      <input  type="text"  name="id_planta_remision" value="4"hidden >
+  
+     <div class="input-group ">
+    <span class="input-group-text">De</span>
+   <input  type="date" value="" name="fecha_inicio" id="fecha_inicio" class="form-control"  placeholder="Fecha inicio" onchange="obtenerFechaInicio(this)" >
+   <span class="input-group-text">hasta</span>
+  <input  type="date" value=""  name="fecha_fin"  id="fecha_fin" class="form-control mr-sm-2"  placeholder="Fecha final" onchange="obtenerFechaFin(this)" >
+  </div>
+
+      <button class="btn-info" type="submit">
+        <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+      </svg>
+      </span>
+      </button>
+  </form>
+
+  <form action=  "{{Route('imprimirdatosparaiso',4)}}" method= "POST" class=" form-inline">
+
+
+
+  @csrf 
+  <input name="vitolaimprimir" id="vitolaimprimir" hidden >
+<input name="figuraimprimir"  id="figurabuscar" hidden >
+
+  <button type="submit" class=" btn-info float-right "  style="margin-left: 5px; margin-bottom: 0px;">
+      <span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16">
+  <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+  <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+</svg>
+</span>
+  </button>
+  </form> 
+
+  <script type="text/javascript">
+  function obtenerFechaInicio(e){
+  var fecha = moment(e.value);
+  console.log("Fecha original:" + e.value);
+}
+
+function obtenerFechaFin(e){
+  var fecha = moment(e.value);
+  console.log("Fecha original:" + e.value);
+}
+
+</script>
+
+
+
+
+
 
 <table class="table table-striped table-secondary table-bordered border-primary " id="tablaenviadas">
         <thead class= "table-dark">
@@ -412,5 +489,17 @@ if(cantidad_input > cantidad){
 
 
 <!-- FIN DEL MODAL AGREGAR MOLDE-->
+
+
+<script>
+var inicio = '<?php echo $abrir; ?>'; 
+if(inicio==="3"){
+enviadas();
+} else{
+  recibidas();
+}
+</script>
+<!-- Libreria picker -->
+<script src="@@path/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
 
 @endsection

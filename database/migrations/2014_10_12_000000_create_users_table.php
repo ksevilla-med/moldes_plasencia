@@ -21,8 +21,7 @@ class CreateUsersTable extends Migration
             $table->char('id_planta');
             $table->longText('contrasenia');
             $table->rememberToken();
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');           
+            $table->timestamps();          
         });
 
     }
