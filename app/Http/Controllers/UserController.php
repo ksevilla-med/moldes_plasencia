@@ -15,6 +15,7 @@ use DB;
 use App\Http\Requests\RegisterAuthRequest;
 use Illuminate\Support\Facades\Auth;
 use Mail;
+use View;
 
 
 
@@ -240,6 +241,41 @@ class UserController extends Controller
         $usuarios = \DB::select('call mostrar_usuarios');   
         
         return REDIRECT('usuarios')->with('sucursales',$sucursales)->with('titulo',$titulo)->with('usuarios',$usuarios);
+    }
+
+
+
+    public function obtenerUsuarioConCorreo(Request $request){
+
+        $empleado = $request->txt_codigocorreo;
+        $codigocorreo = DB::table('users')
+            ->select('id_usuario','nombre_usuario','correo','email')
+            ->where('email', $empleado)
+            ->first(); 
+
+            $id_usuario= $codigocorreo->id_usuario; 
+            $email= $codigocorreo->email;  
+            $nombre_usuario= $codigocorreo->nombre_usuario; 
+            $correoenviar= $codigocorreo->correo;  
+
+            
+            $subject = "Recuperación de contraseña";   
+    
+            $data = ['link' => 'http://127.0.0.1:8000/recuperarcontrasenia/'.$id_usuario];
+    
+            Mail::send('email', $data, function($msj) use($subject,$correoenviar){
+                $msj->from("melvindavidsevillamedina@gmail.com","Plasencia Inventario Móvil");
+                $msj->subject($subject);
+                $msj->to($correoenviar);           
+            });  
+            
+    }
+
+    public function recuperarcontrasenia(Request $request){
+
+     
+        return view('recuperarcontrasenia');
+            
     }
 
 

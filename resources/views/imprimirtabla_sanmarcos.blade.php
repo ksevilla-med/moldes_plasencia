@@ -1,4 +1,5 @@
 
+
 <title>Reporte Inventario De Moldes <?php echo($fecha);?></title>
 
  

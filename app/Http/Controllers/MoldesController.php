@@ -24,6 +24,9 @@ use Carbon\Carbon;
                 $titulo = "INVENTARIO DE MOLDES SUCURSAL EL PARAÍSO";
                 $vitolaB = $request->vitolabuscar;
                 $figuraB = $request->figurabuscar;
+
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
                 
                 $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
                 [ 'vitola' => (string)$request->vitolabuscar,
@@ -36,7 +39,7 @@ use Carbon\Carbon;
                 $id_planta = [$request->id];
 
                 return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-                ->with('id_planta', $id_planta)->with('titulo',$titulo)->with('vitolaB',$vitolaB)->with('figuraB',$figuraB);
+                ->with('id_planta', $id_planta)->with('titulo',$titulo)->with('vitolaB',$vitolaB)->with('figuraB',$figuraB) ->with('fechai',$fechai)->with('fechaf',$fechaf);
          }
  
 
@@ -102,6 +105,8 @@ use Carbon\Carbon;
                 $titulo = "REMISIONES EL PARAÍSO";
                 $moldes = \DB::select('call moldes_remision(1)'); 
                 $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(1)'); 
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
                 
                 $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
                 
@@ -113,7 +118,8 @@ use Carbon\Carbon;
                 $abrir ="3";
 
                 return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
+                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
+                ->with('fechai',$fechai)->with('fechaf',$fechaf);
          }
 
 
@@ -124,6 +130,8 @@ use Carbon\Carbon;
                 $fecha =Carbon::now();
                 $fecha = $fecha->format('Y-m-d');
                 $empresa = "";
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 if($request->txt_otra_fabrica != null){
                     $empresa = $request->txt_otra_fabrica;
@@ -158,7 +166,8 @@ use Carbon\Carbon;
                 $abrir = "3";
 
                 return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-                ->with('remisionesenviadas',$remisionesenviadas)      ->with('remisionesrecibidas',$remisionesrecibidas) ->with('bodega',$bodega)->with('abrir', $abrir);
+                ->with('remisionesenviadas',$remisionesenviadas)      ->with('remisionesrecibidas',$remisionesrecibidas)
+                 ->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
      }
 
 
@@ -179,6 +188,8 @@ use Carbon\Carbon;
                     'planta_recibido' => (string)$request->nombre_recibido,
                     'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
                 ]);
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 $bodega = \DB::select('call traer_cantidad(:id_planta)',
                 [
@@ -195,7 +206,7 @@ use Carbon\Carbon;
                 $abrir = "3";
 
                 return view('remisionesparaiso') ->with('titulo',$titulo) ->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas)
-                ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
+                ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
         }
 
 
@@ -207,7 +218,11 @@ use Carbon\Carbon;
                 $bodega = \DB::select('call traer_cantidad(:id_planta)',
                 [
                     'id_planta' => (int)$request->id_planta
+
                 ]);
+
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 if ($request->fecha_inicio === null){
                     $incio = "0";
@@ -233,13 +248,16 @@ use Carbon\Carbon;
                 $abrir = "3";
 
                 return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
+                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
+                ->with('fechai',$fechai)->with('fechaf',$fechaf);
         }
 
 
         public function buscar_remision_recibida( Request $request) {
 
                 $titulo = "REMISIONES EL PARAÍSO";
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 $moldes = \DB::select('call moldes_remision(1)'); 
 
@@ -270,11 +288,10 @@ use Carbon\Carbon;
                 $abrir = "2";
 
                 return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
-                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
-         }
+                ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
 
 
-
+            }
 
         public function imprimirdatosparaiso( Request $request){
                 
@@ -285,6 +302,7 @@ use Carbon\Carbon;
                 [ 'vitola' => (string)$request->vitolaimprimir,
                 'nombre_figura' => (string)$request->figuraimprimir
                 ]);
+                
                     
                 $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
@@ -298,6 +316,31 @@ use Carbon\Carbon;
                 return $pdf->stream('nombre.pdf');
 
          }
+
+         public function imprimirdatototal( Request $request){
+                
+
+
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+
+            $titulo = "SUMATORIA TOTAL DE LOS MOLDES PLASENCIA";
+            
+
+
+            $moldes = \DB::select('call reporte_todas_sucursales()');
+
+           
+            $vista = view('imprimirtabla_todassucursales')->with('titulo',$titulo)->with('fecha', $fecha)
+            ->with('moldes',$moldes)->with('fecha', $fecha);
+
+         
+            $pdf =  \PDF::loadHTML($vista);
+            return $pdf->stream('nombre.pdf');
+
+     }
+
+
 
 
         public function totales() {
@@ -316,8 +359,80 @@ use Carbon\Carbon;
             
          }
 
-
+         public function imprimir_remision_paraiso_enviadas( Request $request){
+                
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+        
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+            $titulo = "REMISIONES A OTRAS EMPRESAS";
+           
+            if ($request->fechainicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fechainicio;
+           }
+        
+           if ($request->fechafin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fechafin;
+           }
+        
+           //$moldes = \DB::select('call mostrar_remisiones_otras_empresas_index');  
+        
+           $moldes = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+           [ 'fecha_inicio' => $incio,
+           'fecha_fin' => $fin,
+           'id_planta_remision' => $request->id_planta_re]);
+        
+            $vista = view('imprimir_remisiones_paraiso_enviadas')->with('titulo',$titulo)
+            ->with('moldes', $moldes)->with('fecha', $fecha)  ->with('fechai',$fechai)->with('fechaf',$fechaf);
+        
+            $pdf =  \PDF::loadHTML($vista);
+            return $pdf->stream('nombre.pdf');
+        
+        }
          
+
+        public function imprimir_remision_paraiso_recibidas( Request $request){
+                
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+        
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+            $titulo = "REMISIONES A OTRAS EMPRESAS";
+           
+            if ($request->fechainicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fechainicio;
+           }
+        
+           if ($request->fechafin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fechafin;
+           }
+        
+           //$moldes = \DB::select('call mostrar_remisiones_otras_empresas_index');  
+        
+           $moldes = \DB::select('call buscar_remision_recibidas(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+           [ 'fecha_inicio' => $incio,
+           'fecha_fin' => $fin,
+           'id_planta_remision' => $request->nombre_fa]);
+        
+          
+            $vista = view('imprimir_remisiones_paraiso_recibidas')->with('titulo',$titulo)
+            ->with('moldes', $moldes)->with('fecha', $fecha)->with('fechai',$fechai)->with('fechaf',$fechaf);
+        
+            
+            $pdf =  \PDF::loadHTML($vista);
+            return $pdf->stream('nombre.pdf');
+        
+        }
 
 
          public function index_vitola(Request $request)

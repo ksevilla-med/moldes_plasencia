@@ -5,8 +5,48 @@
 @section('content')
 
 
+<div class="row">
 
-<table class="table table-striped table-secondary table-bordered border-primary ">
+    <div class="col " style="text-align: left">
+
+
+<div>
+
+        <form action="{{Route('imprimirdatostotalmoldes')}}" method="POST" style="text-align: left">
+
+
+
+          
+            <button type="submit" class=" btn-info float-left " >
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="20" fill="currentColor" class="bi bi-printer"
+                      viewBox="0 0 16 16"  style="margin-right: 5px; margin-bottom: 0px;">
+                    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z" />
+                    <path
+                        d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z" />
+                </svg>
+            </button>
+            @csrf
+        </form>
+      
+        </div>
+      </div>
+
+      </div>  
+
+      <div class="row">
+      
+    <div class="col " style="text-align: left">
+
+    <h6></h6>
+    </div> 
+
+      </div>  
+ 
+<div class="row">    
+      <div class="col ">
+<table class="table table-striped table-secondary table-bordered border-primary " 
+>
         <thead class= "table-dark">
         <tr>
             
@@ -111,6 +151,27 @@
           <tbody>
     </table>
 
+    </div>
+    </div>
+    </div>
+
+    
+<!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
+<script type="text/javascript">
+            function copiar(vitolabuscar, fivi) {
+                var fivi = document.getElementById(vitolabuscar).value;
+                document.getElementById(fivi).value = vitolabuscar;
+            }
+
+        </script> <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
 
 
+<script type="text/javascript">
+            document.getElementById("vitolabuscar").addEventListener('keyup', autoCompleteNew);
+
+            function autoCompleteNew(e) {
+                var value = $(this).val();
+                $("#vitolaimprimir").val(value.replace(/\s/g, ''));
+            }
+        </script>
 @endsection

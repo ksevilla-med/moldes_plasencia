@@ -60,7 +60,7 @@
                 <div class="card border-dark mb-3" style="width: 100%;">
                 <img src="plasencianegro.png" class="card-img-top" alt="Otras Empresas" style=" height:10rem; -webkit-filter: brightness(50%);filter: brightness(50%);">
                 <div class="card-body">
-                <form action=  "{{Route('remisiones_prestadas')}}" method= "POST">
+                <form action=  "{{Route('remisiones_prestadas_otras')}}" method= "POST">
                 @csrf
                 <button type="submit"  class="btn-info" style="width:100%;" >Plasencia <br> prestados</button> 
                 </form> 

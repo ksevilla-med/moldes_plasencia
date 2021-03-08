@@ -57,10 +57,10 @@
 
                 <div class="input-group ">
                     <span class="input-group-text">De</span>
-                    <input type="date" value="" name="fecha_inicio" id="fecha_inicio" class="form-control"
+                    <input type="date" value=""  onKeyDown="copiar('fecha_inicio','fechainicio');"name="fecha_inicio" id="fecha_inicio"   style="width:150px;" class="form-control"
                         placeholder="Fecha inicio" onchange="obtenerFechaInicio(this)">
                     <span class="input-group-text">hasta</span>
-                    <input type="date" value="" name="fecha_fin" id="fecha_fin" class="form-control mr-sm-2"
+                    <input type="date" value=""   onKeyDown="copiar('fecha_fin','fechafin');"name="fecha_fin" id="fecha_fin" style="width:150px;" class="form-control mr-sm-2"
                         placeholder="Fecha final" onchange="obtenerFechaFin(this)">
                 </div>
 
@@ -78,11 +78,11 @@
             </form>
 
 
-            <form action="{{Route('imprimirdatosparaiso',1)}}" method="POST" class=" form-inline">
+            <form action="" method="POST"  name = "formulario_imprimir"  id = "formulario_imprimir " class=" form-inline">
 
-                @csrf
-                <input name="vitolaimprimir" id="vitolaimprimir" hidden>
-                <input name="figuraimprimir" id="figurabuscar" hidden>
+              @csrf
+                <input name="fechainicio" id="fechainicio" hidden value={{$fechai}} >
+            <input name="fechafin" id="fechafin" hidden value={{$fechaf}} >
 
                 <button type="submit" class=" btn-info float-right " style="margin-left: 5px; margin-bottom: 0px;">
                     <span>
@@ -94,6 +94,11 @@
                         </svg>
                     </span>
                 </button>
+
+                <input type="text" name="id_planta_re" id = "id_planta_re" value="1" hidden>
+                
+                <input type="text" name="nombre_fa" id = "nombre_fa" value="Paraíso Cigar" hidden>
+              
 
 
             </form>
@@ -119,17 +124,15 @@
                     var a_enviadas = document.getElementById("a_enviadas");
                     var a_recibidas = document.getElementById("a_recibidas");
 
-
-
                     tablaenviadas.style.display = 'inline-table';
                     tablarecibidas.style.display = 'none';
                     a_enviadas.style.background = '#b38d1d';
                     a_recibidas.style.background = '#b39f64';
+
                     document.formulario_enviadas.action = '/buscar_remision/1'
-
-
-
-
+                    document.formulario_imprimir.action = '/buscar_remision_imprimir_enviadas'           
+                   
+                    alert( document.id_planta_re.value);
 
                 }
 
@@ -146,7 +149,8 @@
                     a_recibidas.style.background = '#b38d1d';
 
                     document.formulario_enviadas.action = '/buscar_remision_re/1'
-
+                    document.formulario_imprimir.action = '/buscar_remision_imprimir_recibidas'
+                    alert( document.id_planta_re.value );
                 }
             </script>
 
@@ -160,10 +164,7 @@
                         <th style='text-align: center;' scope="col">Cantidad</th>
                 </thead>
                 <tbody>
-
                     @foreach($remisionesenviadas as $remision)
-
-
 
                     <tr>
                         <td>{{$remision->fecha}}</td>
@@ -171,18 +172,13 @@
                         <td>{{$remision->estado_moldes}}</td>
                         <td>{{$remision->tipo_moldes}}</td>
                         <td>{{$remision->cantidad}}</td>
-
                     </tr>
 
                     @endforeach
 
-
                 <tbody>
             </table>
             <!-- FIN DEL TABLA REMISIONES PARAISO -->
-
-
-
 
             <table class="table table-striped table-secondary table-bordered border-primary " id="tablarecibidas"
                 style="display:none;">
@@ -198,7 +194,6 @@
                 <tbody>
 
                     @foreach($remisionesrecibidas as $remision)
-
 
                     <?php if ($remision->chequear == 0): ?>
 
@@ -510,8 +505,10 @@
                 var inicio = '<?php echo $abrir; ?>';
                 if (inicio === "3") {
                     enviadas();
+                   
                 } else {
                     recibidas();
+                   
                 }
             </script>
 

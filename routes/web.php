@@ -50,6 +50,8 @@ Route::post('/buscar_remision/{id}',[App\Http\Controllers\MoldesController::clas
 
 Route::get('/buscar_remision_re/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision_recibida' ])->name('buscar_remision_re');
 Route::post('/buscar_remision_re/{id}',[App\Http\Controllers\MoldesController::class, 'buscar_remision_recibida' ])->name('buscar_remision_re');
+Route::post('/buscar_remision_imprimir_enviadas',[App\Http\Controllers\MoldesController::class, 'imprimir_remision_paraiso_enviadas' ])->name('imprimir_remision_paraiso_enviadas');
+Route::post('/buscar_remision_imprimir_recibidas',[App\Http\Controllers\MoldesController::class, 'imprimir_remision_paraiso_recibidas' ])->name('imprimir_remision_paraiso_recibidas');
 
 //REMISIONES
 Route::get('/remisiones_paraiso/{id}',[App\Http\Controllers\MoldesController::class, 'remisiones' ])->name('remisiones');
@@ -160,8 +162,17 @@ Route::post('/buscar_remision_re_gualiqueme/{id}',[App\Http\Controllers\sucursal
 
 ///////////////////      OTRAS PLANTAS   //////////////////////////
 
-
+Route::get('/moldes_prestados',[App\Http\Controllers\moldes_prestados::class, 'remisiones' ])->name('remisiones_prestadas');
 Route::post('/moldes_prestados',[App\Http\Controllers\moldes_prestados::class, 'remisiones' ])->name('remisiones_prestadas');
+
+
+Route::get('/moldes_prestados_otrasempresas',[App\Http\Controllers\moldes_prestados::class, 'remisiones_index' ])->name('remisiones_prestadas_otras');
+Route::post('/moldes_prestados_otrasempresas',[App\Http\Controllers\moldes_prestados::class, 'remisiones_index' ])->name('remisiones_prestadas_otras');
+
+Route::get('/moldes_prestados_fecha',[App\Http\Controllers\moldes_prestados::class, 'buscar_prestadas' ])->name('remisiones_prestadas_fecha');
+Route::post('/moldes_prestados_fecha',[App\Http\Controllers\moldes_prestados::class, 'buscar_prestadas' ])->name('remisiones_prestadas_fecha');
+Route::post('/moldes_prestados_imprimir',[App\Http\Controllers\moldes_prestados::class, 'imprimirdatos_otras_empresas' ])->name('remisiones_prestadas_impresion');
+
 
 
 
@@ -169,6 +180,9 @@ Route::post('/moldes_prestados',[App\Http\Controllers\moldes_prestados::class, '
 ///////////////////      TOTAL PLANTAS    //////////////////////////
 Route::get('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
 Route::post('/moldes_totales',[App\Http\Controllers\MoldesController::class, 'totales' ])->name('totales_moldes');
+Route::post('/imprimirtotalmoldes',[App\Http\Controllers\MoldesController::class, 'imprimirdatototal' ])->name('imprimirdatostotalmoldes');
+
+
 
 //USUARIO
 Route::get('/usuarios',[App\Http\Controllers\UserController::class, 'index' ]);
@@ -176,6 +190,8 @@ Route::post('/usuarios',[App\Http\Controllers\UserController::class, 'update' ])
 Route::post('/usuarios/a',[App\Http\Controllers\UserController::class, 'destroy' ])->name('eliminar_usuario');
 Route::post('register/{id}', [App\Http\Controllers\UserController::class,'register'])->name('registrar_usuario');
 Route::post('autenticacion_usuario/{id}', [App\Http\Controllers\UserController::class,'ingresarUsuario'])->name('autenticacion_usuario');
+Route::post('obtenerUsuarioConCorreo', [App\Http\Controllers\UserController::class,'obtenerUsuarioConCorreo'])->name('obtenerUsuarioConCorreo');
+Route::post('recuperarcontrasenia/{id}', [App\Http\Controllers\UserController::class,'recuperarcontrasenia'])->name('recuperarcontrasenia');
 
 
 

@@ -15,9 +15,9 @@
         <form action="{{Route('id_planta',1)}}" method="POST" class="form-inline">
             @csrf
             <input value="" onKeyDown="copiar('vitolabuscar','vitolaimprimir');" name="vitolabuscar" id="vitolabuscar"
-                class="form-control mr-sm-2" placeholder="Vitola" style="width:150px;">
+                class="form-control mr-sm-2" placeholder="Vitola" style="width:150px;" autocomplete="off">
             <input value="" onKeyDown="copiar2('figurabuscar','figuraimprimir');" name="figurabuscar" id="figurabuscar"
-                class="form-control mr-sm-2" placeholder="Figura y tipo" style="width:150px;">
+                class="form-control mr-sm-2" placeholder="Figura y tipo" style="width:150px;" autocomplete="off">
             <button class="btn-info" type="submit">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -32,8 +32,8 @@
 
         <form action="{{Route('imprimirdatosparaiso',1)}}" method="POST" class=" form-inline">
             @csrf
-            <input name="vitolaimprimir" id="vitolaimprimir" hidden value={{$vitolaB}}>
-            <input name="figuraimprimir" id="figurabuscar" hidden value={{$figuraB}}>
+            <input name="vitolaimprimir" id="vitolaimprimir" hidden value={{$vitolaB}} autocomplete="off">
+            <input name="figuraimprimir" id="figurabuscar" hidden value={{$figuraB}} autocomplete="off">
 
             <button type="submit" class=" btn-info float-right " style="margin-left: 5px; margin-bottom: 0px;">
                 <span>

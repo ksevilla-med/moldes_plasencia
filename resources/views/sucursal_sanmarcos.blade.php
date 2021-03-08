@@ -43,7 +43,8 @@
                 </svg>
             </button>
         </form>
-    </div>
+  
+  
 
 
 
@@ -89,7 +90,8 @@
 
         <!-- SCRIPT COPIAR EL VALOR DE UN INPUT A OTRO PARA IMPRIMIR -->
         <script type="text/javascript">
-            function copiar(vitolabuscar, vitolaimprimir) {
+            function copiar(vitolabuscar, 
+            ) {
                 var vitolabuscar = document.getElementById(vitolabuscar).value;
                 document.getElementById(vitolaimprimir).value = vitolabuscar;
             }
