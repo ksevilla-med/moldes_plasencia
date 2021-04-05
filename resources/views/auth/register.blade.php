@@ -40,6 +40,39 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="codigo" class="col-md-4 col-form-label text-md-right">{{ __('Codigo empleado') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="codigo" type="codigo" class="form-control @error('codigo') is-invalid @enderror" name="codigo" value="{{ old('codigo') }}" required autocomplete="codigo">
+
+                                @error('codigo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="id_planta" class="col-md-4 col-form-label text-md-right">{{ __('Sucursal') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="id_planta" type="id_planta" class="form-control @error('id_planta') is-invalid @enderror" name="id_planta" value="{{ old('id_planta') }}" required autocomplete="id_planta">
+                                <option value =  "1" >El Paraiso</option>
+                                <option value =  "3" >San Marcos</option>
+                                <option value =  "4" >Gualiqueme</option>
+                                <option value =  "2" >Moroceli</option>
+                                <option value =  "0" >Todas las Sucursales</option>
+                                </select> 
+                                @error('id_planta')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">

@@ -8,17 +8,19 @@
 <link rel="stylesheet"
     href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
 
+
+<?php if ( auth()->user()->id_planta == 4 ||  auth()->user()->id_planta == 0): ?>
 <div class="row">
 
 
     <div class="col form-inline">
 
-        <form action="{{Route('id_planta',4)}}" method="POST" class="form-inline">
+        <form action="{{Route('id_planta_gualiqueme',4)}}" method="POST" class="form-inline">
             @csrf
             <input value="" onKeyDown="copiar('vitolabuscar','vitolaimprimir');" name="vitolabuscar" id="vitolabuscar"
-                class="form-control mr-sm-2" placeholder="Vitola" style="width:150px;">
+                class="form-control mr-sm-2" placeholder="Vitola" style="width:150px;" autocomplete="off">
             <input value="" onKeyDown="copiar2('figurabuscar','figuraimprimir');" name="figurabuscar" id="figurabuscar"
-                class="form-control mr-sm-2" placeholder="Figura y tipo" style="width:150px;">
+                class="form-control mr-sm-2" placeholder="Figura y tipo" style="width:150px;" autocomplete="off">
             <button class="btn-info" type="submit">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
@@ -33,8 +35,8 @@
 
         <form action="{{Route('imprimirdatos_gualiqueme',4)}}" method="POST" class=" form-inline">
             @csrf
-            <input name="vitolaimprimir" id="vitolaimprimir" value="" style="display:none">
-            <input name="figuraimprimir" id="figurabuscar" value="" style="display:none">
+            <input name="vitolaimprimir" id="vitolaimprimir" hidden  value={{$vitolaB}} >
+            <input name="figuraimprimir" id="figuraimprimir"  hidden value={{$figuraB}} >
 
             <button type="submit" class=" btn-info float-right " style="margin-left: 5px; margin-bottom: 0px;">
                 <span>
@@ -140,6 +142,8 @@
 
 
 </div>
+
+<?php endif ?>
 
 
 
@@ -273,13 +277,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" style="width:450px; text-align:center; font-size:20px;">Agregar Vitola</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 col">
-                        <label for="txt_vitola" class="form-label">Vitola</label>
-                        <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola"
+                        <label for="txt_vitola" class="form-label" style="width:440px; text-align:center; font-size:20px;">Vitola</label>
+                        <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola"  style = "width: 440px"
                             maxLength="30"autocomplete="off">
                     </div>
                 </div>
@@ -310,13 +314,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">AgregarFigura y tipo </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" style="width:450px; text-align:center; font-size:20px;">Agregar Figura y tipo </h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 col">
-                        <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                        <input class="form-control" id="figura" type="text" name="figura" placeholder="Cantidad"
+                        <label for="txt_figuraytipo" class="form-label" style="width:440px; text-align:center; font-size:20px;">Figura y tipo</label>
+                        <input class="form-control" id="figura" type="text" name="figura" placeholder="Agregar Figura y Tipo" style = "width: 440px"
                             maxLength="30"autocomplete="off">
                     </div>
                 </div>
@@ -494,7 +498,10 @@
             <th style='text-align: center;' scope="col">Reparación</th>
             <th style='text-align: center;' scope="col">Salón</th>
             <th style='text-align: center;' scope="col">Total</th>
+            
+            <?php if ( auth()->user()->id_planta == 4 ||  auth()->user()->id_planta == 0): ?>
             <th style='text-align: center;' scope="col">Editar</th>
+            <?php endif  ?>
         <tr>
     </thead>
     <tbody>
@@ -503,16 +510,16 @@
             <td> {{$molde->nombre_planta}}</td>
             <td>{{$molde->vitola}}</td>
             <td>{{$molde->nombre_figura}}</td>
-            <td>{{$molde->bueno}}</td>
-            <td>{{$molde->irregulares}}</td>
-            <td>{{$molde->malos}}</td>
-            <td>{{$molde->bodega}}</td>
-            <td>{{$molde->reparacion}}</td>
-            <td>{{$molde->salon}}</td>
-            <td>{{$molde->total}}</td>
+            <td style ="text-align:right">{{$molde->bueno}}</td>
+            <td style ="text-align:right">{{$molde->irregulares}}</td>
+            <td style ="text-align:right">{{$molde->malos}}</td>
+            <td style ="text-align:right">{{$molde->bodega}}</td>
+            <td style ="text-align:right">{{$molde->reparacion}}</td>
+            <td style ="text-align:right">{{$molde->salon}}</td>
+            <td style ="text-align:right"><strong>{{$molde->total}}</strong></td>
 
+            <?php if ( auth()->user()->id_planta == 4 ||  auth()->user()->id_planta == 0): ?>
             <td style="padding:0px; text-align:center;    vertical-align: inherit;">
-
                 <a data-toggle="modal" data-target="#modal_editar_moldes"
                     onclick="datos_modal({{ $id_molde_basico = $molde->id_molde }})">
                     <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black"
@@ -522,12 +529,9 @@
                         <path fill-rule="evenodd"
                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                     </svg>
-
                 </a>
-
-
-
             </td>
+            <?php endif  ?>
 
 
         </tr>
@@ -536,7 +540,7 @@
         <tr>
             <td colspan="3" style="text-align:center"><strong>Total General Moldes</strong></td>
 
-            <td>
+            <td style ="text-align:right"><strong>
                 <?php
                 $suma_b=0;
                 foreach ($moldes as $molde)
@@ -544,16 +548,18 @@
                   $suma_b+=$molde->bueno;
                 }
                 
-                ?> {{$suma_b}} </td>
-            <td>
+                ?> {{$suma_b}} 
+                 </strong></td>
+            <td style ="text-align:right"><strong>
                 <?php
                $suma_i=0;
                 foreach ($moldes as $molde)
                  {
                   $suma_i+=$molde->irregulares;
                 }
-                ?> {{$suma_i}}</td>
-            <td>
+                ?> {{$suma_i}}
+                 </strong></td>
+            <td style ="text-align:right"><strong>
                 <?php
              $suma_m=0;
                 foreach ($moldes as $molde)
@@ -561,8 +567,8 @@
                   $suma_m+=$molde->malos;
                 }
                 ?> {{$suma_m}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
                 <?php
             $suma_bo=0;
                 foreach ($moldes as $molde)
@@ -570,8 +576,8 @@
                   $suma_bo+=$molde->bodega;
                 }
                 ?> {{$suma_bo}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
                 <?php
             $suma_r=0;
                 foreach ($moldes as $molde)
@@ -579,8 +585,8 @@
                   $suma_r+=$molde->reparacion;
                 }
                 ?> {{$suma_r}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
                 <?php
             $suma_s=0;
                 foreach ($moldes as $molde)
@@ -588,8 +594,8 @@
                   $suma_s+=$molde->salon;
                 }
                 ?> {{$suma_s}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
                 <?php
             $suma_total=0;
                 foreach ($moldes as $molde)
@@ -597,7 +603,7 @@
                   $suma_total+=$molde->total;
                 }
                 ?> {{$suma_total}}
-            </td>
+           </strong> </td>
         </tr>
     <tbody>
 </table>

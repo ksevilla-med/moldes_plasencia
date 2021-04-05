@@ -24,8 +24,8 @@ class CreatePlantasTable extends Migration
             INSERT INTO plantas(plantas.id_planta , plantas.nombre_planta) VALUES("1","Paraíso Cigar");
             INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("2","Morocelí");
             INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("3","San Marcos");
-            INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("4","Gualiqueme");
-                    
+            INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("4","Gualiqueme"); 
+            INSERT INTO plantas(plantas.id_planta ,plantas.nombre_planta) VALUES("0","Todas las sucursales");
         ');
 
     }

@@ -21,6 +21,7 @@ class CreateTotalesPlantas extends Migration
             $table->integer('total_bodega');
             $table->integer('total_repacion');
             $table->integer('total_salon');
+            $table->integer('total');
             
         });
     }

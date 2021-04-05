@@ -16,40 +16,40 @@
 <table style="width: 100% ;border: solid 2px;">
         <thead >  
         <tr style="text-align: center;" >
-            <th style="padding: 2px;text-align: center;border: solid .5px;width:100px" >Vitola</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;width:150px" >Figura y tipo</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Buenos</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;">Irregulares</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Malos</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Bodega</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Reparación</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Sálon</th>
-            <th style="padding: 2px;text-align: center;border: solid .5px;" >Total</th>
-            
+        <th style="padding: 2px;text-align: center;border: solid .5px;width:60px" >Vitola</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:100px" >Figura y tipo</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px" >Buenos</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px">Irregulares</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px" >Malos</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px " >Bodega</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px" >Reparación</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px" >Sálon</th>
+            <th style="padding: 2px;text-align: center;border: solid .5px;width:65px" >Total</th>
+        
          </thead>
          <tbody>
             @foreach($moldes as $molde)
-            <tr> 
-                  <td style="padding: 5px; text-align: center;border: solid .05px;" >{{$molde->vitola}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->nombre_figura}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->bueno}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" > {{$molde->irregulares}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->malos}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->bodega}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->reparacion}}</td>
-                  <td style="padding: 5px; text-align: center;border: solid .05px;" >{{$molde->salon}}</td>
-                  <td style="padding: 5px;text-align: center;border: solid .05px;" >{{$molde->total}}</td>
+            <tr style = "font-size:10px; height:10px;"> 
+            <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; " >{{$molde->vitola}}</td>
+                  <td style="padding: 5px;;border: solid .05px; font-size:10px; width:50px;">{{$molde->nombre_figura}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right"  >{{$molde->bueno}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right" > {{$molde->irregulares}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right"  >{{$molde->malos}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right" >{{$molde->bodega}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right" >{{$molde->reparacion}}</td>
+                  <td style="padding: 5px; text-align: center;border: solid .05px; font-size:10px; text-align:right"  >{{$molde->salon}}</td>
+                  <td style="padding: 5px;text-align: center;border: solid .05px; font-size:10px; font:bold;text-align:right"  >{{$molde->total}}</td>
                
             
                  
              </tr>
              
             @endforeach
-            <tr>
+            <tr style ="font-size:10px; font:bold;">
             <td style="padding: 5px;text-align: center;border: solid .05px;font-style:bold;" colspan="2"><strong>Total General Moldes</strong></td>
             
              
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right ">
                 <?php
                 $suma_b=0;
                 foreach ($moldes as $molde)
@@ -59,7 +59,7 @@
                 
                 ?>   {{$suma_b}}
             </td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td style="padding: 5px;border: solid .05px; text-align:right " >
               <?php
                $suma_i=0;
                 foreach ($moldes as $molde)
@@ -67,7 +67,7 @@
                   $suma_i+=$molde->irregulares;
                 }
                 ?>   {{$suma_i}}</td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right " >
             <?php
              $suma_m=0;
                 foreach ($moldes as $molde)
@@ -76,7 +76,7 @@
                 }
                 ?>   {{$suma_m}}
             </td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right ">
             <?php
             $suma_bo=0;
                 foreach ($moldes as $molde)
@@ -85,7 +85,7 @@
                 }
                 ?>   {{$suma_bo}}
             </td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right ">
             <?php
             $suma_r=0;
                 foreach ($moldes as $molde)
@@ -94,7 +94,7 @@
                 }
                 ?>   {{$suma_r}}
             </td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right ">
             <?php
             $suma_s=0;
                 foreach ($moldes as $molde)
@@ -103,7 +103,7 @@
                 }
                 ?>   {{$suma_s}}
             </td>
-            <td style="padding: 5px;text-align: center;border: solid .05px;" >
+            <td  style="padding: 5px;border: solid .05px; text-align:right ">
             <?php
             $suma_total=0;
                 foreach ($moldes as $molde)

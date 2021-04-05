@@ -50,14 +50,14 @@
         <thead class= "table-dark">
         <tr>
             
-            <th scope="col">Figura y tipo</th>
-            <th scope="col">Buenos</th>
-            <th scope="col">Irregulares</th>
-            <th scope="col">Malos</th>
-            <th scope="col">Bodega</th>
-            <th scope="col">Reparación</th>
-            <th scope="col">Salón</th>
-            <th scope="col">Total</th>
+            <th scope="col" style ="text-align:center">Figura y tipo</th>
+            <th scope="col" style ="text-align:center">Buenos</th>
+            <th scope="col" style ="text-align:center">Irregulares</th>
+            <th scope="col" style ="text-align:center">Malos</th>
+            <th scope="col"style ="text-align:center">Bodega</th>
+            <th scope="col"style ="text-align:center">Reparación</th>
+            <th scope="col" style ="text-align:center">Salón</th>
+            <th scope="col"style ="text-align:center">Total</th>
             
          </tr>
             
@@ -71,20 +71,20 @@
         
             <tr> 
            
-                  <td> {{$total->figura_vitola}}</td> 
-                  <td>{{$total->total_bueno}}</td>
-                  <td>{{$total->total_irregulares}}</td>
-                  <td>{{$total->total_malo}}</td>
-                  <td>{{$total->total_bodega}}</td>
-                  <td>{{$total->total_repacion}}</td>
-                  <td>{{$total->total_salon}}</td>
-                  <td>{{$total->total_bueno+$total->total_irregulares+ $total->total_malo}}</td>
+                  <td > {{$total->figura_vitola}}</td> 
+                  <td style ="text-align:right">{{$total->total_bueno}}</td>
+                  <td style ="text-align:right">{{$total->total_irregulares}}</td>
+                  <td style ="text-align:right">{{$total->total_malo}}</td>
+                  <td style ="text-align:right">{{$total->total_bodega}}</td>
+                  <td style ="text-align:right">{{$total->total_repacion}}</td>
+                  <td style ="text-align:right">{{$total->total_salon}}</td>
+                  <td style ="text-align:right" > <strong>{{$total->total_bueno+$total->total_irregulares+ $total->total_malo}} </strong></td>
           
              </tr>
              @endforeach
-             <tr>
+             <tr >
             <td ><strong>Sumatoria total moldes plasencia</strong></td>          
-             <td>
+             <td style ="text-align:right"><strong>
             
                 <?php
                 $suma_b=0;
@@ -93,16 +93,16 @@
                   $suma_b+=$total->total_bueno;
                 }
                 
-                ?>   {{$suma_b}}    </td>
-            <td>
+                ?>   {{$suma_b}}    </strong> </td>
+            <td style ="text-align:right"><strong>
               <?php
                $suma_i=0;
                foreach ($totales as $total)
                  {
                   $suma_i+=$total->total_irregulares;
                 }
-                ?>   {{$suma_i}}</td>
-            <td>
+                ?>   {{$suma_i}}  </strong></td>
+            <td style ="text-align:right"><strong>
             <?php
              $suma_m=0;
              foreach ($totales as $total)
@@ -110,8 +110,8 @@
                   $suma_m+=$total->total_malo;
                 }
                 ?>   {{$suma_m}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
             <?php
             $suma_bo=0;
             foreach ($totales as $total)
@@ -119,8 +119,8 @@
                   $suma_bo+=$total->total_bodega;
                 }
                 ?>   {{$suma_bo}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
             <?php
             $suma_r=0;
             foreach ($totales as $total)
@@ -128,8 +128,8 @@
                   $suma_r+=$total->total_repacion;
                 }
                 ?>   {{$suma_r}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"><strong>
             <?php
             $suma_s=0;
             foreach ($totales as $total)
@@ -137,8 +137,8 @@
                   $suma_s+=$total->total_salon;
                 }
                 ?>   {{$suma_s}}
-            </td>
-            <td>
+            </strong> </td>
+            <td style ="text-align:right"> <strong>
             <?php
             $suma_total=0;
             foreach ($totales as $total)
@@ -146,7 +146,7 @@
                   $suma_total = $suma_b+$suma_m+$suma_i ;
                  }
                 ?>   {{$suma_total}}
-            </td>
+            </strong> </td>
             </tr>
           <tbody>
     </table>

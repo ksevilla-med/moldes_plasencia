@@ -27,12 +27,12 @@
          <tbody>
         
          @foreach($moldes as $molde)
-            <tr> 
+            <tr style = "font-size:10px; height:10px;"> 
                 <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->fecha}}</td>
                 <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->nombre_planta}}</td>
                 <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->nombre_fabrica}}</td>
                 <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->estado_moldes}}</td>
-                <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->tipo_moldes}}</td>
+                <td style="padding: 2px;text-align: center;border: solid .5px;width:120px">{{$molde->tipo_moldes}}</td>
                 <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->cantidad}}</td>
               
             </tr>

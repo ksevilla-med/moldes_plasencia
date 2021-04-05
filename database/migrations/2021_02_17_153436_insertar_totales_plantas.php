@@ -22,39 +22,39 @@ class InsertarTotalesPlantas extends Migration
         )
        
         BEGIN
-                
-                
-                 INSERT INTO totales_plantas(SELECT pa_figura_vitola, SUM(x.bueno) AS total_bueno, SUM(x.irregulares) AS total_irregulares, SUM(x.malos) AS total_malo,
-                SUM(x.bodega) AS total_bodega, SUM(x.reparacion) AS total_reparacion, SUM(x.salon) AS total_salon  FROM  ((SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
-                                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
-                                    FROM plantas, moldes, figura_tipos, vitolas WHERE "1" = plantas.id_planta AND
-                                    moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
-                                    AND moldes.id_figura = figura_tipos.id_figura AND
-                                    moldes.id_vitola = vitolas.id_vitola)
-                                    UNION 
-                                 ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
-                                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
-                                    FROM plantas, moldes, figura_tipos, vitolas WHERE "2" = plantas.id_planta AND
-                                    moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
-                                    AND moldes.id_figura = figura_tipos.id_figura AND
-                                    moldes.id_vitola = vitolas.id_vitola )
-                                          UNION 
-                                          ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
-                                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
-                                    FROM plantas, moldes, figura_tipos, vitolas WHERE "3" = plantas.id_planta AND
-                                    moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
-                                    AND moldes.id_figura = figura_tipos.id_figura AND
-                                    moldes.id_vitola = vitolas.id_vitola )
-                                          UNION 
-                                          ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
-                                    moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
-                                    FROM plantas, moldes, figura_tipos, vitolas WHERE "4" = plantas.id_planta AND
-                                    moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
-                                    AND moldes.id_figura = figura_tipos.id_figura AND
-                                    moldes.id_vitola = vitolas.id_vitola ))x
-                                          WHERE concat(x.nombre_figura,"  " , x.vitola) = pa_figura_vitola);
-                                
-      END        
+                        
+                        
+                         INSERT INTO totales_plantas(SELECT pa_figura_vitola, SUM(x.bueno) AS total_bueno, SUM(x.irregulares) AS total_irregulares, SUM(x.malos) AS total_malo,
+                        SUM(x.bodega) AS total_bodega, SUM(x.reparacion) AS total_reparacion, SUM(x.salon) AS total_salon, (SUM(x.bueno)+ SUM(x.irregulares)+  SUM(x.malos)) AS total FROM  ((SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
+                                            moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
+                                            FROM plantas, moldes, figura_tipos, vitolas WHERE "1" = plantas.id_planta AND
+                                            moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
+                                            AND moldes.id_figura = figura_tipos.id_figura AND
+                                            moldes.id_vitola = vitolas.id_vitola)
+                                            UNION 
+                                         ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
+                                            moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
+                                            FROM plantas, moldes, figura_tipos, vitolas WHERE "2" = plantas.id_planta AND
+                                            moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
+                                            AND moldes.id_figura = figura_tipos.id_figura AND
+                                            moldes.id_vitola = vitolas.id_vitola )
+                                                  UNION 
+                                                  ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
+                                            moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
+                                            FROM plantas, moldes, figura_tipos, vitolas WHERE "3" = plantas.id_planta AND
+                                            moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
+                                            AND moldes.id_figura = figura_tipos.id_figura AND
+                                            moldes.id_vitola = vitolas.id_vitola )
+                                                  UNION 
+                                                  ( SELECT  plantas.nombre_planta, vitolas.vitola, figura_tipos.nombre_figura, moldes.bueno,  moldes.irregulares, moldes.malos, 
+                                            moldes.bodega, moldes.reparacion, moldes.salon, moldes.id_molde, moldes.total
+                                            FROM plantas, moldes, figura_tipos, vitolas WHERE "4" = plantas.id_planta AND
+                                            moldes.id_planta = plantas.id_planta AND vitolas.id_planta = plantas.id_planta and figura_tipos.id_planta = plantas.id_planta 
+                                            AND moldes.id_figura = figura_tipos.id_figura AND
+                                            moldes.id_vitola = vitolas.id_vitola ))x
+                                                  WHERE concat(x.nombre_figura,"  " , x.vitola) = pa_figura_vitola);
+                                        
+              END
 
        ' );
     }

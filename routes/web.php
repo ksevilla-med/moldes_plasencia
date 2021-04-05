@@ -12,16 +12,30 @@
 |
 */
 
-Route::get('/entrada', function () {
-    return view('login');
-});
+
+Auth::routes();
+
+
+Route::group(['middleware' => 'auth'], function () {
+    //TODAS LAS RUTAS SON RESTRINGIDAS A SOLO GENTE LOGUIADA
+
+
+
 Route::get('/', function () {
     $titulo = "PLASENCIA INVENTARIO MÓVIL";
-    return view('principallogo')->with('titulo',$titulo);
+
+    
+    $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+        'id' => auth()->user()->id_planta ] );
+      
+    return view('principallogo')->with('titulo',$titulo)->with ('notificaciones', $notificaciones);
 });
 Route::get('/moldesprincipal', function () {
     $titulo = "SUCURSALES PLASENCIA";
-    return view('moldesprincipal')->with('titulo',$titulo);
+    $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+        'id' => auth()->user()->id_planta ] );
+      
+    return view('moldesprincipal')->with('titulo',$titulo)->with ('notificaciones', $notificaciones);
 });
 
 
@@ -62,6 +76,10 @@ Route::post('/remisiones_paraiso/crear/{id}',[App\Http\Controllers\MoldesControl
 Route::post('/remisiones_paraiso/a/{id}',[App\Http\Controllers\MoldesController::class, 'actualizarremision' ])->name('actualizarremision');
 
 
+Route::post('/solicitud_moldes',[App\Http\Controllers\MoldesController::class, 'insertar_notificaciones' ])->name('insertar_solicitud');
+Route::post('/notificaciones',[App\Http\Controllers\MoldesController::class, 'notificaciones' ])->name('mostrar_notificaciones');
+
+
 ///////////////////      MOROCELI    //////////////////////////
 
 Route::get('/sucursal_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'index' ])->name('datos_planta_moroceli');
@@ -87,6 +105,7 @@ Route::get('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moro
 Route::post('/remisiones_moroceli/crear/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'insertarremisiones' ])->name('insertarremisiones_moroceli');
 
 Route::post('/remisiones_moroceli/a/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'actualizarremision' ])->name('actualizarremision_moroceli');
+Route::get('/remisiones_moroceli/a/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'actualizarremision' ])->name('actualizarremision_moroceli');
 
 Route::get('/buscar_remision_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision' ])->name('buscar_remision_moroceli');
 Route::post('/buscar_remision_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision' ])->name('buscar_remision_moroceli');
@@ -94,6 +113,14 @@ Route::post('/buscar_remision_moroceli/{id}',[App\Http\Controllers\sucursal_moro
 
 Route::get('/buscar_remision_re_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_moroceli');
 Route::post('/buscar_remision_re_moroceli/{id}',[App\Http\Controllers\sucursal_moroceli::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_moroceli');
+
+
+Route::post('/buscar_remision_imprimir_enviadasmoroceli',[App\Http\Controllers\sucursal_moroceli::class, 'imprimir_remision_paraiso_enviadas' ])->name('imprimir_remision_moroceli_enviadas');
+Route::post('/buscar_remision_imprimir_recibidasmoroceli',[App\Http\Controllers\sucursal_moroceli::class, 'imprimir_remision_paraiso_recibidas' ])->name('imprimir_remision_moroceli_recibidas');
+
+
+
+Route::post('/solicitud_moldes_mo',[App\Http\Controllers\sucursal_moroceli::class, 'insertar_notificaciones' ])->name('insertar_solicitud_moroceli');
 
 
 ///////////////////      SAN MARCOS    //////////////////////////
@@ -128,6 +155,15 @@ Route::get('/buscar_remision_re_sanMarcos/{id}',[App\Http\Controllers\sucursal_s
 Route::post('/buscar_remision_re_sanMarcos/{id}',[App\Http\Controllers\sucursal_sanMarcos::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_sanMarcos');
 
 
+Route::post('/buscar_remision_imprimir_enviadassanmarcos',[App\Http\Controllers\sucursal_sanMarcos::class, 'imprimir_remision_paraiso_enviadas' ])->name('imprimir_remision_sanMarcos_enviadas');
+Route::post('/buscar_remision_imprimir_recibidassanmarcos',[App\Http\Controllers\sucursal_sanMarcos::class, 'imprimir_remision_paraiso_recibidas' ])->name('imprimir_remision_sanMarcos_recibidas');
+
+
+
+Route::post('/solicitud_moldes_sa',[App\Http\Controllers\sucursal_sanMarcos::class, 'insertar_notificaciones' ])->name('insertar_solicitud_sanmarcos');
+
+
+
 ///////////////////      GUALIQUEME    //////////////////////////
 
 Route::get('/sucursal_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'index' ])->name('datos_planta_gualiqueme');
@@ -159,6 +195,14 @@ Route::post('/buscar_remision_gualiqueme/{id}',[App\Http\Controllers\sucursal_gu
 Route::get('/buscar_remision_re_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_gualiqueme');
 Route::post('/buscar_remision_re_gualiqueme/{id}',[App\Http\Controllers\sucursal_gualiqueme::class, 'buscar_remision_recibida' ])->name('buscar_remision_re_gualiqueme');
 
+Route::post('/buscar_remision_imprimir_enviadasgualiqueme',[App\Http\Controllers\sucursal_gualiqueme::class, 'imprimir_remision_gualiqueme_enviadas' ])->name('imprimir_remision_gualiqueme_enviadas');
+Route::post('/buscar_remision_imprimir_recibidasgualiqueme',[App\Http\Controllers\sucursal_gualiqueme::class, 'imprimir_remision_gualiqueme_recibidas' ])->name('imprimir_remision_gualiqueme_recibidas');
+
+
+
+Route::post('/solicitud_moldes_gu',[App\Http\Controllers\sucursal_gualiqueme::class, 'insertar_notificaciones' ])->name('insertar_solicitud_gualiqueme');
+
+
 
 ///////////////////      OTRAS PLANTAS   //////////////////////////
 
@@ -188,16 +232,25 @@ Route::post('/imprimirtotalmoldes',[App\Http\Controllers\MoldesController::class
 Route::get('/usuarios',[App\Http\Controllers\UserController::class, 'index' ]);
 Route::post('/usuarios',[App\Http\Controllers\UserController::class, 'update' ])->name('actualizar_usuario');
 Route::post('/usuarios/a',[App\Http\Controllers\UserController::class, 'destroy' ])->name('eliminar_usuario');
-Route::post('register/{id}', [App\Http\Controllers\UserController::class,'register'])->name('registrar_usuario');
-Route::post('autenticacion_usuario/{id}', [App\Http\Controllers\UserController::class,'ingresarUsuario'])->name('autenticacion_usuario');
-Route::post('obtenerUsuarioConCorreo', [App\Http\Controllers\UserController::class,'obtenerUsuarioConCorreo'])->name('obtenerUsuarioConCorreo');
-Route::post('recuperarcontrasenia/{id}', [App\Http\Controllers\UserController::class,'recuperarcontrasenia'])->name('recuperarcontrasenia');
+Route::post('usuarios/contra', [App\Http\Controllers\UserController::class,'update_contrasenia'])->name('actualizar_usuario_contrasenia');
 
+
+Route::post('notificaciones_actualizar', [App\Http\Controllers\notificaciones::class,'actualizar_notificaciones'])->name('actualizar_notificaciones');
+Route::get('notificaciones_actualizar', [App\Http\Controllers\notificaciones::class,'actualizar_notificaciones'])->name('actualizar_notificaciones');
+
+Route::get('noti', [App\Http\Controllers\notificaciones::class,'redireccionar'])->name('redireccionar');
+Route::post('noti', [App\Http\Controllers\notificaciones::class,'redireccionar'])->name('redireccionar');
 
 
 Route::get('/ayuda', function () {
-    $titulo= "Ayuda";
-    return view('ayuda')->with('titulo',$titulo);
+    $titulo= "Ayuda";    
+    $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+        'id' => auth()->user()->id_planta ] );
+    return view('ayuda')->with('titulo',$titulo)->with('notificaciones',$notificaciones);
 });
 
-Auth::routes();
+
+Route::get('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+
+});
+//FIN DE LAS RUTAS RESTRINGIDAS

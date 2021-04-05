@@ -8,6 +8,8 @@
 <link rel="stylesheet"
     href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
 
+    <?php if ( auth()->user()->id_planta == 1 ||  auth()->user()->id_planta == 0): ?>
+
 <div class="row">
 
     <div class="col form-inline">
@@ -32,8 +34,8 @@
 
         <form action="{{Route('imprimirdatosparaiso',1)}}" method="POST" class=" form-inline">
             @csrf
-            <input name="vitolaimprimir" id="vitolaimprimir" hidden value={{$vitolaB}} autocomplete="off">
-            <input name="figuraimprimir" id="figurabuscar" hidden value={{$figuraB}} autocomplete="off">
+            <input name="vitolaimprimir" id="vitolaimprimir" hidden  value={{$vitolaB}} >
+            <input name="figuraimprimir" id="figuraimprimir"  hidden value={{$figuraB}} >
 
             <button type="submit" class=" btn-info float-right " style="margin-left: 5px; margin-bottom: 0px;">
                 <span>
@@ -118,6 +120,9 @@
 
 </div>
 
+
+<?php endif; ?>
+
 <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
 <form action="{{Route('insertar_moldes',1)}}" method="POST" id="FormMoldes" name="FormMoldes">
@@ -141,9 +146,9 @@
                             <div class="mb-3 col">
                                 <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
                                 <select class="form-control" id="txt_figuraytipo" name="id_figura"
-                                    placeholder="Ingresa figura y tipo" required>
+                                    placeholder="Ingresa figura y tipo" style="overflow-y: scroll;" required>
                                     @foreach($figuras as $figura)
-                                    <option> {{$figura-> nombre_figura}}</option>
+                                    <option style="overflow-y: scroll;"> {{$figura-> nombre_figura}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -151,9 +156,9 @@
                             <div class="mb-3 col">
                                 <label for="txt_vitola" class="form-label">Vitola</label>
                                 <select class="form-control" type="text" list="prediccionvitola" id="txt_vitola"
-                                    name="id_vitola" placeholder="Ingresa la vitola" required>
+                                    name="id_vitola" placeholder="Ingresa la vitola" style="overflow-y: scroll;"required>
                                     @foreach($vitolas as $vitola)
-                                    <option>{{$vitola-> nombre_vitola}}</option>
+                                    <option style="overflow-y: scroll;">{{$vitola-> nombre_vitola}}</option>
                                     @endforeach
 
                                 </select>
@@ -243,13 +248,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel"  style="width:450px; text-align:center; font-size:20px;">Agregar Vitola</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 col">
-                        <label for="txt_vitola" class="form-label">Vitola</label>
-                        <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola"
+                        <label for="txt_vitola" class="form-label" style="width:440px; text-align:center; font-size:20px;">Vitola</label>
+                        <input class="form-control" id="vitola" type="text" name="vitola" placeholder="Agregar vitola" style = "width: 440px"
                             maxLength="30"autocomplete="off">
                     </div>
                 </div>
@@ -280,13 +285,13 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Agregar Figura y tipo</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel" style="width:450px; text-align:center; font-size:20px;">Agregar Figura y tipo</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3 col">
-                        <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                        <input class="form-control" id="figura" type="text" name="figura" placeholder="Cantidad"
+                        <label for="txt_figuraytipo" class="form-label" style="width:440px; text-align:center; font-size:20px;">Figura y tipo</label>
+                        <input class="form-control" id="figura" type="text" name="figura" placeholder="Agregar Figura y Tipo" style = "width: 440px"
                             maxLength="30" autocomplete="off">
                     </div>
                 </div>
@@ -455,25 +460,29 @@
             <th style='text-align: center;' scope="col">Reparación</th>
             <th style='text-align: center;' scope="col">Salón</th>
             <th style='text-align: center;' scope="col">Total</th>
-            <th style='text-align: center;' scope="col">Editar</th>
+            <?php if ( auth()->user()->id_planta == 1 ||  auth()->user()->id_planta == 0): ?>
+            <th style='text-align: center;' scope="col">Editar</th>            
+            <?php endif  ?>
+
         <tr>
     </thead>
     <tbody>
         @foreach($moldes as $molde)
         <tr>
             <td> {{$molde->nombre_planta}}</td>
-            <td>{{$molde->vitola}}</td>
-            <td>{{$molde->nombre_figura}}</td>
-            <td>{{$molde->bueno}}</td>
-            <td>{{$molde->irregulares}}</td>
-            <td>{{$molde->malos}}</td>
-            <td>{{$molde->bodega}}</td>
-            <td>{{$molde->reparacion}}</td>
-            <td>{{$molde->salon}}</td>
-            <td>{{$molde->total}}</td>
+            <td >{{$molde->vitola}}</td>
+            <td >{{$molde->nombre_figura}}</td>
+            <td style ="text-align:right">{{$molde->bueno}}</td>
+            <td style ="text-align:right">{{$molde->irregulares}}</td>
+            <td style ="text-align:right">{{$molde->malos}}</td>
+            <td style ="text-align:right">{{$molde->bodega}}</td>
+            <td style ="text-align:right">{{$molde->reparacion}}</td>
+            <td style ="text-align:right">{{$molde->salon}}</td>
+            <td style ="text-align:right"><strong>{{$molde->total}}</strong></td>
 
+
+            <?php if ( auth()->user()->id_planta == 1 ||  auth()->user()->id_planta == 0): ?>
             <td style="padding:0px; text-align:center;    vertical-align: inherit;">
-
                 <a data-toggle="modal" data-target="#modal_editar_moldes"
                     onclick="datos_modal({{ $id_molde_basico = $molde->id_molde }})">
                     <svg xmlns="http://www.w3.org/2000/svg" width=25 height="25" fill="black"
@@ -485,19 +494,17 @@
                     </svg>
 
                 </a>
-
-
-
             </td>
+            <?php endif  ?>
 
 
         </tr>
         @endforeach
 
-        <tr>
+        <tr style ="font:bold; text-align:right"><strong>
             <td colspan="3" style="text-align:center"><strong>Total General Moldes</strong></td>
 
-            <td>
+            <td><strong>
                 <?php
                 $suma_b=0;
                 foreach ($moldes as $molde)
@@ -505,16 +512,18 @@
                   $suma_b+=$molde->bueno;
                 }
                 
-                ?> {{$suma_b}} </td>
-            <td>
+                ?> {{$suma_b}} 
+              </strong>  </td>
+            <td><strong>
                 <?php
                $suma_i=0;
                 foreach ($moldes as $molde)
                  {
                   $suma_i+=$molde->irregulares;
                 }
-                ?> {{$suma_i}}</td>
-            <td>
+                ?> {{$suma_i}}
+                </strong></td>
+            <td><strong>
                 <?php
              $suma_m=0;
                 foreach ($moldes as $molde)
@@ -522,8 +531,8 @@
                   $suma_m+=$molde->malos;
                 }
                 ?> {{$suma_m}}
-            </td>
-            <td>
+            </strong></td>
+            <td><strong>
                 <?php
             $suma_bo=0;
                 foreach ($moldes as $molde)
@@ -531,8 +540,8 @@
                   $suma_bo+=$molde->bodega;
                 }
                 ?> {{$suma_bo}}
-            </td>
-            <td>
+            </strong></td>
+            <td><strong>
                 <?php
             $suma_r=0;
                 foreach ($moldes as $molde)
@@ -540,8 +549,8 @@
                   $suma_r+=$molde->reparacion;
                 }
                 ?> {{$suma_r}}
-            </td>
-            <td>
+            </strong></td>
+            <td><strong>
                 <?php
             $suma_s=0;
                 foreach ($moldes as $molde)
@@ -549,8 +558,8 @@
                   $suma_s+=$molde->salon;
                 }
                 ?> {{$suma_s}}
-            </td>
-            <td>
+            </strong></td>
+            <td><strong>
                 <?php
             $suma_total=0;
                 foreach ($moldes as $molde)
@@ -558,8 +567,8 @@
                   $suma_total+=$molde->total;
                 }
                 ?> {{$suma_total}}
-            </td>
-        </tr>
+            </strong></td>
+            </strong></tr>
     <tbody>
 </table>
 <!-- FIN DEL TABLA MOLDE -->

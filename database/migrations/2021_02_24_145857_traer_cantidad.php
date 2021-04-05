@@ -16,15 +16,15 @@ class TraerCantidad extends Migration
         DB::unprepared('DROP procedure if exists `traer_cantidad`');
     
         DB::unprepared('
-        CREATE DEFINER=`root`@`localhost` PROCEDURE `traer_cantidad`(
+        CREATE  PROCEDURE `traer_cantidad`(
             IN `pa_id_planta` INT
         )
-        
+      
         BEGIN
-          SELECT CONCAT(figura_tipos.nombre_figura,"  ",vitolas.vitola) AS fivi  ,  moldes.bodega FROM moldes , vitolas, figura_tipos WHERE
-         moldes.id_planta = pa_id_planta and vitolas.id_vitola = moldes.id_vitola and
-         moldes.id_figura= figura_tipos.id_figura ;
-        END
+                  SELECT CONCAT(figura_tipos.nombre_figura,"  ",vitolas.vitola) AS fivi , moldes.bueno, moldes.irregulares ,  moldes.bodega FROM moldes , vitolas, figura_tipos WHERE
+                 moldes.id_planta = pa_id_planta and vitolas.id_vitola = moldes.id_vitola and
+                 moldes.id_figura= figura_tipos.id_figura ;
+                END
         
         ');
     }

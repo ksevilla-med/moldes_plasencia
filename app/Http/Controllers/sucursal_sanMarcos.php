@@ -22,19 +22,25 @@ class sucursal_sanMarcos extends Controller
         public function index( Request $request)
         {
             $titulo = "INVENTARIO DE MOLDES SUCURSAL SAN MARCOS";
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
             
+            $vitolaB = $request->vitolabuscar;
+            $figuraB = $request->figurabuscar;
+
             $moldes = \DB::select('call moldes_sanMarcos(:vitola,:nombre_figura)',
             [ 'vitola' => (string)$request->vitolabuscar,
             'nombre_figura' => (string)$request->figurabuscar]);
 
             $vitolas     = \DB::select('call mostrar_vitolas(?)', [$request->id]);
-
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
             $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
             $id_planta = [$request->id];
 
-            return view('sucursal_sanMarcos')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-            ->with('id_planta', $id_planta)->with('titulo',$titulo);
+            return view('sucursal_sanMarcos')->with ('notificaciones', $notificaciones)->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras) ->with('fechai',$fechai)->with('fechaf',$fechaf)
+            ->with('id_planta', $id_planta)->with('titulo',$titulo) ->with('vitolaB',$vitolaB)->with('figuraB',$figuraB);
         
         }
 
@@ -56,16 +62,19 @@ class sucursal_sanMarcos extends Controller
                     
                 ]);
 
-                    
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
                                 
                 $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
 
-                 return REDIRECT('sucursal_sanMarcos/3')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                 return REDIRECT('sucursal_sanMarcos/3')->with ('notificaciones', $notificaciones)->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                 ->with('id_planta', $request->id);
 
         }
@@ -85,13 +94,16 @@ class sucursal_sanMarcos extends Controller
                     ]);
 
                     $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
-                                
+                    
+                    $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                        'id' => auth()->user()->id_planta ] );
                     $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
                     $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+                    $fechai = $request->fecha_inicio;
+                    $fechaf = $request->fecha_fin;
 
-
-                    return REDIRECT('sucursal_sanMarcos/3')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                    return REDIRECT('sucursal_sanMarcos/3')->with ('notificaciones', $notificaciones)->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                     ->with('id_planta', $request->id);
 
         }
@@ -110,10 +122,13 @@ class sucursal_sanMarcos extends Controller
                 [
                     'id_planta' => (int)$request->id_planta
                 ]);
-                
-                $abrir = "3";
 
-                return view('remisionessanmarcos')->with('titulo',$titulo)->with('moldes',$moldes)
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
+                $abrir = "3";
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
+                return view('remisionessanmarcos')->with ('notificaciones', $notificaciones)->with('titulo',$titulo)->with('moldes',$moldes) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
 
     }
@@ -126,7 +141,8 @@ class sucursal_sanMarcos extends Controller
                 $fecha = $fecha->format('Y-m-d');
                 $empresa = "";
 
-                
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
 
                 if($request->txt_otra_fabrica != null){
                     $empresa = $request->txt_otra_fabrica;
@@ -150,6 +166,20 @@ class sucursal_sanMarcos extends Controller
                 'chequear' => (int)$request->chequear
                 ]);
 
+                $descripcion = "Remisión de moldes con la descripción: ".$request->id_tipo." enviada. Favor confirmar la entrega.";
+
+            
+                $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+                [ 'tipo' => "envio",
+               'descripcion' => $descripcion,
+                 'activo' => (int)$request->activo,
+               'idplanta' => (string)$request->id_planta,
+                'planta' => (string)$request->id_otra_plan
+    
+                ]);
+
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $titulo = "REMISIONES SAN MARCOS";
                
                 $moldes = \DB::select('call moldes_remision(3)');  
@@ -160,14 +190,15 @@ class sucursal_sanMarcos extends Controller
                
                 $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('San Marcos')"); 
                
-                return view('remisionessanmarcos')->with('titulo',$titulo)->with('moldes',$moldes) ->with('remisionesenviadas',$remisionesenviadas)        
-                 ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
+                return view('remisionessanMarcos')->with ('notificaciones', $notificaciones)->with('titulo',$titulo)->with('moldes',$moldes) ->with('remisionesenviadas',$remisionesenviadas)        
+                 ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir) ->with('fechai',$fechai)->with('fechaf',$fechaf);
         }
 
 
 
         public function actualizarremision(Request $request, $id){ 
-
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
                 $remision = \DB::select('call actualizar_remision_moldes(:id_remision, :id_planta,:estado,:fivi,
                 :cantidad,:id_molde,:planta_recibido,:nombre_otra_planta)',
 
@@ -182,6 +213,17 @@ class sucursal_sanMarcos extends Controller
                     'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
                 ]);
 
+                $descripcion = "Los moldes con la descripción: ".$request->txt_tipo_moldes." se recibieron correctamente.";
+
+                $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+                [ 'tipo' => "confirmacion",
+               'descripcion' => $descripcion,
+                 'activo' => (int)$request->activo,
+               'idplanta' => (string)$request->id_planta,
+                'planta' => (string)$request->id_otra
+    
+                ]);
+                
                 $bodega = \DB::select('call traer_cantidad(:id_planta)',
                 [
                     'id_planta' => (int)$request->id_planta
@@ -190,14 +232,16 @@ class sucursal_sanMarcos extends Controller
                 $titulo = "REMISIONES SAN MARCOS";
                
                 $moldes = \DB::select('call moldes_remision(3)'); 
-               
+
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $remisionesenviadas = \DB::select('call mostrar_remisiones_enviadas(3)'); 
                 
                 $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('San Marcos')"); 
                 
                 $abrir = "3";
                 
-                return view('remisionessanmarcos') ->with('titulo',$titulo) ->with('moldes',$moldes)
+                return view('remisionessanmarcos') ->with ('notificaciones', $notificaciones)->with('titulo',$titulo) ->with('moldes',$moldes) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
 
         }
@@ -215,7 +259,8 @@ class sucursal_sanMarcos extends Controller
                     'id_planta' => (int)$request->id_planta
                 ]);
 
-
+                $fechai = $request->fecha_inicio;
+                $fechaf = $request->fecha_fin;
                 if ($request->fecha_inicio === null){
                 $incio = "0";
                 }else{
@@ -229,7 +274,8 @@ class sucursal_sanMarcos extends Controller
                     $fin = $request->fecha_fin;
                 }
 
-
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $remisionesenviadas = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
                 [ 'fecha_inicio' => $incio,
                 'fecha_fin' => $fin,
@@ -239,7 +285,7 @@ class sucursal_sanMarcos extends Controller
 
                 $abrir = "3";
 
-                return view('remisionessanmarcos')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionessanmarcos')->with ('notificaciones', $notificaciones)->with('titulo',$titulo)->with('moldes',$moldes) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
 
         }
@@ -249,7 +295,8 @@ class sucursal_sanMarcos extends Controller
         public function buscar_remision_recibida( Request $request)
         {
                 $titulo = "REMISIONES SAN MARCOS";
-               
+                $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
                 $moldes = \DB::select('call moldes_remision(3)'); 
                
                 $bodega = \DB::select('call traer_cantidad(:id_planta)',
@@ -269,6 +316,8 @@ class sucursal_sanMarcos extends Controller
                     $fin = $request->fecha_fin;
                 }
 
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $remisionesrecibidas = \DB::select('call buscar_remision_recibidas(:fecha_inicio,:fecha_fin, "San Marcos")',
                 [ 'fecha_inicio' => $inicio,
                 'fecha_fin' => $fin]);
@@ -277,37 +326,203 @@ class sucursal_sanMarcos extends Controller
 
                 $abrir = "2";
 
-                return view('remisionessanmarcos')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionessanmarcos')->with ('notificaciones', $notificaciones)->with('titulo',$titulo)->with('moldes',$moldes) ->with('fechai',$fechai)->with('fechaf',$fechaf)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir);
 
         }
 
-        public function imprimirdatosparaiso( Request $request)
-        {
-            
+      
+        public function imprimirdatosparaiso( Request $request){
+                
             $fecha =Carbon::now();
             $fecha = $fecha->format('d-m-Y');
 
+            $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
+
+
+            $vitolaB = $request->vitolabuscar;
+            $figuraB = $request->figurabuscar;
+
+            if ($request->vitolaimprimir === null ){
+                $vit = "0";
+            }else{
+                $vit = $request->vitolaimprimir;
+            }
             
-            $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);    
+
+            if ($request->figuraimprimir === null ){
+                $fig = "0";
+            }else{
+                $fig = $request->figuraimprimir;
+            }
+
+            $moldes = \DB::select('call moldes_sanMarcos(:vitola,:nombre_figura)',
+            [ 'vitola' => (string)$vit,
+            'nombre_figura' => (string)$fig 
+            ]);
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
             $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
             $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
             $id_planta = [$request->id];
     
-            $vista = view('imprimirtabla_sanMarcos',['fecha' =>$fecha])->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-            ->with('id_planta', $id_planta);
+            $vista = view('imprimirtabla_sanmarcos',['fecha' =>$fecha])->with('vitolaB',$vitolaB)->with('figuraB',$figuraB) ->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+            ->with('id_planta', $id_planta)->with ('notificaciones', $notificaciones);
 
             $pdf =  \PDF::loadHTML($vista);
-            return $pdf->stream('nombre.pdf');
+            return $pdf->stream('Inventario de moldes San Marcos '.$fecha_imp.'.pdf');
 
+     }
+
+
+        public function imprimir_remision_paraiso_enviadas( Request $request){
+                
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+
+         $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
+
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+            $titulo = "REMISIONES A OTRAS EMPRESAS";
+           
+            if ($request->fechainicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fechainicio;
+           }
+        
+           if ($request->fechafin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fechafin;
+           }
+
+           $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+            'id' => auth()->user()->id_planta ] );
+           //$moldes = \DB::select('call mostrar_remisiones_otras_empresas_index');  
+        
+           $moldes = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+           [ 'fecha_inicio' => $incio,
+           'fecha_fin' => $fin,
+           'id_planta_remision' => $request->id_planta_re]);
+        
+            $vista = view('imprimir_remisiones_sanMarcos_enviadas')->with('titulo',$titulo)
+            ->with('moldes', $moldes)->with ('notificaciones', $notificaciones)->with('fecha', $fecha)  ->with('fechai',$fechai)->with('fechaf',$fechaf);
+        
+
+
+            $pdf =  \PDF::loadHTML($vista);
+            return $pdf->stream('Remisión de moldes enviados San Marcos '.$fecha_imp.'.pdf');
+        
+        }
+         
+
+        public function imprimir_remision_paraiso_recibidas( Request $request){
+                
+            $fecha =Carbon::now();
+            $fecha = $fecha->format('d-m-Y');
+        
+            $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
+
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+            $titulo = "REMISIONES A OTRAS EMPRESAS";
+           
+            if ($request->fechainicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fechainicio;
+           }
+        
+           if ($request->fechafin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fechafin;
+           }
+        
+           //$moldes = \DB::select('call mostrar_remisiones_otras_empresas_index');  
+        
+           $moldes = \DB::select('call buscar_remision_recibidas(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+           [ 'fecha_inicio' => $incio,
+           'fecha_fin' => $fin,
+           'id_planta_remision' => $request->nombre_fa]);
+
+           $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+            'id' => auth()->user()->id_planta ] );
+          
+            $vista = view('imprimir_remisiones_sanMarcos_recibidas')->with('titulo',$titulo)
+            ->with('moldes', $moldes)->with ('notificaciones', $notificaciones)->with('fecha', $fecha)->with('fechai',$fechai)->with('fechaf',$fechaf);
+        
+            
+            $pdf =  \PDF::loadHTML($vista);
+            return $pdf->stream('Remisión de moldes recibidos San Marcos '.$fecha_imp.'.pdf');
+        
         }
 
+        public function insertar_notificaciones(Request $request){
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+            
+            $descripcion = "Se necesitan ".(string)$request->cantidad_notificacion." moldes con las siguiente descripción: ".
+            (string)$request->figura_notificacion." ".(string)$request->vitola_notificacion." para la planta ".(string)$request->nombreplanta_notificacion.".";
+
+            
+            $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+            [ 'tipo' => (string)$request->tipo_notificacion,
+           'descripcion' => $descripcion,
+             'activo' => (int)$request->chequear_notificaciones,
+           'idplanta' => (string)$request->id_planta_notificaciones,
+            'planta' => (string)$request->planta_notificacion
+
+            ]);
+
+
+            $titulo = "REMISIONES SAN MARCOS";
+            $moldes = \DB::select('call moldes_remision(3)'); 
+
+            $bodega = \DB::select('call traer_cantidad(3)');
+
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+
+            if ($request->fecha_inicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fecha_inicio;
+           }
+
+
+           if ($request->fecha_fin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fecha_fin;
+           }
+
+            $remisionesenviadas = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+            [ 'fecha_inicio' => $incio,
+            'fecha_fin' => $fin,
+            'id_planta_remision' => $request->id_planta_remision]);
+
+            $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('San Marcos')");
+
+            $abrir = "3";
+
+            return REDIRECT('remisiones_sanMarcos/3')->with('titulo',$titulo)->with('moldes',$moldes)
+            ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
+            ->with('fechai',$fechai)->with('fechaf',$fechaf)->with ('notificaciones', $notificaciones);
+        }
 
         public function totales()
         {
         
                 $titulo = "SUMATORIA TOTAL DE LOS MOLDES PLASENCIA";
-
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $distintos = \DB::select('call distintos_moldes()');
 
                 foreach($distintos as $distinto){
@@ -316,10 +531,17 @@ class sucursal_sanMarcos extends Controller
 
                 $totales_moldes = \DB::select('call mostrar_total_todas_plantas()');
 
-                return view('sucursales_total')->with('totales',$totales_moldes)->with('titulo',$titulo);
+                return view('sucursales_total')->with ('notificaciones', $notificaciones)->with('totales',$totales_moldes)->with('titulo',$titulo);
         
         }
 
+           
+        public function notificaciones(){
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+
+            return redirect('moldesprincipal')->with ('notificaciones', $notificaciones);
+        }
 
         public function index_vitola(Request $request)
         {

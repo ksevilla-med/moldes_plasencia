@@ -9,6 +9,7 @@
     href="{{ URL::asset('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}">
 
 
+    <?php if ( auth()->user()->id_planta == 3 ||  auth()->user()->id_planta == 0): ?>
 <div class="row">
 
 
@@ -16,11 +17,11 @@
 
         <form action="{{Route('id_planta_sanMarcos',3)}}" method="POST" class="form-inline">
             @csrf
-            <input name="vitolabuscar" id="vitolabuscar" class="form-control mr-sm-2" type="search" placeholder="Vitola"
-                style="width:150px;">
-            <input name="figurabuscar" id="figurabuscar" class="form-control mr-sm-2" type="search"
-                placeholder="Figura y tipo" style="width:150px;">
-            <button class="btn-info" type="submit">
+            <input value="" onKeyDown="copiar('vitolabuscar','vitolaimprimir');" name="vitolabuscar" id="vitolabuscar"
+                class="form-control mr-sm-2" placeholder="Vitola" style="width:150px;" autocomplete="off">
+            <input value="" onKeyDown="copiar2('figurabuscar','figuraimprimir');" name="figurabuscar" id="figurabuscar"
+                class="form-control mr-sm-2" placeholder="Figura y tipo" style="width:150px;" autocomplete="off">
+           <button class="btn-info" type="submit">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
@@ -137,7 +138,8 @@
 
 
 
-    </div>
+    </div>    
+<?php endif; ?>
 
     <!-- INICIO DEL MODAL NUEVO MOLDE -->
 
@@ -161,7 +163,7 @@
 
                                 <div class="mb-3 col">
                                     <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                                    <select class="form-control" id="txt_figuraytipo" name="id_figura"
+                                    <select class="form-control" style = "width:90%;"id="txt_figuraytipo" name="id_figura"
                                         placeholder="Ingresa figura y tipo" required>
                                         @foreach($figuras as $figura)
                                         <option> {{$figura-> nombre_figura}}</option>
@@ -171,7 +173,7 @@
 
                                 <div class="mb-3 col">
                                     <label for="txt_vitola" class="form-label">Vitola</label>
-                                    <select class="form-control" type="text" list="prediccionvitola" id="txt_vitola"
+                                    <select class="form-control" style = "width:90%;" type="text" list="prediccionvitola" id="txt_vitola"
                                         name="id_vitola" placeholder="Ingresa la vitola" required>
                                         @foreach($vitolas as $vitola)
                                         <option>{{$vitola-> nombre_vitola}}</option>
@@ -182,7 +184,7 @@
 
                                 <div class="mb-3 col">
                                     <label for="txt_total" class="form-label">Total</label>
-                                    <input class="form-control" id="txt_total" placeholder="Cantidad" name="total"
+                                    <input class="form-control" style = "width:90%;" id="txt_total" placeholder="Cantidad" name="total"
                                         required type="number" min="1" max="999999" minLength="1" maxLength="6"autocomplete="off">
                                 </div>
 
@@ -272,14 +274,14 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Agregar Vitola</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" style="width:450px; text-align:center; font-size:20px;">Agregar Vitola</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3 col">
-                            <label for="txt_vitola" class="form-label">Vitola</label>
+                            <label for="txt_vitola" class="form-label" style="width:440px; text-align:center; font-size:20px;">Vitola</label>
                             <input class="form-control" id="vitola" type="text" name="vitola"
-                                placeholder="Agregar vitola" maxLength="30"autocomplete="off">
+                                placeholder="Agregar vitola" maxLength="100"autocomplete="off"  style = "width: 440px">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -310,14 +312,14 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Agregar Figura y tipo</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel" style="width:450px; text-align:center; font-size:20px;">Agregar Figura y tipo</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3 col">
-                            <label for="txt_figuraytipo" class="form-label">Figura y tipo</label>
-                            <input class="form-control" id="figura" type="text" name="figura" placeholder="Cantidad"
-                                maxLength="30"autocomplete="off">
+                            <label for="txt_figuraytipo" class="form-label" style="width:440px; text-align:center; font-size:20px;">Figura y tipo</label>
+                            <input class="form-control" id="figura" type="text" name="figura" placeholder="Agregar Figura y Tipo" style = "width: 440px"
+                                maxLength="30"autocomplete="off" >
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -373,40 +375,40 @@
                             <div class="row">
 
                                 <div class="mb-3 col">
-                                    <label for="txt_total" class="form-label">Total</label>
-                                    <input class="form-control" id="mo_total" placeholder="Cantidad" name="mo_total"
+                                    <label for="txt_total" class="form-label" style= "width:125px; text-align:center;">Total</label>
+                                    <input class="form-control" id="mo_total" placeholder="Cantidad" name="mo_total"style= "width:125px; text-align:right;"
                                         required type="number" min="1" max="999999" minLength="1" maxLength="6"autocomplete="off">
                                 </div>
 
                                 <div class="mb-3 col">
-                                    <label for="txt_buenos" class="form-label">Buenos</label>
-                                    <input class="form-control" id="mo_bueno" name="mo_bueno" placeholder="Cantidad"
+                                    <label for="txt_buenos" class="form-label" style= "width:125px; text-align:center;">Buenos</label>
+                                    <input class="form-control" id="mo_bueno" name="mo_bueno" placeholder="Cantidad" style= "width:125px; text-align:right;"
                                         type="number" value=""autocomplete="off">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="txt_irregulares" class="form-label">Irregulares</label>
-                                    <input class="form-control" id="mo_irregular" name="mo_irregular"
+                                    <label for="txt_irregulares" class="form-label" style= "width:125px; text-align:center;"> Irregulares</label>
+                                    <input class="form-control" id="mo_irregular" name="mo_irregular" style= "width:125px; text-align:right;"
                                         placeholder="Cantidad" type="number"autocomplete="off">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="txt_malos" class="form-label">Malos</label>
-                                    <input class="form-control" id="mo_malo" name="mo_malo" placeholder="Cantidad"
+                                    <label for="txt_malos" class="form-label" style= "width:125px; text-align:center;">Malos</label>
+                                    <input class="form-control" id="mo_malo" name="mo_malo" placeholder="Cantidad" style= "width:125px; text-align:right;"
                                         type="number"autocomplete="off">
                                 </div>
 
                                 <div class="mb-3 col">
-                                    <label for="txt_salon" class="form-label">Bodega</label>
-                                    <input class="form-control" id="mo_bodega" name="mo_bodega" placeholder="Cantidad"
+                                    <label for="txt_salon" class="form-label" style= "width:125px; text-align:center;">Bodega</label>
+                                    <input class="form-control" id="mo_bodega" name="mo_bodega" placeholder="Cantidad" style= "width:125px; text-align:right;"
                                         type="number"autocomplete="off">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="txt_bodega" class="form-label">Reparación</label>
-                                    <input class="form-control" id="mo_reparacion" name="mo_reparacion"
+                                    <label for="txt_bodega" class="form-label" style= "width:125px; text-align:center;">Reparación</label>
+                                    <input class="form-control" id="mo_reparacion" name="mo_reparacion" style= "width:125px; text-align:right;"
                                         placeholder="Cantidad" type="number"autocomplete="off">
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="txt_reparacion" class="form-label">Salón</label>
-                                    <input class="form-control" id="mo_salon" name="mo_salon" placeholder="Cantidad"
+                                    <label for="txt_reparacion" class="form-label" style= "width:125px; text-align:center;">Salón</label>
+                                    <input class="form-control" id="mo_salon" name="mo_salon" placeholder="Cantidad" style= "width:125px; text-align:right;"
                                         type="number"autocomplete="off">
 
                                     <input name="id_molde" id="id_molde" value=" " hidden />
@@ -491,7 +493,11 @@
                 <th style='text-align: center;' scope="col">Reparación</th>
                 <th style='text-align: center;' scope="col">Salón</th>
                 <th style='text-align: center;' scope="col">Total</th>
-                <th style='text-align: center;' scope="col">Editar</th>
+                
+    <?php if ( auth()->user()->id_planta == 3 ||  auth()->user()->id_planta == 0): ?>
+                <th style='text-align: center;' scope="col">Editar</th>                
+                <?php endif ?>
+
             <tr>
         </thead>
         <tbody>
@@ -500,14 +506,15 @@
                 <td> {{$molde->nombre_planta}}</td>
                 <td>{{$molde->vitola}}</td>
                 <td>{{$molde->nombre_figura}}</td>
-                <td>{{$molde->bueno}}</td>
-                <td>{{$molde->irregulares}}</td>
-                <td>{{$molde->malos}}</td>
-                <td>{{$molde->bodega}}</td>
-                <td>{{$molde->reparacion}}</td>
-                <td>{{$molde->salon}}</td>
-                <td>{{$molde->total}}</td>
+                <td style ="text-align:right">{{$molde->bueno}}</td>
+                <td style ="text-align:right">{{$molde->irregulares}}</td>
+                <td style ="text-align:right">{{$molde->malos}}</td>
+                <td style ="text-align:right">{{$molde->bodega}}</td>
+                <td style ="text-align:right">{{$molde->reparacion}}</td>
+                <td style ="text-align:right">{{$molde->salon}}</td>
+                <td style ="text-align:right"><strong>{{$molde->total}}</strong></td>
 
+                <?php if ( auth()->user()->id_planta == 3 ||  auth()->user()->id_planta == 0): ?>
                 <td style="padding:0px; text-align:center;    vertical-align: inherit;">
 
                     <a data-toggle="modal" data-target="#modal_editar_moldes"
@@ -519,12 +526,9 @@
                             <path fill-rule="evenodd"
                                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                         </svg>
-
                     </a>
-
-
-
                 </td>
+                <?php endif ?>
 
 
             </tr>
@@ -533,7 +537,7 @@
             <tr>
                 <td colspan="3" style="text-align:center"><strong>Total General Moldes</strong></td>
 
-                <td>
+                <td style ="text-align:right"><strong>
                     <?php
                 $suma_b=0;
                 foreach ($moldes as $molde)
@@ -541,16 +545,18 @@
                   $suma_b+=$molde->bueno;
                 }
                 
-                ?> {{$suma_b}} </td>
-                <td>
+                ?> {{$suma_b}} 
+                </strong></td>
+                <td style ="text-align:right"><strong>
                     <?php
                $suma_i=0;
                 foreach ($moldes as $molde)
                  {
                   $suma_i+=$molde->irregulares;
                 }
-                ?> {{$suma_i}}</td>
-                <td>
+                ?> {{$suma_i}}
+                </strong></td>
+                <td style ="text-align:right"><strong>
                     <?php
              $suma_m=0;
                 foreach ($moldes as $molde)
@@ -558,8 +564,8 @@
                   $suma_m+=$molde->malos;
                 }
                 ?> {{$suma_m}}
-                </td>
-                <td>
+               </strong> </td>
+                <td style ="text-align:right"><strong>
                     <?php
             $suma_bo=0;
                 foreach ($moldes as $molde)
@@ -567,8 +573,8 @@
                   $suma_bo+=$molde->bodega;
                 }
                 ?> {{$suma_bo}}
-                </td>
-                <td>
+               </strong> </td>
+                <td style ="text-align:right"><strong>
                     <?php
             $suma_r=0;
                 foreach ($moldes as $molde)
@@ -576,8 +582,8 @@
                   $suma_r+=$molde->reparacion;
                 }
                 ?> {{$suma_r}}
-                </td>
-                <td>
+                </strong></td>
+                <td style ="text-align:right"><strong>
                     <?php
             $suma_s=0;
                 foreach ($moldes as $molde)
@@ -585,8 +591,8 @@
                   $suma_s+=$molde->salon;
                 }
                 ?> {{$suma_s}}
-                </td>
-                <td>
+                </strong></td>
+                <td style ="text-align:right"><strong>
                     <?php
             $suma_total=0;
                 foreach ($moldes as $molde)
@@ -594,7 +600,7 @@
                   $suma_total+=$molde->total;
                 }
                 ?> {{$suma_total}}
-                </td>
+               </strong> </td>
             </tr>
         <tbody>
     </table>

@@ -17,26 +17,37 @@ class BuscarRemision extends Migration
     
         DB::unprepared('
 
-        CREATE  PROCEDURE `buscar_remision`(
+        CREATE PROCEDURE `buscar_remision`(
             IN `pa_fecha_inicio` VARCHAR(50),
             IN `pa_fecha_fin` VARCHAR(50),
             IN `pa_id_planta` INT
         )
-      
+        
         BEGIN
-         if pa_fecha_inicio= "0" && pa_fecha_fin = "0" then 
-                 select *
-                  from remisiones
-                 where  pa_id_planta = remisiones.id_planta;
+                 if pa_fecha_inicio= "0" && pa_fecha_fin = "0" then 
+                         select *
+                          from remisiones
+                         where  pa_id_planta = remisiones.id_planta;
+                          
+                       
+                  ELSE if   pa_fecha_inicio != "0" && pa_fecha_fin = "0"  then
                   
-               
-          else
-                select *
-                  from remisiones
-                 where remisiones.fecha between pa_fecha_inicio AND pa_fecha_fin AND pa_id_planta = remisiones.id_planta;
+                   select *  from remisiones
+                        where  pa_id_planta = remisiones.id_planta AND remisiones.fecha   =   STR_TO_DATE(  pa_fecha_inicio, "%Y-%m-%d");
+                  ELSE if    pa_fecha_inicio= "0" && pa_fecha_fin != "0"  then
+                  
+                    select *  from remisiones
+                        where  pa_id_planta = remisiones.id_planta AND remisiones.fecha   =   STR_TO_DATE(  pa_fecha_fin, "%Y-%m-%d");
                  
-            END if;
-                END
+                  else
+                        select *
+                          from remisiones
+                         where remisiones.fecha between pa_fecha_inicio AND pa_fecha_fin AND pa_id_planta = remisiones.id_planta;
+                         
+                    END if;
+                     END if;
+                          END if;
+                        END
         '); 
     }
 

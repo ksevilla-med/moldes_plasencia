@@ -1,10 +1,10 @@
-<title>Reporte Inventario remisiones Paraiso <?php echo($fecha);?></title>
+<title>Reporte Inventario remisiones Moroceli<?php echo($fecha);?></title>
 
 
 
 
 <div class="row" style="width: 100%;margin:10px; text-align:center;">
-    <h4 style="margin:10px;font-style:oblique;"> Remisiones enviadas Paraiso Cigar, Tabacos de Oriente </h4>
+    <h4 style="margin:10px;font-style:oblique;"> Remisiones enviadas Moroceli, Tabacos de Oriente </h4>
 </div>
 
 
@@ -19,7 +19,7 @@
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:100px">Fecha</th>
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:100px">Para</th>
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:100px">Estado</th>
-                    <th style="padding: 2px; text-align: center; border: solid .5px;width:150px">Tipo de molde</th>
+                    <th style="padding: 2px;text-align: center;border: solid .5px;width:150px">Tipo de molde</th>
                     <th style="padding: 2px;text-align: center; border: solid .5px;width:80px;">Cantidad</th>
                     </tr>
             </thead>

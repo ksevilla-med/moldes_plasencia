@@ -1,10 +1,10 @@
-<title>Reporte Inventario remisiones Paraiso <?php echo($fecha);?></title>
+<title>Reporte Inventario remisiones San Marcos<?php echo($fecha);?></title>
 
 
 
 
 <div class="row" style="width: 100%;margin:10px; text-align:center;">
-    <h4 style="margin:10px;font-style:oblique;"> Remisiones recibidas Paraiso Cigar, Tabacos de Oriente </h4>
+    <h4 style="margin:10px;font-style:oblique;"> Remisiones recibidas San Marcos, Tabacos de Oriente </h4>
 </div>
 
 
@@ -21,13 +21,13 @@
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:100px">Estado</th>
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:150px">Tipo de molde</th>
                     <th style="padding: 2px;text-align: center;border: solid .5px;width:80px">Cantidad</th>
-                </tr>
+              </tr>
             </thead>
             <tbody>
                 @foreach($moldes as $molde)
 
                 <tr>
-                    <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->fecha}}</td>
+                <td style="padding: 2px;text-align: center;border: solid .5px;width:100px">{{$molde->fecha}}</td>
                     <td style="padding: 2px;border: solid .5px;width:100px">{{$molde->nombre_planta}}
                     </td>
                     <td style="padding: 2px;border: solid .5px;width:100px">{{$molde->estado_moldes}}

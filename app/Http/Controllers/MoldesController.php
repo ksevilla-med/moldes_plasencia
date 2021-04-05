@@ -36,9 +36,12 @@ use Carbon\Carbon;
 
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                 $id_planta = [$request->id];
 
-                return view('sucursal_elparaiso')->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                return view('sucursal_elparaiso')->with ('notificaciones', $notificaciones)
+                ->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
                 ->with('id_planta', $id_planta)->with('titulo',$titulo)->with('vitolaB',$vitolaB)->with('figuraB',$figuraB) ->with('fechai',$fechai)->with('fechaf',$fechaf);
          }
  
@@ -64,10 +67,12 @@ use Carbon\Carbon;
                 $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
 
                 return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
-                ->with('id_planta', $request->id);
+                ->with('id_planta', $request->id)->with ('notificaciones', $notificaciones);
         }
 
 
@@ -84,7 +89,8 @@ use Carbon\Carbon;
                     'salon' => (int)$request->mo_salon
                 ]);
 
-                
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
                         
 
                 $moldes = \DB::select('call mostrar_datos_moldes(?)', [$request->id]);
@@ -94,7 +100,8 @@ use Carbon\Carbon;
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 
 
-                return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                return REDIRECT('sucursal_elparaiso/1')->with('moldes', $moldes)->with ('notificaciones', $notificaciones)
+                ->with('vitolas', $vitolas)->with( 'figuras',$figuras)
                 ->with('id_planta', $request->id);
      }
 
@@ -116,8 +123,10 @@ use Carbon\Carbon;
                 ]);
             
                 $abrir ="3";
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
-                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with ('notificaciones', $notificaciones)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
                 ->with('fechai',$fechai)->with('fechaf',$fechaf);
          }
@@ -132,6 +141,8 @@ use Carbon\Carbon;
                 $empresa = "";
                 $fechai = $request->fecha_inicio;
                 $fechaf = $request->fecha_fin;
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
                 if($request->txt_otra_fabrica != null){
                     $empresa = $request->txt_otra_fabrica;
@@ -156,6 +167,18 @@ use Carbon\Carbon;
                 'chequear' => (int)$request->chequear
                 ]);
 
+                $descripcion = "Remisión de moldes con la descripción: ".$request->id_tipo." enviada. Favor confirmar la entrega.";
+
+            
+                $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+                [ 'tipo' => "envio",
+               'descripcion' => $descripcion,
+                 'activo' => (int)$request->activo,
+               'idplanta' => (string)$request->id_planta,
+                'planta' => (string)$request->id_otra_plan
+    
+                ]);
+
                 $titulo = "REMISIONES EL PARAÍSO";
                 $moldes = \DB::select('call moldes_remision(1)');  
 
@@ -165,7 +188,7 @@ use Carbon\Carbon;
                 
                 $abrir = "3";
 
-                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with ('notificaciones', $notificaciones)
                 ->with('remisionesenviadas',$remisionesenviadas)      ->with('remisionesrecibidas',$remisionesrecibidas)
                  ->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
      }
@@ -188,6 +211,22 @@ use Carbon\Carbon;
                     'planta_recibido' => (string)$request->nombre_recibido,
                     'nombre_otra_planta'=> (string)$request->txt_nombre_fabrica
                 ]);
+
+               
+
+               
+            $descripcion = "Los moldes con la descripción: ".$request->txt_tipo_moldes." se recibieron correctamente.";
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+            
+            $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+            [ 'tipo' => "confirmacion",
+           'descripcion' => $descripcion,
+             'activo' => (int)$request->activo,
+           'idplanta' => (string)$request->id_planta,
+            'planta' => (string)$request->id_otra
+
+            ]);
                 $fechai = $request->fecha_inicio;
                 $fechaf = $request->fecha_fin;
 
@@ -205,7 +244,8 @@ use Carbon\Carbon;
                 
                 $abrir = "3";
 
-                return view('remisionesparaiso') ->with('titulo',$titulo) ->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas)
+                return redirect('remisiones_paraiso/1') ->with('titulo',$titulo) ->with ('notificaciones', $notificaciones)
+                ->with('moldes',$moldes)->with('remisionesenviadas',$remisionesenviadas)
                 ->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
         }
 
@@ -229,9 +269,10 @@ use Carbon\Carbon;
                }else{
                    $incio = $request->fecha_inicio;
                }
+               $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
 
-
-               if ($request->fecha_inicio === null){
+               if ($request->fecha_fin === null){
                    $fin = "0";
                }else{
                    $fin = $request->fecha_fin;
@@ -244,10 +285,9 @@ use Carbon\Carbon;
 
                 $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
 
-               
                 $abrir = "3";
 
-                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with ('notificaciones', $notificaciones)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
                 ->with('fechai',$fechai)->with('fechaf',$fechaf);
         }
@@ -283,11 +323,12 @@ use Carbon\Carbon;
 
                 $remisionesenviadas= \DB::select('call mostrar_remisiones_enviadas(1)'); 
 
-                
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
                 $abrir = "2";
 
-                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)
+                return view('remisionesparaiso')->with('titulo',$titulo)->with('moldes',$moldes)->with ('notificaciones', $notificaciones)
                 ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)->with('fechai',$fechai)->with('fechaf',$fechaf);
 
 
@@ -298,31 +339,55 @@ use Carbon\Carbon;
                 $fecha =Carbon::now();
                 $fecha = $fecha->format('d-m-Y');
 
+                $ffecha =Carbon::now();
+                $fecha_imp = $ffecha->format('d-m-Y/h:i');
+
+                $vitolaB = $request->vitolabuscar;
+                $figuraB = $request->figurabuscar;
+
+                if ($request->vitolaimprimir === null ){
+                    $vit = "0";
+                }else{
+                    $vit = $request->vitolaimprimir;
+                }$notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
+                
+
+                if ($request->figuraimprimir === null ){
+                    $fig = "0";
+                }else{
+                    $fig = $request->figuraimprimir;
+                }
+
                 $moldes = \DB::select('call moldes_paraiso(:vitola,:nombre_figura)',
-                [ 'vitola' => (string)$request->vitolaimprimir,
-                'nombre_figura' => (string)$request->figuraimprimir
+                [ 'vitola' => (string)$vit,
+                'nombre_figura' => (string)$fig 
                 ]);
                 
-                    
                 $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
 
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
                 $id_planta = [$request->id];
         
-                $vista = view('imprimirtablaparaiso',['fecha' =>$fecha])->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
+                $vista = view('imprimirtablaparaiso',['fecha' =>$fecha])->with ('notificaciones', $notificaciones)
+                ->with('vitolaB',$vitolaB)->with('figuraB',$figuraB) ->with('moldes',$moldes)->with('vitolas', $vitolas)->with( 'figuras',$figuras)
                 ->with('id_planta', $id_planta);
 
                 $pdf =  \PDF::loadHTML($vista);
-                return $pdf->stream('nombre.pdf');
+                return $pdf->stream('Inventario de moldes Paraiso Cigar '.$fecha_imp.'.pdf');
 
          }
 
          public function imprimirdatototal( Request $request){
-                
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
 
 
             $fecha =Carbon::now();
             $fecha = $fecha->format('d-m-Y');
+
+            $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
 
             $titulo = "SUMATORIA TOTAL DE LOS MOLDES PLASENCIA";
             
@@ -331,12 +396,13 @@ use Carbon\Carbon;
             $moldes = \DB::select('call reporte_todas_sucursales()');
 
            
-            $vista = view('imprimirtabla_todassucursales')->with('titulo',$titulo)->with('fecha', $fecha)
+            $vista = view('imprimirtabla_todassucursales')->with('titulo',$titulo)->with ('notificaciones', $notificaciones)
+            ->with('fecha', $fecha)
             ->with('moldes',$moldes)->with('fecha', $fecha);
 
          
             $pdf =  \PDF::loadHTML($vista);
-            return $pdf->stream('nombre.pdf');
+            return $pdf->stream('Inventario total de moldes Plasencia '.$fecha_imp.'.pdf');
 
      }
 
@@ -352,10 +418,13 @@ use Carbon\Carbon;
                 foreach($distintos as $distinto){
                     $insertar = \DB::select('call insertar_totales_plantas(?)' , [$distinto->figura_vitola]);
                 }
+                $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                    'id' => auth()->user()->id_planta ] );
 
                 $totales_moldes = \DB::select('call mostrar_total_todas_plantas()');
 
-                return view('sucursales_total')->with('totales',$totales_moldes)->with('titulo',$titulo);
+                return view('sucursales_total')->with('totales',$totales_moldes)
+                ->with ('notificaciones', $notificaciones)->with('titulo',$titulo);
             
          }
 
@@ -363,7 +432,12 @@ use Carbon\Carbon;
                 
             $fecha =Carbon::now();
             $fecha = $fecha->format('d-m-Y');
-        
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+            
+            $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
+
             $fechai = $request->fecha_inicio;
             $fechaf = $request->fecha_fin;
             $titulo = "REMISIONES A OTRAS EMPRESAS";
@@ -387,20 +461,24 @@ use Carbon\Carbon;
            'fecha_fin' => $fin,
            'id_planta_remision' => $request->id_planta_re]);
         
-            $vista = view('imprimir_remisiones_paraiso_enviadas')->with('titulo',$titulo)
+            $vista = view('imprimir_remisiones_paraiso_enviadas')->with('titulo',$titulo)->with ('notificaciones', $notificaciones)
             ->with('moldes', $moldes)->with('fecha', $fecha)  ->with('fechai',$fechai)->with('fechaf',$fechaf);
         
             $pdf =  \PDF::loadHTML($vista);
-            return $pdf->stream('nombre.pdf');
+            return $pdf->stream('Remisión de moldes enviados Paraíso Cigar '.$fecha_imp.'.pdf');
         
         }
          
 
         public function imprimir_remision_paraiso_recibidas( Request $request){
+
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
                 
             $fecha =Carbon::now();
             $fecha = $fecha->format('d-m-Y');
-        
+            $ffecha =Carbon::now();
+            $fecha_imp = $ffecha->format('d-m-Y/h:i');
             $fechai = $request->fecha_inicio;
             $fechaf = $request->fecha_fin;
             $titulo = "REMISIONES A OTRAS EMPRESAS";
@@ -425,15 +503,88 @@ use Carbon\Carbon;
            'id_planta_remision' => $request->nombre_fa]);
         
           
-            $vista = view('imprimir_remisiones_paraiso_recibidas')->with('titulo',$titulo)
+            $vista = view('imprimir_remisiones_paraiso_recibidas')->with('titulo',$titulo)->with ('notificaciones', $notificaciones)
             ->with('moldes', $moldes)->with('fecha', $fecha)->with('fechai',$fechai)->with('fechaf',$fechaf);
         
             
             $pdf =  \PDF::loadHTML($vista);
-            return $pdf->stream('nombre.pdf');
+            return $pdf->stream('Remisión de moldes recibidos Paraíso Cigar '.$fecha_imp.'.pdf');
         
         }
 
+
+        
+
+        public function insertar_notificaciones(Request $request){
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+            
+            $descripcion = "Se necesitan ".(string)$request->cantidad_notificacion." moldes con las siguiente descripción: ".
+            (string)$request->figura_notificacion." ".(string)$request->vitola_notificacion." para la planta ".(string)$request->nombreplanta_notificacion.".";
+
+
+         
+            
+            $molde = \DB::select('call insertar_notificaciones(:tipo,:descripcion,:activo,:idplanta,:planta)',
+            [ 'tipo' => (string)$request->tipo_notificacion,
+           'descripcion' => $descripcion,
+             'activo' => (int)$request->chequear_notificaciones,
+           'idplanta' => (string)$request->id_planta_notificaciones,
+            'planta' => (string)$request->planta_notificacion
+
+            ]);
+
+
+            $titulo = "REMISIONES EL PARAÍSO";
+            $moldes = \DB::select('call moldes_remision(1)'); 
+
+            $bodega = \DB::select('call traer_cantidad(:id_planta)',
+            [
+                'id_planta' => (int)$request->id_planta
+
+            ]);
+
+            $fechai = $request->fecha_inicio;
+            $fechaf = $request->fecha_fin;
+
+            if ($request->fecha_inicio === null){
+                $incio = "0";
+           }else{
+               $incio = $request->fecha_inicio;
+           }
+
+
+           if ($request->fecha_fin === null){
+               $fin = "0";
+           }else{
+               $fin = $request->fecha_fin;
+           }
+
+            $remisionesenviadas = \DB::select('call buscar_remision(:fecha_inicio,:fecha_fin,:id_planta_remision)',
+            [ 'fecha_inicio' => $incio,
+            'fecha_fin' => $fin,
+            'id_planta_remision' => $request->id_planta_remision]);
+
+            $remisionesrecibidas = \DB::select("call mostrar_remisiones_recibidas('Paraíso Cigar')");
+
+            $abrir = "3";
+
+            return REDIRECT('remisiones_paraiso/1')->with('titulo',$titulo)->with('moldes',$moldes)
+            ->with('remisionesenviadas',$remisionesenviadas)->with('remisionesrecibidas',$remisionesrecibidas)->with('bodega',$bodega)->with('abrir', $abrir)
+            ->with('fechai',$fechai)->with('fechaf',$fechaf)->with ('notificaciones', $notificaciones);
+        }
+
+
+  
+        
+        public function notificaciones(){
+
+            $notificaciones = \DB::select("call mostrar_notificaciones(:id)",[
+                'id' => auth()->user()->id_planta ] );
+            $actualizar_noti = \DB::select("update notificaciones set(notificaciones.activo = 1 where notificaciones.id)");
+
+            return redirect('moldesprincipal')->with ('notificaciones', $notificaciones);
+        }
 
          public function index_vitola(Request $request)
             {
