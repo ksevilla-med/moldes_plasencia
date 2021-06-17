@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Moldes;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -10,7 +9,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use PDF;
 use Carbon\Carbon;
-
 
     class MoldesController extends Controller
     {
@@ -32,7 +30,14 @@ use Carbon\Carbon;
                 [ 'vitola' => (string)$request->vitolabuscar,
                 'nombre_figura' => (string)$request->figurabuscar]);
 
+
+
+
                 $vitolas = \DB::select('call mostrar_vitolas(?)', [$request->id]);
+
+
+
+                
 
                 $figuras = \DB::select('call mostrar_figura_tipos(?)', [$request->id]);
 

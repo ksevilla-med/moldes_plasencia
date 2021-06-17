@@ -13,11 +13,11 @@ class Pilones extends Migration
      */
     public function up()
     {
-    //     Schema::create('pilones', function (Blueprint $table) {
-    //         $table->bigIncrements('id_pilon')->required();
-    //         $table->int('numero_pilon',100)->required();
-    //         $table->timestamps();
-    //    });
+        Schema::create('pilones', function (Blueprint $table) {
+            $table->bigIncrements('id_pilon')->required();
+            $table->integer('numero_pilon')->required();
+            $table->timestamps();
+       });
     }
 
     /**
@@ -27,7 +27,7 @@ class Pilones extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('pilones');
+         Schema::dropIfExists('pilones');
    
     }
 }

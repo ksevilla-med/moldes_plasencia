@@ -17,16 +17,17 @@ class InsertarTabaco extends Migration
     
         DB::unprepared('
 
-        CREATE PROCEDURE `insertar_tabaco`(
+        CREATE  PROCEDURE `insertar_tabaco`(
             IN `pa_nombre` VARCHAR(100)
         )
+        
         BEGIN
         
-            if EXISTS (SELECT * from clase_tabaco WHERE nombre_tabaco = pa_nombre) then 
-                    SELECT "No se puede repetir el nombre/n de la clase de tabaco",0;
+            if EXISTS (SELECT * from clase_tabaco WHERE nombre_tabaco = pa_nombre) then
+                SELECT "No se puede repetir el nombre/n de la clase de tabaco",0;
             else
-                    INSERT INTO clase_tabaco (nombre_tabaco) VALUES(pa_nombre);
-                    SELECT "Guardado correctamente",1;
+                INSERT INTO clase_tabaco (nombre_tabaco) VALUES(pa_nombre);
+                SELECT "Guardado correctamente",1;
             end IF;
         
         END

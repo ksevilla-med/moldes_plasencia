@@ -13,14 +13,14 @@ class ControlTemperatura extends Migration
      */
     public function up()
     {
-        //   Schema::create('control_temperatura', function (Blueprint $table) {
-        //      $table->bigIncrements('id_temperatura')->required();
-        //      $table->int('id_pilones')->required();
-        //      $table->int('temperatura')->required();
-        //      $table->date('fecha_revision')->required();      
-        //      $table->string('mantenimiento',20)->required();
-        //      $table->timestamps();
-        // });
+          Schema::create('control_temperatura', function (Blueprint $table) {
+             $table->bigIncrements('id_temperatura')->required();
+             $table->integer('id_pilones')->required();
+             $table->integer('temperatura')->required();
+             $table->date('fecha_revision')->required();      
+             $table->string('mantenimiento',20)->required();
+             $table->timestamps();
+        });
     }
 
     /**
@@ -30,7 +30,7 @@ class ControlTemperatura extends Migration
      */
     public function down()
     {
-      //  Schema::dropIfExists('control_temperatura');
+        Schema::dropIfExists('control_temperatura');
    
     }
 }

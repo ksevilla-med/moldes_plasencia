@@ -1,5 +1,5 @@
 <!-- LO QUE SE MUESTRA EN LA PESTANIA DEL NAVEGADOR -->
-<title>Placensia inventario móvil</title>
+<title>Plasencia inventario móvil</title>
 <link rel="shortcat icon" href="{{ URL::asset('favicon.ico') }}">
 
 <meta charset="utf-8">

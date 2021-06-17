@@ -17,20 +17,22 @@ class InsertarPilones extends Migration
     
         DB::unprepared('
        
-        CREATE PROCEDURE `insertar_pilones`(
-            IN `pa_numero_pilon` INT
+        CREATE  PROCEDURE `insertar_pilones`(
+            IN `pa_nombre_pilon` VARCHAR(50)
         )
+        
         BEGIN
-          if EXISTS (SELECT * FROM pilones WHERE numero_pilon = pa_numero_pilon) then
-           SELECT "No se puede repetir el numero de pilon ",0;
-           else
-           
-           INSERT INTO pilones(numero_pilon) VALUES (pa_numero_pilon);
-           SELECT "Guardado correctamente",1;
-           
-           END IF;
+            if EXISTS(SELECT * FROM pilones WHERE pilones.numero_pilon = pa_nombre_pilon) then
+                SELECT "No se puede Guardar",1;
+            ELSE
+                INSERT INTO pilones(numero_pilon) VALUES(pa_nombre_pilon);
+                SELECT "Guardado correctamente",1;
+        
+        
+                INSERT INTO  `1-pilon_actividad`(id_pilon,activo,cantidad_libras,finca,variedad,us_cre,fecha_activo,fecha_inactivo)
+                VALUES(pa_nombre_pilon,0,0, "", "", NOW(),NOW(),NOW());
+            END if;
         END
-       
         ');
     }
 

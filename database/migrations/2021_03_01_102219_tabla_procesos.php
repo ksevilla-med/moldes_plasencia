@@ -13,17 +13,17 @@ class TablaProcesos extends Migration
      */
     public function up()
     {
-    //     Schema::create('tabla_procesos', function (Blueprint $table) {
-    //         $table->bigIncrements('id_tabla_proceso')->required();
-    //         $table->date('fecha_proceso')->required();
-    //         $table->integer('id_remision')->required();
-    //         $table->string('entradas_salidas',30)->required();
-    //         $table->string('nombre_tabaco',50);
-    //         $table->string('numero_pilon',50);
-    //         $table->decimal('subtotal',10,2)->required();
-    //         $table->decimal('tatal_libras',10,2)->required();
-    //         $table->timestamps();
-    //    });
+        Schema::create('tabla_procesos', function (Blueprint $table) {
+            $table->bigIncrements('id_tabla_proceso')->required();
+            $table->date('fecha_proceso')->required();
+            $table->integer('id_remision')->required();
+            $table->string('entradas_salidas',30)->required();
+            $table->string('nombre_tabaco', 50);
+            $table->decimal('subtotal',10,2)->required();
+            $table->decimal('tatal_libras',10,2)->required();
+            $table->decimal('total_remision',10,2)->required();
+            $table->timestamps();
+       });
     }
 
     /**
@@ -33,7 +33,7 @@ class TablaProcesos extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('tabla_procesos');
+         Schema::dropIfExists('tabla_procesos');
    
     }
 }

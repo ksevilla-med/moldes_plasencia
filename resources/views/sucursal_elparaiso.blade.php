@@ -138,6 +138,7 @@
                 </div>
 
                 <div class="modal-body">
+                
                     <div class="card-body">
 
 
@@ -407,6 +408,7 @@
     </div>
 
 </form>
+
 <!-- FIN DEL MODAL EDITAR MOLDE -->
 
 <script type="text/javascript">
@@ -432,7 +434,8 @@
                 document.formulario_actualizar.mo_bodega.value = data[i].bodega;
                 document.formulario_actualizar.mo_reparacion.value = data[i].reparacion;
                 document.formulario_actualizar.mo_salon.value = data[i].salon;
-                document.formulario_actualizar.id_molde.value = data[i].id_molde;
+                document.formulario_actualizar.id_molde.value = data[i
+                ].id_molde;
                 document.getElementById("titulo_figura").innerHTML = "        ".concat("Figura y tipo: ", data[i]
                     .nombre_figura, "<br> ", "Vitola:", " ", data[i].vitola);
                 document.getElementById("titulo_vitola").innerHTML = "<br> ".concat("Vitola:", " ", data[i].vitola);

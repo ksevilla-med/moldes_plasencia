@@ -11,7 +11,7 @@
           <a style="background:#b38d1d;" class="nav-link  mr-sm-2 download"  onclick="elegirmoldes()" id="a_moldes"  >Moldes</a>
         </li>
         <li class="nav-item">
-          <a style="background:#b39f64;" class="nav-link download" onclick="elegircajones()" id="a_cajones" >Cajones</a>
+          <a style="background:#b39f64;" class="nav-link download" onclick="elegircajones()" id="a_cajones" >Otro</a>
         </li>       
       </ul>
     </div>
@@ -68,23 +68,10 @@
       <img src="carrusel_1.png" class="d-block " style=" height:30rem; width:100%" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h5>Moldes</h5>
-        <p class="p_carrusel">Some representative placeholder content for the first slide.</p>
+        <p class="p_carrusel" style="color:#000;"> Haz clic para ver el video</p>
       </div>
     </div>
-    <div class="carousel-item">
-      <img src="carrusel_2.png" class="d-block " style=" height:30rem; width:100%"  alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p class="p_carrusel">Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="carrusel_3.png" class="d-block " style=" height:30rem; width:100%"  alt="..." >
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p class="p_carrusel">Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
+ 
   </div>
   <button class="carousel-control-prev" type="button" data-target="#carouselMoldes"  data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

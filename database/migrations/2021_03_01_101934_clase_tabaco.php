@@ -13,11 +13,11 @@ class ClaseTabaco extends Migration
      */
     public function up()
     {
-        //  Schema::create('clase_tabaco', function (Blueprint $table) {
-        //      $table->increments('id_tabaco')->required();
-        //      $table->string('nombre_tabaco',100)->required();
-        //      $table->timestamps();
-        // });
+         Schema::create('clase_tabaco', function (Blueprint $table) {
+             $table->increments('id_tabaco')->required();
+             $table->string('nombre_tabaco',100)->required();
+             $table->timestamps();
+        });
     }
 
     /**
@@ -27,6 +27,6 @@ class ClaseTabaco extends Migration
      */
     public function down()
     {
-      //  Schema::dropIfExists('clase_tabaco');
+        Schema::dropIfExists('clase_tabaco');
     }
 }
